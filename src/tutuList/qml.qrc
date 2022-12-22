@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>theForms/setupTask.qml</file>
+        <file>theScripts/config.js</file>
+        <file>theComponents/simple-button.qml</file>
+    </qresource>
+</RCC>
