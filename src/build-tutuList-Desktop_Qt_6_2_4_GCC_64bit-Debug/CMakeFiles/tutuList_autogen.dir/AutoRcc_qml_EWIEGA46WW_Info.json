@@ -1,0 +1,25 @@
+{
+	"BUILD_DIR" : "/home/mrx/Documents/tutu-list/src/build-tutuList-Desktop_Qt_6_2_4_GCC_64bit-Debug/tutuList_autogen",
+	"CMAKE_BINARY_DIR" : "/home/mrx/Documents/tutu-list/src/build-tutuList-Desktop_Qt_6_2_4_GCC_64bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/mrx/Documents/tutu-list/src/build-tutuList-Desktop_Qt_6_2_4_GCC_64bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/mrx/Documents/tutu-list/src/tutuList",
+	"CMAKE_SOURCE_DIR" : "/home/mrx/Documents/tutu-list/src/tutuList",
+	"INCLUDE_DIR" : "/home/mrx/Documents/tutu-list/src/build-tutuList-Desktop_Qt_6_2_4_GCC_64bit-Debug/tutuList_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/mrx/Documents/tutu-list/src/tutuList/main.qml",
+		"/home/mrx/Documents/tutu-list/src/tutuList/theForms/setupTask.qml",
+		"/home/mrx/Documents/tutu-list/src/tutuList/theScripts/config.js",
+		"/home/mrx/Documents/tutu-list/src/tutuList/theComponents/simple-button.qml"
+	],
+	"LOCK_FILE" : "/home/mrx/Documents/tutu-list/src/build-tutuList-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/tutuList_autogen.dir/AutoRcc_qml_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "qml" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_qml.cpp",
+	"RCC_EXECUTABLE" : "/home/mrx/Qt/6.2.4/gcc_64/./libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/mrx/Documents/tutu-list/src/build-tutuList-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/tutuList_autogen.dir/AutoRcc_qml_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/mrx/Documents/tutu-list/src/tutuList/qml.qrc",
+	"VERBOSITY" : 0
+}
