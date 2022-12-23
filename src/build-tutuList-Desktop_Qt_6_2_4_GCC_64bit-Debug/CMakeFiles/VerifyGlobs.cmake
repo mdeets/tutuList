@@ -134,8 +134,14 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/mrx/Documents/tutu-list/src/tutuList/*.qml")
 set(OLD_GLOB
   "/home/mrx/Documents/tutu-list/src/tutuList/main.qml"
-  "/home/mrx/Documents/tutu-list/src/tutuList/theComponents/simple-button.qml"
+  "/home/mrx/Documents/tutu-list/src/tutuList/theComponents/TuTuTitleBar.qml"
+  "/home/mrx/Documents/tutu-list/src/tutuList/theComponents/TutuBottomMenu.qml"
+  "/home/mrx/Documents/tutu-list/src/tutuList/theComponents/TutuButton.qml"
   "/home/mrx/Documents/tutu-list/src/tutuList/theForms/setupTask.qml"
+  "/home/mrx/Documents/tutu-list/src/tutuList/thePages/AllTasks.qml"
+  "/home/mrx/Documents/tutu-list/src/tutuList/thePages/CompletedTasks.qml"
+  "/home/mrx/Documents/tutu-list/src/tutuList/thePages/LoadingPage.qml"
+  "/home/mrx/Documents/tutu-list/src/tutuList/thePages/TodayTasks.qml"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

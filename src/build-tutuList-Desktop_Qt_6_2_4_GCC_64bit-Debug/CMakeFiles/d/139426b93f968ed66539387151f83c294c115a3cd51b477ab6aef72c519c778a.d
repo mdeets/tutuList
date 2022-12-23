@@ -1,7 +1,6 @@
 tutuList_autogen/timestamp: \
   CMakeFiles/3.24.2/CMakeCXXCompiler.cmake \
   CMakeFiles/3.24.2/CMakeSystem.cmake \
-  CMakeFiles/FindThreads/CheckForPthreads.cxx \
   /home/mrx/Documents/tutu-list/src/tutuList/CMakeLists.txt \
   /home/mrx/Documents/tutu-list/src/tutuList/main.cpp \
   /home/mrx/Documents/tutu-list/src/tutuList/qml.qrc \
@@ -137,78 +136,23 @@ tutuList_autogen/timestamp: \
   /home/mrx/Qt/6.2.4/gcc_64/lib/cmake/Qt6Quick/Qt6QuickTargets-relwithdebinfo.cmake \
   /home/mrx/Qt/6.2.4/gcc_64/lib/cmake/Qt6Quick/Qt6QuickTargets.cmake \
   /home/mrx/Qt/6.2.4/gcc_64/lib/cmake/Qt6Quick/Qt6QuickVersionlessTargets.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeCXXCompiler.cmake.in \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeCXXCompilerABI.cpp \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeCXXInformation.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeCompilerIdDetection.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeDetermineCXXCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeDetermineCompileFeatures.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeDetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeDetermineCompilerABI.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeDetermineCompilerId.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeDetermineSystem.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeFindBinUtils.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeFindDependencyMacro.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeGenericSystem.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeNinjaFindMake.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeParseArguments.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeParseImplicitIncludeInfo.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeParseImplicitLinkInfo.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeParseLibraryArchitecture.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeSystem.cmake.in \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeTestCXXCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CMakeTestCompilerCommon.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CheckCXXCompilerFlag.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CheckCXXSourceCompiles.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CheckForPthreads.c \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CheckIncludeFileCXX.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/CheckLibraryExists.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/ADSP-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Borland-DetermineCompiler.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Cray-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/GHS-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/GNU-FindBinUtils.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/GNU.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/IAR-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Intel-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/MSVC-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/PGI-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/PathScale-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/SCO-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/TI-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/Watcom-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/FeatureSummary.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/FindOpenGL.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake \
@@ -219,9 +163,7 @@ tutuList_autogen/timestamp: \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Internal/CheckCompilerFlag.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Internal/CheckFlagCommonConfig.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Internal/CheckSourceCompiles.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Internal/FeatureTesting.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/MacroAddFileDependencies.cmake \
-  /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Platform/Linux-Determine-CXX.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake \
   /home/mrx/Qt/Tools/CMake/share/cmake-3.24/Modules/Platform/Linux.cmake \
