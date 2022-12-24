@@ -1,5 +1,0 @@
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/config.tests/static_link_order/CMakeFiles/rebuild_cache.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/config.tests/static_link_order/CMakeFiles/edit_cache.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/config.tests/static_link_order/CMakeFiles/static_link_order_test.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/config.tests/static_link_order/CMakeFiles/staticLib.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/config.tests/static_link_order/CMakeFiles/objLib.dir
