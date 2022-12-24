@@ -2,10 +2,12 @@
 
 function updatePartOfTask(taskId,partField,partValue)//return 1 means query OK, return etc means query failed
 {
-     //becareful partfield ist caseSensetive and important
+    //this is quick way to update just one field for that table.
+    //becareful partfield ist caseSensetive and important
     try
     {
         var db = DBC.getDatabase();
+        var result="0";
         db.transaction
                 (
                     function(tx)
@@ -18,16 +20,17 @@ function updatePartOfTask(taskId,partField,partValue)//return 1 means query OK, 
                         if (rs.rowsAffected > 0)
                         {
                             console.log("source : allTasks.js/updateWholeTask() -> query successfully exectured.");
-                            return 1;
+                            result = 1;
                         }
                         else
                         {
                             console.log("source : allTasks.js/updateWholeTask() -> query failed.");
-                            return 0;
+                            result= 0;
                         }
 
                     }
                 );
+        return result;
     }
     catch(error)
     {
@@ -41,6 +44,7 @@ function updateWholeTask(taskId,title,desc,priority=100,timeToPerform=0,deadline
     try
     {
         var db = DBC.getDatabase();
+        var result="0";
         db.transaction
                 (
                     function(tx)
@@ -56,16 +60,17 @@ function updateWholeTask(taskId,title,desc,priority=100,timeToPerform=0,deadline
                         if (rs.rowsAffected > 0)
                         {
                             console.log("source : allTasks.js/updateWholeTask() -> query successfully exectured.");
-                            return 1;
+                            result = 1;
                         }
                         else
                         {
                             console.log("source : allTasks.js/updateWholeTask() -> query failed.");
-                            return 0;
+                            result = 0;
                         }
 
                     }
                 );
+        return result;
     }
     catch(error)
     {
@@ -78,6 +83,7 @@ function deleteTask(taskId)//return 1 means Query is successfuly executed, etc m
 {
     try
     {
+        var result="0";
         var db = DBC.getDatabase();
         db.transaction
                 (
@@ -87,16 +93,17 @@ function deleteTask(taskId)//return 1 means Query is successfuly executed, etc m
                         if (rs.rowsAffected > 0)
                         {
                             console.log("source : allTasks.js/deleteTask() -> query successfully exectured.");
-                            return 1;
+                            result= 1;
                         }
                         else
                         {
                             console.log("source : allTasks.js/deleteTask() -> query failed.");
-                            return 0;
+                            result= 0;
                         }
 
                     }
                 );
+        return result;
     }
     catch(error)
     {
@@ -105,16 +112,23 @@ function deleteTask(taskId)//return 1 means Query is successfuly executed, etc m
     }
 }
 
+function addQuicklyNewTask(title)
+{
+    return addNewTask(title,"0",0,"0","0");
+}
+
 function addNewTask(title,desc,priority,deadline,timeToPerform) //return 1 means Query is OK, etc is failure
 {
     try
     {
         var db = DBC.getDatabase();
+        var result = "0";
         db.transaction
                 (
                     function(tx)
                     {
-                        var rs = tx.executeSql('INSERT '+DBC.table_allTasks+' (t_title,t_description,t_priority,t_timeToPerform,t_deadline) VALUES (?,?,?,?,?);',
+                        const tabl = DBC.table_allTasks;
+                        var rs = tx.executeSql('INSERT INTO '+tabl+' (t_title,t_description,t_priority,t_timeToPerform,t_deadline) VALUES (?,?,?,?,?);',
                                                                              [title,
                                                                               desc,
                                                                               priority,
@@ -124,16 +138,17 @@ function addNewTask(title,desc,priority,deadline,timeToPerform) //return 1 means
                         if (rs.rowsAffected > 0)
                         {
                             console.log("source : allTasks.js/addNewTask() -> query successfully exectured.");
-                            return 1;
+                            result = "1";
                         }
                         else
                         {
                             console.log("source : allTasks.js/addNewTask() -> query failed.");
-                            return 0;
+                            result = "0";
                         }
 
                     }
                 );
+        return result;
     }
     catch(error)
     {
@@ -209,7 +224,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
     try
     {
         var db = DBC.getDatabase();
-        var result = "";
+        var result = "1";
 
         db.transaction
                 (
@@ -293,6 +308,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                         else
                         {
                             console.log("source : allTasks.js/getList(json) -> row data is less than 0.");
+                            return result;
                         }
 
                     }

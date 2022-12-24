@@ -18,3 +18,12 @@ const color_input_background = "white";
 const color_input_text = "black";
 
 const color_unknown = "white";
+
+
+//database Tables
+
+const table_allTasks = "tutu_allTasks1";
+const table_completedTasks = "tutu_completedTasks1";
+const table_todayTasks = "tutu_todayTasks1";
+const table_taskSteps = "tutu_taskSteps1";
+const table_settings = "tutu_settings1";

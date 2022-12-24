@@ -6,6 +6,7 @@ import QtQuick.Controls 2.15
 import "theScripts/config.js" as ConfigFile
 import "theComponents"
 import "theScripts/databaseHeader.js" as DBheader
+import "theScripts/alltasks.js" as AllTasksJs
 /*
   update document MIRO.com
     diagram database working on tasks -> today settings
@@ -27,7 +28,7 @@ Window
 
 
         //check connection with database then init tables.
-        const res_testDB = DBheader.testDatabaseConnection();
+        const res_testDB = DBheader.testDatabaseConnection();//this table isnt include inside the function DBheader.deleteTables..() so it run even main tables are removed.
         if(res_testDB)
         {
             console.log("result databsae connection check = OK , response="+res_testDB);
@@ -35,7 +36,6 @@ Window
         }
         else
             console.log("result database connection = failed, response=" + res_testDB);
-
 
     }
 
