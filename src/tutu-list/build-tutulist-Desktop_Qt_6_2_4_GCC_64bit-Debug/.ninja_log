@@ -1,0 +1,9 @@
+# ninja log v5
+1	20	0	/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/cmake.verify_globs	e1cec51c7b22795a
+1	22	0	CMakeFiles/tutulist_autogen	3f44a5e12f89e4a7
+1	22	0	tutulist_autogen/mocs_compilation.cpp	3f44a5e12f89e4a7
+22	42	1671876845707441417	tutulist_autogen/EWIEGA46WW/qrc_qml.cpp	793b27c656e4bf1f
+42	60	1671876845727442003	CMakeFiles/tutulist.dir/tutulist_autogen/mocs_compilation.cpp.o	b4d7de58e2b57699
+42	134	1671876845803444231	CMakeFiles/tutulist.dir/tutulist_autogen/EWIEGA46WW/qrc_qml.cpp.o	7655eaea48794a96
+42	2141	1671876847807502874	CMakeFiles/tutulist.dir/main.cpp.o	124abbc831210de
+2142	2550	1671876848187513978	tutulist	31758018bdb39bac
