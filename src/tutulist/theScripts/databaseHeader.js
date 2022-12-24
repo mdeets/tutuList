@@ -6,6 +6,7 @@ function getDatabase()
      return Storage.LocalStorage.openDatabaseSync("tutuList_DataBase", "0.1", "tutuList database is localdatabse to save application data, later can sync these data into API for backup/sync with other devices", 100);
 }
 
+
 const table_allTasks = "tutu_allTasks";
 const table_completedTasks = "tutu_completedTasks";
 const table_todayTasks = "tutu_todayTasks";
