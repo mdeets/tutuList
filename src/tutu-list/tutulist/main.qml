@@ -5,7 +5,14 @@ import QtQuick.Controls 2.15
 //configs
 import "theScripts/config.js" as ConfigFile
 import "theComponents"
+import "theScripts/databaseHeader.js" as DBheader
+/*
+  update document MIRO.com
+    diagram database working on tasks -> today settings
+    settings database add.
+    function getList add new arguman.
 
+  */
 Window
 {
     id:mainWindow;
@@ -13,6 +20,33 @@ Window
     height: ConfigFile.application_height;
     visible: true;
     title: qsTr(ConfigFile.application_title);
+    Component.onCompleted:
+    {
+        console.log("Application started successfully.");
+
+
+
+
+        //check connection with database.
+        const res_testDB = DBheader.testDatabaseConnection();
+        if(res_testDB)
+        {
+            console.log("result databsae connection check = OK ,response="+res_testDB);
+            const res_tables_exist = DBheader.checkDatbaseTablesExistans();
+            console.log("res tbl ex="+res_tables_exist)
+            DBheader.initDatabaseTables();
+//            if(!res_tables_exist)
+//            {
+
+
+//            }
+
+        }
+        else
+            console.log("res db con = failed, resonpose = " + res_testDB);
+
+    }
+
     onClosing:
     {
         console.log("user is trying to close app. mainStackView Dep = "+ mainStackView.depth);
