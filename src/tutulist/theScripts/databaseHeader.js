@@ -9,6 +9,7 @@ function getDatabase()
 const table_allTasks = "tutu_allTasks";
 const table_completedTasks = "tutu_completedTasks";
 const table_todayTasks = "tutu_todayTasks";
+const table_taskSteps = "tutu_taskSteps";
 const table_settings = "tutu_settings";
 
 function testDatabaseConnection() //return 0 means connection failed , return 1 means connection is ok
@@ -66,7 +67,7 @@ function initDatabaseTables()
     (
         function(tx)
         {
-            const result_AllTasks = tx.executeSql('CREATE TABLE IF NOT EXISTS '+table_allTasks+' (t_id INTEGER PRIMARY KEY AUTOINCREMENT,t_title  TEXT, t_description TEXT, t_priority INT, t_timeToPerform TEXT, t_deadline TEXT)');
+            const result_AllTasks = tx.executeSql('CREATE TABLE IF NOT EXISTS '+table_allTasks+' (t_id INTEGER PRIMARY KEY AUTOINCREMENT,t_title  TEXT, t_description TEXT, t_priority INT, t_timeToPerform TEXT, t_deadline TEXT, t_creationDate DATETIME DEFAULT CURRENT_TIMESTAMP)');
             if (result_AllTasks.rowsAffected > 0)
                 console.log("source : databaseHeader/initDatabaseTable() -> table tutu_allTasks created succesfully.");
             else
@@ -75,7 +76,7 @@ function initDatabaseTables()
 
 
 
-            const result_completedTasks = tx.executeSql('CREATE TABLE IF NOT EXISTS '+table_completedTasks+' (ct_id INTEGER PRIMARY KEY AUTOINCREMENT,t_id INT, c_date TEXT, FOREIGN KEY(t_id) REFERENCES '+table_allTasks+'(t_id) ON DELETE CASCADE );');
+            const result_completedTasks = tx.executeSql('CREATE TABLE IF NOT EXISTS '+table_completedTasks+' (ct_id INTEGER PRIMARY KEY AUTOINCREMENT,t_id INT, ct_completeDate TEXT, FOREIGN KEY(t_id) REFERENCES '+table_allTasks+'(t_id) ON DELETE CASCADE );');
             if (result_completedTasks.rowsAffected > 0)
                 console.log("source : databaseHeader/initDatabaseTable() -> table tutu_completedTasks created succesfully.");
             else
@@ -89,6 +90,15 @@ function initDatabaseTables()
                 console.log("source : databaseHeader/initDatabaseTable() -> table tutu_todayTasks created succesfully.");
             else
                 console.log("source : databaseHeader/initDatabaseTable() -> table tutu_todayTasks failed to create.");
+
+
+
+
+            const result_taskSteps = tx.executeSql('CREATE TABLE IF NOT EXISTS '+table_taskSteps+' (ts_id INTEGER PRIMARY KEY AUTOINCREMENT,t_id INT, ts_title TEXT, ts_description TEXT, ts_completeDate TEXT, FOREIGN KEY(t_id) REFERENCES '+table_allTasks+'(t_id) ON DELETE CASCADE );');
+            if (result_todayTasks.rowsAffected > 0)
+                console.log("source : databaseHeader/initDatabaseTable() -> table tutu_taskSteps created succesfully.");
+            else
+                console.log("source : databaseHeader/initDatabaseTable() -> table tutu_taskSteps failed to create.");
 
 
 

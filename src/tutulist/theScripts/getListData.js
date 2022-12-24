@@ -3,52 +3,133 @@
 const tableName = "";
 
 
-function getList(flagAllTasks,targetList,returnTypeFlag)
+function getList(tableName,targetList,returnType="json") //return ETC means OK, return 1 is error
 {
     /*
-        This function will fetch and return as json/append data into the list.
+        This function will fetch and return as json OR append data into the list.
 
         Argumants:
-            flagAllTasks = to know is it perpering data for allTasks or not
+            tableName = to know is it perpering data for allTasks or not
                     reason: (bc of algorithm, if wants data for allTasks section it will execute sql code twice for table allTasks).
+                    (default: today)
 
             targetList = that list we want to append data into
                     (optional).
 
-            returnTypeFlag = is a flag to know with wich format return, json or append to targetList
-                    (default: append into targetList)
+            returnType = is a flag to know with wich format return, json or append to targetList
+                    (default: return as json)
+                    values = ['json',''] jsor or etc -> appendToList
     */
 
 
-    var db = DBC.getDatabase();
-    var res = "";
-
-    db.transaction
-    (
-        function(tx)
+    try
+    {
+        switch(tableName)
         {
-
+            case "completed": tableName = table_completedTasks;
+                break;
+            case "all": tableName = table_allTasks;
+                break;
+            default: tableName = table_todayTasks;
         }
-     );
-    return 0;
+
+        var db = DBC.getDatabase();
+        var result = "";
+
+        db.transaction
+        (
+            function(tx)
+            {
+                if(tableName === table_allTasks)
+                {
+                    var rs = tx.executeSql('SELECT * FROM '+tableName+' ORDER BY t_creationDate ASC;');
+                    var tableColumns = rs.rows.length;
+                    if (rs.rows.length > 0)
+                    {
+                        if(returnType==="json")
+                        {
+                            //pepear the json
+                            for(var x=0; x<tableColumns; x++)
+                            {
+                                result +=
+                                        '{ "id":"'+ rs.rows.item(x).t_id +
+                                        '", "title":"'+ rs.rows.item(x).t_title +
+                                        '", "description":"'+ rs.rows.item(x).t_description +
+                                        '", "timeToPerform":"'+ rs.rows.item(x).t_timeToPerform +
+                                        '", "deadline":"'+ rs.rows.item(x).t_deadline +
+                                        '", "creationDate":"'+ rs.rows.item(x).t_creationDate +
+                                        '", "priority":"'+ rs.rows.item(x).t_priority + '" }';
+                                if(x<tableColumns-1)
+                                    result += ",";
+
+                            }
+                            result += "]}";
+                            console.log("\nsource : getListData/getList("+tableName+",list,appendToList) -> json result values are =" + result+"\n");
+                            return result;
+                        }
+
+
+                        else
+                        {
+                            //append into the list.
+                            for(var y=0; y<tableColumns; y++)
+                            {
+                                targetList.append({
+                                                         tId: rs.rows.item(y).t_id,
+                                                         tTitle : rs.rows.item(y).t_title > 15 ? rs.rows.item(y).t_title.slice(0,12) + ".." :  rs.rows.item(y).t_title,
+                                                         tDesc: rs.rows.item(y).t_description,
+                                                         tTimerToPerForm: rs.rows.item(y).t_timeToPerform,
+                                                         tDeadline: rs.rows.item(y).t_deadline,
+                                                         tCreation: rs.rows.item(y).t_creationDate,
+                                                         tPriority: rs.rows.item(y).t_priority,
+                                                     });
+                            }
+                            return 0;
+                        }
+
+
+
+
+           //                 console.log("values stringfiy from saveloadeventgroup");
+           //                 console.log(JSON.stringify(result2));
+
+                    }
+
+                    else
+                    {
+                        res = "";
+                    }
+                }
+
+//                tx.executeSql('CREATE TABLE IF NOT EXISTS '+tableName+' (eg_id INTEGER PRIMARY KEY AUTOINCREMENT,eg_name  TEXT, eg_prioirty INT, eg_tags TEXT)');
+//                var rs = tx.executeSql('INSERT OR REPLACE INTO '+tableName+' (eg_name,eg_prioirty,eg_tags) VALUES (?,?,?);',
+//                                                                                              [groupName,
+//                                                                                              groupPriority,
+//                                                                                              groupTags]);
+
+//                if (rs.rowsAffected > 0)
+//                {
+//                  res = "OK";
+//                }
+
+//                else
+//                {
+//                  res = "Error (saveLoadEventGroups.set)";
+//                }
+            }
+         );
+
+    }
+    catch(error)
+    {
+        return "source : getListData/getList(x,y,z) -> error= "+error;
+    }
+
+
 }
 
 
-//tx.executeSql('CREATE TABLE IF NOT EXISTS '+tableName+' (eg_id INTEGER PRIMARY KEY AUTOINCREMENT,eg_name  TEXT, eg_prioirty INT, eg_tags TEXT)');
-//var rs = tx.executeSql('INSERT OR REPLACE INTO '+tableName+' (eg_name,eg_prioirty,eg_tags) VALUES (?,?,?);',
-//                                                                              [groupName,
-//                                                                              groupPriority,
-//                                                                              groupTags]);
 
-//if (rs.rowsAffected > 0)
-//{
-//  res = "OK";
-//}
-
-//else
-//{
-//  res = "Error (saveLoadEventGroups.set)";
-//}
 
 function set(groupName,groupPriority,groupTags)
 {

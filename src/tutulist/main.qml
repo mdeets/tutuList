@@ -11,6 +11,7 @@ import "theScripts/databaseHeader.js" as DBheader
     diagram database working on tasks -> today settings
     settings database add.
     function getList add new arguman.
+    add creation date for tasks.
 
   */
 Window
@@ -25,31 +26,22 @@ Window
         console.log("Application started successfully.");
 
 
-
-
-        //check connection with database.
+        //check connection with database then init tables.
         const res_testDB = DBheader.testDatabaseConnection();
         if(res_testDB)
         {
-            console.log("result databsae connection check = OK ,response="+res_testDB);
-            const res_tables_exist = DBheader.checkDatbaseTablesExistans();
-            console.log("res tbl ex="+res_tables_exist)
+            console.log("result databsae connection check = OK , response="+res_testDB);
             DBheader.initDatabaseTables();
-//            if(!res_tables_exist)
-//            {
-
-
-//            }
-
         }
         else
-            console.log("res db con = failed, resonpose = " + res_testDB);
+            console.log("result database connection = failed, response=" + res_testDB);
+
 
     }
 
     onClosing:
     {
-        console.log("user is trying to close app. mainStackView Dep = "+ mainStackView.depth);
+        console.log("user is trying to close app, mainStackView Dep = "+ mainStackView.depth);
         if(mainStackView.depth===1)
         {
            console.log("SAFE EXIT.");
