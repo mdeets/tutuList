@@ -1,16 +1,8 @@
-function getlist()
+function removeFromTodayList(_id,taskId) //move data into allTasks table
 {
     return 0;
 }
-
-function add_to_list()
+function addToTodayList(_id,taskId) //add from allTasks table
 {
     return 0;
 }
-
-function remove_from_list()
-{
-
-}
-
-function
