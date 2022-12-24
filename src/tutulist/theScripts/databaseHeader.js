@@ -141,7 +141,7 @@ function initDatabaseTables()
 
 
 
-                const result_completedTasks = tx.executeSql('CREATE TABLE IF NOT EXISTS '+table_completedTasks+' (ct_id INTEGER PRIMARY KEY AUTOINCREMENT,t_id INTEGER PRIMARY KEY, ct_completeDate TEXT, FOREIGN KEY(t_id) REFERENCES '+table_allTasks+'(t_id) ON DELETE CASCADE );');
+                const result_completedTasks = tx.executeSql('CREATE TABLE IF NOT EXISTS '+table_completedTasks+' (ct_id INTEGER PRIMARY KEY AUTOINCREMENT,t_id INTEGER PRIMARY KEY, ct_completeDate DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(t_id) REFERENCES '+table_allTasks+'(t_id) ON DELETE CASCADE );');
                 if (result_completedTasks.rowsAffected > 0)
                     console.log("source : databaseHeader/initDatabaseTable() -> table tutu_completedTasks created succesfully.");
                 else

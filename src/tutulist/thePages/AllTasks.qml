@@ -44,7 +44,7 @@ Item
                     {
                         console.log("source : AllTasks.qml -> response is ok query submitted as QuickTask.");
                         taskTitle.clear();
-                        AllTasks.getList();
+                        console.log("source: AllTasks.qml -> result Alltasks.getlist() -> " +AllTasks.getList());
                     }
                 }
             }

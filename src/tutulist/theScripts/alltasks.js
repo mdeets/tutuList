@@ -183,7 +183,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
 
                             (*NOTE-2*) childX -> X means a number, for exmaple our task has 10 step, so we read from childCount then looking for child1[i] to child10[i].
                                     to access childX values needs to do childX[y] y from 0 to 5
-                                              for example:
+                                              for EXAMPLE:
 
                                               {
                                                 "tasks":
@@ -216,6 +216,34 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                                         "14-2-2000 10:11:11"
                                                       ]
                                                     }
+                                                    {
+                                                      "id": "44",
+                                                      "title": "something2",
+                                                      "description": "33 3 3 helloworld3",
+                                                      , ETC... ,
+                                                      "child1":
+                                                      [
+                                                        "id",
+                                                        14,
+                                                        "title",
+                                                        12,
+                                                        "description",
+                                                        "thi is the taskStep Description",
+                                                        "completeDate",
+                                                        "10-2-2000 10:22:14"
+                                                      ]
+                                                      "child2":
+                                                      [
+                                                        "id",
+                                                        1222,
+                                                        "title",
+                                                        13,
+                                                        "description",
+                                                        "write the code",
+                                                        "completeDate",
+                                                        "14-2-2000 10:11:11"
+                                                      ]
+                                                    }
                                                   ]
                                                 }
     */
@@ -237,7 +265,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                         {
                             if(returnType==="json")
                             {
-                                result+= '{ "tasks" : [';
+                                result= '{ "tasks" : [';
                                 //pepear the json with tasks data:
                                 for(var x=0; x<tableColumns; x++)
                                 {
@@ -251,10 +279,10 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                             '", "timeToPerform":"'+ rs.rows.item(x).t_timeToPerform +
                                             '", "deadline":"'+ rs.rows.item(x).t_deadline +
                                             '", "creationDate":"'+ rs.rows.item(x).t_creationDate +
-                                            '", "priority":"'+ rs.rows.item(x).t_priority;
+                                            '", "priority":"'+ rs.rows.item(x).t_priority+'"';
 
 
-                                    /*task steps:
+                                    //task steps:
                                     var res_taskSteps = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId);
                                     var table_taskSteps_Columns = res_taskSteps.rows.length;
                                     if (rs.rows.length > 0)
@@ -271,7 +299,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                                 result += ",";
                                         }
                                     }
-                                    //end of task steps.*/
+                                    //end of task steps.
                                     result += '}';
 
 
@@ -279,8 +307,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                         result += ",";
                                 }
                                 result += "]}";
-                                console.log("\nsource : allTasks.js/getList(json) -> json result values are =" + result+"\n");
-                                return result;
+//                                console.log("\nsource : allTasks.js/getList(json) -> json result values are =" + result+"\n");
                             }
 
 
@@ -308,11 +335,11 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                         else
                         {
                             console.log("source : allTasks.js/getList(json) -> row data is less than 0.");
-                            return result;
                         }
 
                     }
                     );
+        return result;
 
     }
     catch(error)
