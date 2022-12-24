@@ -1,8 +1,0 @@
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/install/strip.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/install/local.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/install.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/list_install_components.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/rebuild_cache.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/edit_cache.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/tutulist.dir
-/home/mrx/Documents/tutu-list/src/tutu-list/build-tutulist-Desktop_Qt_6_2_4_GCC_64bit-Debug/CMakeFiles/tutulist_autogen.dir
