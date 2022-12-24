@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>theComponents/TutuBottomMenu.qml</file>
+        <file>theComponents/TutuButton.qml</file>
+        <file>theComponents/TuTuTitleBar.qml</file>
+        <file>theForms/setupTask.qml</file>
+        <file>thePages/AllTasks.qml</file>
+        <file>thePages/CompletedTasks.qml</file>
+        <file>thePages/LoadingPage.qml</file>
+        <file>thePages/TodayTasks.qml</file>
+        <file>theResources/darkMode/100x100/allTasks.png</file>
+        <file>theResources/darkMode/24x24/allTasks.png</file>
+        <file>theResources/darkMode/50x50/allTasks.png</file>
+        <file>theResources/lightMode/100x100/allTasks.png</file>
+        <file>theResources/lightMode/24x24/allTasks.png</file>
+        <file>theResources/lightMode/50x50/allTasks.png</file>
+        <file>theScripts/config.js</file>
+        <file>theScripts/todaytasks.js</file>
+        <file>theScripts/alltasks.js</file>
+        <file>theScripts/completedtasks.js</file>
+    </qresource>
+</RCC>
