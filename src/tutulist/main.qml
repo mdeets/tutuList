@@ -1,5 +1,5 @@
 import QtQuick 2.15
-import QtQuick.Window 2.15
+//import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 
 //configs
@@ -92,11 +92,26 @@ Window
 
             Loader
             {
-                visible:  mainStackView.depth===1;
                 id:pageLoader;
+                visible:  mainStackView.depth===1;
                 anchors.fill: parent;
                 source: "./thePages/TodayTasks.qml";
+                property bool valid: item !== null;
             }
+
+            Connections //make connection with page AllTasks.qml and the PageLoader
+            {
+                id:connectionWithPageLoader
+                ignoreUnknownSignals: true
+                target: pageLoader.valid? pageLoader.item : null
+                function onOpenTheSetupTaskForm()
+                {
+                    console.log("gotch you motherfucekr.");
+                    mainStackView.push("./theForms/setupTask.qml");
+                }
+            }
+
+
         }
         StackView
         {
@@ -151,4 +166,7 @@ Window
             }
         }
     }
+
+
+
 }

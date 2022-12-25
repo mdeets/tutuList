@@ -4,8 +4,16 @@ import "../theScripts/alltasks.js" as AllTasks
 import "../theScripts/config.js" as Configs
 import "../theScripts/completedtasks.js" as AddToCompletedTasks
 import "../theScripts/todaytasks.js" as AddToTodayTask
+
 Item
 {
+    signal openTheSetupTaskForm;
+
+    onOpenTheSetupTaskForm:
+    {
+        console.log("-----------------------------------------------------------------------------");
+    }
+
     signal reloadAllTasks;
     onReloadAllTasks:
     {
@@ -21,6 +29,23 @@ Item
         console.log("source : AllTasks.qml -> im completelly loaded.");
         reloadAllTasks();
     }
+
+//    StackView
+//    {
+//        id:mainStackView;
+//        visible:  false;
+////        onVisibleChanged:
+////        {
+////            if(visible)
+////                console.log("source: allTasks.qml -> theStack View is now visible.");
+////            else
+////                reloadAllTasks();
+////        }
+
+//        initialItem: "./AllTasks.qml";
+//        anchors.fill:parent;
+//    }
+
 
     Rectangle
     {
@@ -69,6 +94,7 @@ Item
                             onClicked:
                             {
                                 console.log("source : AllTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + " desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
+                                openTheSetupTaskForm();
                             }
                         }
 
@@ -189,12 +215,20 @@ Item
                 onClicked:
                 {
                     console.log("source : AllTasks.qml -> on submit new task button clicked.");
-                    const res=  AllTasks.addQuicklyNewTask(taskTitle.text);
-                    if(res)
+                    if(taskTitle.text==="")
                     {
-                        console.log("source : AllTasks.qml -> response is ok query submitted as QuickTask.");
-                        taskTitle.clear();
-                        reloadAllTasks();
+                        console.log("source: allTasks.qml -> add new task via setup and form.");
+
+                    }
+                    else
+                    {
+                        const res=  AllTasks.addQuicklyNewTask(taskTitle.text);
+                        if(res)
+                        {
+                            console.log("source : AllTasks.qml -> response is ok query submitted as QuickTask.");
+                            taskTitle.clear();
+                            reloadAllTasks();
+                        }
                     }
                 }
             }
