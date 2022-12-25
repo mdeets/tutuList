@@ -258,7 +258,9 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                 (
                     function(tx)
                     {
-                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' ORDER BY t_creationDate ASC;');
+                        //fetch completed tasks id and make a list from them to avoid listing compelted tasks for AllTasks list.
+                        //then fetch all tasks detaisl.s
+                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') ORDER BY t_creationDate ASC;');
                         var tableColumns = rs.rows.length;
 
                         if (rs.rows.length > 0)
@@ -285,7 +287,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                     //task steps:
                                     var res_taskSteps = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId);
                                     var table_taskSteps_Columns = res_taskSteps.rows.length;
-                                    if (rs.rows.length > 0)
+                                    if (table_taskSteps_Columns > 0)
                                     {
                                         for(var y=0; y<table_taskSteps_Columns; y++)
                                         {
@@ -311,24 +313,46 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                             }
 
 
-//                            else
-//                            {
+                            else
+                            {
 //                                //append into the list.
-//                                for(var y=0; y<tableColumns; y++)
-//                                {
-//                                    targetList.append({
-//                                                          tId: rs.rows.item(y).t_id,
-//                                                          tTitle : rs.rows.item(y).t_title > 15 ? rs.rows.item(y).t_title.slice(0,12) + ".." :  rs.rows.item(y).t_title,
-//                                                          tDesc: rs.rows.item(y).t_description,
-//                                                          tTimerToPerForm: rs.rows.item(y).t_timeToPerform,
-//                                                          tDeadline: rs.rows.item(y).t_deadline,
-//                                                          tCreation: rs.rows.item(y).t_creationDate,
-//                                                          tPriority: rs.rows.item(y).t_priority,
-//                                                      });
-//                                }
-//                                console.log("\nsource : allTasks.js/getList(json) -> json result values are =" + result+"\n");
-//                                return 0;
-//                            }
+//                                //will collect taskStep data and place into lists
+//                                var taskStepId;//list
+//                                var taskStepTitle;//list
+//                                var taskStepDescription;//list
+//                                var taskStepCompleteDate;//list
+                                for(var k=0; k<tableColumns; k++)
+                                {
+                                    //append task detials and taskStep detials.
+                                    targetList.append({
+                                                          tId: rs.rows.item(k).t_id,
+                                                          tTitle : rs.rows.item(k).t_title > 15 ? rs.rows.item(k).t_title.slice(0,12) + ".." :  rs.rows.item(k).t_title,
+                                                          tDesc: rs.rows.item(k).t_description,
+                                                          tTimerToPerForm: rs.rows.item(k).t_timeToPerform,
+                                                          tDeadline: rs.rows.item(k).t_deadline,
+                                                          tCreation: rs.rows.item(k).t_creationDate,
+                                                          tPriority: rs.rows.item(k).t_priority,
+                                                      });
+
+//                                    //task steps:
+//                                    var res_taskSteps1 = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId);
+//                                    var table_taskSteps_Columns1 = res_taskSteps1.rows.length;
+//                                    if (table_taskSteps_Columns1 > 0)
+//                                    {
+//                                        for(var f=0; f<table_taskSteps_Columns1; f++)
+//                                        {
+//                                            taskStepId[f]=res_taskSteps1.rows.item(f).ts_id;
+//                                            taskStepTitle[f]=res_taskSteps1.rows.item(f).ts_title;
+//                                            taskStepDescription[f]=res_taskSteps1.rows.item(f).ts_description;
+//                                            taskStepCompleteDate[f]=res_taskSteps1.rows.item(f).ts_completeDate;
+//                                        }
+//                                    }
+                                }
+//                                //end of task steps.
+
+                                console.log("\nsource : allTasks.js/getList(json) -> appended.");
+                                return 0;
+                            }
 
                         }
 
@@ -350,6 +374,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
 
 
 }
+
 
 
 
