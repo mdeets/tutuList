@@ -60,7 +60,9 @@ set_target_properties(tutulist PROPERTIES
 
 install(TARGETS tutulist
     BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    LIBRARY DESTINATION "/home/mrx/Downloads/cmake-3.25.1-linux-x86_64")
+    #${CMAKE_INSTALL_LIBDIR})
+#something
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_import_qml_plugins(tutulist)
