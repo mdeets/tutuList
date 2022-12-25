@@ -12,9 +12,9 @@ function searchTask(searchWord="",targetList,returnType="json",dontLike=1)
                     {
                         var rs;
                         if(dontLike)
-                            rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_title LIKE ?;',searchWord);
+                            rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_title LIKE '+searchWord+' AND t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_creationDate ASC;');
                         else
-                            rs = tx.executeSql("SELECT * FROM "+DBC.table_allTasks+" WHERE t_title LIKE '%"+searchWord+"%' ;");
+                            rs = tx.executeSql("SELECT * FROM "+DBC.table_allTasks+" WHERE t_title LIKE '%"+searchWord+"%' AND t_id NOT IN (SELECT t_id FROM "+DBC.table_completedTasks+") AND t_id NOT IN (SELECT t_id FROM "+DBC.table_todayTasks+") ORDER BY t_creationDate ASC;");
 
                         var tableColumns = rs.rows.length;
 
