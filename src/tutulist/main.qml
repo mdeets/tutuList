@@ -13,7 +13,8 @@ import "theScripts/alltasks.js" as AllTasksJs
     settings database add.
     function getList add new arguman.
     add creation date for tasks.
-
+    update completed tasks , today tasks -> taskId is primary too
+    table complete, today -> remove id, make t_id primary
   */
 Window
 {
