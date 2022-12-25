@@ -86,27 +86,59 @@ Item
                 }
 
 
-                Rectangle
+                Row
                 {
-                    id:submitButton;
-                    width:parent.width;
+                    id:baseButtons;
                     height:45;
-                    color:"green";
-                    Text
+                    width:parent.width;
+                    Rectangle
                     {
-                        text:"Save";
-                        anchors.centerIn:parent;
-                    }
-                    MouseArea
-                    {
-                        anchors.fill:parent;
-                        onClicked:
+                        id:cancelButton;
+                        width:parent.width/2;
+                        height:45;
+                        color:"red";
+                        Text
                         {
-                            console.log("source : setupTask.qml -> save button clicked");
-                            saveTheSetupTaskForm();
+                            text:"cancel";
+                            anchors.centerIn:parent;
+                        }
+                        MouseArea
+                        {
+                            anchors.fill:parent;
+                            onClicked:
+                            {
+                                console.log("source : modifytask.qml -> cancel button clicked");
+                                quitTheSetupTaskFrom();
+                            }
                         }
                     }
+
+                    Rectangle
+                    {
+                        id:submitButton;
+                        width:parent.width/2;
+                        height:45;
+                        color:"green";
+                        Text
+                        {
+                            text:"Save";
+                            anchors.centerIn:parent;
+                        }
+                        MouseArea
+                        {
+                            anchors.fill:parent;
+                            onClicked:
+                            {
+                                console.log("source : setupTask.qml -> save button clicked");
+                                saveTheSetupTaskForm();
+                            }
+                        }
+                    }
+
+
+
                 }
+
 
             }
 

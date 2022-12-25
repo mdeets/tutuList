@@ -72,12 +72,15 @@ Window
         anchors.fill:parent;
         color: ConfigFile.color_background;
 
-        MouseArea { anchors.fill:parent; onClicked:
-            { console.log("source : main.qml -> on root clicked");
-                if(mainStackView.depth===1)
-                {
-                    mainStackView.push("./theForms/setupTask.qml");
-                }
+        MouseArea
+        {
+            anchors.fill:parent; onClicked:
+            {
+                console.log("source : main.qml -> on root clicked");
+//                if(mainStackView.depth===1)
+//                {
+//                    mainStackView.push("./theForms/setupTask.qml");
+//                }
 
             }}
 
@@ -134,8 +137,6 @@ Window
                                            deadlineValue:Qt.binding(function() { return deadline}),
                                            creationdateValue:Qt.binding(function() { return creationDate})
                                        })
-//                    mainStackView.push(Qt.createComponent("qml/screens/ItemDetailScreen.qml").createObject())
-//                    Qt.createComponent("qml/screens/ItemDetailScreen.qml").createObject(parentItem, {"width" : 50, "height" : 50})
                 }
 
             }

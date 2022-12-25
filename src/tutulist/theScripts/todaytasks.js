@@ -263,7 +263,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                 }
 //                                //end of task steps.
 
-                                console.log("\nsource : todayTask.js/getList(json) -> appended.");
+                                console.log("source : todayTask.js/getList(json) -> appended.");
                                 return 0;
                             }
 

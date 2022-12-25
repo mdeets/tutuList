@@ -7,6 +7,13 @@ import "../theScripts/alltasks.js" as AllTask
 
 Item
 {
+    //form setup
+    property string get_entered_value : "";
+    property string setLabel : "Default label:";
+    property string setPlaceHolderInput: "Enter the " + setLabel;
+    anchors.fill: parent;
+//    height:40;
+
     //task modify details:
     property int idValue:0;
     property string titleValue: "default-title";
@@ -35,6 +42,7 @@ Item
                                                           taskPriority.get_entered_value,
                                                           taskTimetoperform.get_entered_value,
                                                           taskDeadline.get_entered_value);
+
             if(result_modify)
             {
                 console.log("source: modifyTask.qml -> i confirm the task is modified successfully");
@@ -52,12 +60,12 @@ Item
         console.log("source : modifyTask.qml -> the modify page is loaded.");
     }
 
-    //form setup
-    property string get_entered_value : "";
-    property string setLabel : "Default label:";
-    property string setPlaceHolderInput: "Enter the " + setLabel;
-    width: parent.width;
-    height:40;
+    Rectangle
+    {
+        color:"gray";
+        anchors.fill: parent;
+    }
+
     ListView
     {
         anchors.fill:parent;
@@ -111,7 +119,7 @@ Item
                 width:parent.width;
                 Rectangle
                 {
-                    id:submitButton;
+                    id:cancelButton;
                     width:parent.width/2;
                     height:45;
                     color:"red";
@@ -135,7 +143,7 @@ Item
 
                 Rectangle
                 {
-                    id:cancelButton;
+                    id:submitButton;
                     width:parent.width/2;
                     height:45;
                     color:"green";

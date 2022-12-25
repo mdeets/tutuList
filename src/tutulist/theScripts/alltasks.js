@@ -52,8 +52,8 @@ function updateWholeTask(taskId,title,desc,priority=100,timeToPerform=0,deadline
                         var rs = tx.executeSql('UPDATE '+DBC.table_allTasks+' SET t_title=?, t_description=?, t_timeToPerform=?, t_priority=?, t_deadline=? WHERE t_id=?;'
                                                ,[title,
                                                  desc,
-                                                 priority,
                                                  timeToPerform,
+                                                 priority,
                                                  deadline,
                                                  taskId]);
 
@@ -324,6 +324,13 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                 for(var k=0; k<tableColumns; k++)
                                 {
                                     //append task detials and taskStep detials.
+
+                                    /*console.log("source: allTasks.js -> print data -> id=",rs.rows.item(k).t_id, " title=", rs.rows.item(k).t_title, " desc=",
+                                                rs.rows.item(k).t_description, " deadline=",rs.rows.item(k).t_deadline,
+                                                " creation=",rs.rows.item(k).t_creationDate," priority=",rs.rows.item(k).t_priority,
+                                                " ttp=",rs.rows.item(k).t_timeToPerform);*/
+
+
                                     targetList.append({
                                                           tId: rs.rows.item(k).t_id,
                                                           tTitle : rs.rows.item(k).t_title > 15 ? rs.rows.item(k).t_title.slice(0,12) + ".." :  rs.rows.item(k).t_title,
@@ -331,7 +338,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                                           tTimerToPerForm: rs.rows.item(k).t_timeToPerform,
                                                           tDeadline: rs.rows.item(k).t_deadline,
                                                           tCreation: rs.rows.item(k).t_creationDate,
-                                                          tPriority: rs.rows.item(k).t_priority,
+                                                          tPriority: Number(rs.rows.item(k).t_priority),
                                                       });
 
 //                                    //task steps:
@@ -350,7 +357,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                 }
 //                                //end of task steps.
 
-                                console.log("\nsource : allTasks.js/getList(json) -> appended.");
+                                console.log("source : allTasks.js/getList(json) -> appended.");
                                 return 0;
                             }
 

@@ -13,7 +13,10 @@ Item
 //        console.log("source: CompletedTasks.qml -> signal reloadAllTasks -> result TodayTasks.getlist() -> " +TodayTasks.getList());
         console.log("source : CompletedTasks.qml -> signal reloadAllTasks called.");
         listModelMain.clear();
-        CompletedTasks.getList(listModelMain,"appendToList");
+        if(CompletedTasks.getList(listModelMain,"appendToList")!==1)
+        {
+            console.log("source:completedtasks.qml -> i confirm getlist is successfully done.");
+        }
     }
 
     anchors.fill:parent;
