@@ -19,7 +19,6 @@
         <file>theScripts/todaytasks.js</file>
         <file>theScripts/alltasks.js</file>
         <file>theScripts/completedtasks.js</file>
-        <file>theScripts/getListData.js</file>
         <file>theScripts/databaseHeader.js</file>
     </qresource>
 </RCC>
