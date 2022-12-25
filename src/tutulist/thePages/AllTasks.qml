@@ -7,11 +7,17 @@ import "../theScripts/todaytasks.js" as AddToTodayTask
 
 Item
 {
-    signal openTheSetupTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
+    signal openTheSetupTaskForm;
+    signal openTheModifyTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
 
     onOpenTheSetupTaskForm:
     {
-        console.log("-----------------------------------------------------------------------------");
+        console.log("source : AllTasks.qml -> signal openTheSetupTaskForm called.")
+    }
+
+    onOpenTheModifyTaskForm:
+    {
+        console.log("source : AllTasks.qml -> signal openTheModifyTaskForm called.");
     }
 
     signal reloadAllTasks;
@@ -94,7 +100,8 @@ Item
                             onClicked:
                             {
                                 console.log("source : AllTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + "desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
-                                openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
+//                                openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
+                                openTheModifyTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
                             }
                         }
 
@@ -176,6 +183,38 @@ Item
                         }
 
 
+                        Rectangle
+                        {
+                            id:removeButton;
+                            width:45;
+                            height:parent.height;
+                            anchors.right:completeButton.left;
+                            color:"cyan";
+                            Text
+                            {
+                                text:"del";
+                                anchors.centerIn: parent;
+                            }
+
+                            MouseArea
+                            {
+                                anchors.fill:parent;
+                                onClicked:
+                                {
+                                    console.log("source : AllTasks.qml -> remove task clicekd, id="+tId);
+                                    const res = AllTasks.deleteTask(tId);
+                                    if(res)
+                                    {
+                                        console.log("source : AllTasks.qml -> i confirm the task is completely removed.");
+                                        reloadAllTasks();
+                                    }
+                                    else
+                                        console.log("source : AllTasks.qml -> something went wrong error="+res)
+                                }
+                            }
+                        }
+
+
 
 
                     }
@@ -218,7 +257,7 @@ Item
                     if(taskTitle.text==="")
                     {
                         console.log("source: allTasks.qml -> add new task via setup and form.");
-
+                        openTheSetupTaskForm();
                     }
                     else
                     {

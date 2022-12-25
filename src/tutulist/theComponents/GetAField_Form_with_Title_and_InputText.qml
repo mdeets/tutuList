@@ -5,6 +5,7 @@ Item
     property string get_entered_value : "";
     property string setLabel : "Default label:";
     property string setPlaceHolderInput: "Enter the " + setLabel;
+    property string defaultValue: "";
     width: parent.width;
     height:40;
     Column
@@ -27,6 +28,7 @@ Item
                 id:inputText;
                 anchors.fill:parent;
                 color:"black";
+                text: defaultValue;
                 onTextChanged:
                 {
                     get_entered_value= text;
