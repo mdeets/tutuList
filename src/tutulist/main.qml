@@ -104,11 +104,23 @@ Window
                 id:connectionWithPageLoader
                 ignoreUnknownSignals: true
                 target: pageLoader.valid? pageLoader.item : null
-                function onOpenTheSetupTaskForm()
+                function onOpenTheSetupTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
                 {
-                    console.log("gotch you motherfucekr.");
+                    console.log("gotch you motherfucekr. id="+id + " title="+title, " desc="+desc + " Time2Perform="+timeToPerform+ " creationdate=" +creationDate + " priorty"+priority + " deadline"+deadline);
                     mainStackView.push("./theForms/setupTask.qml");
                 }
+            }
+            Connections //make connection with page setupTask.qml to quit after new task saved successfully.
+            {
+                id:connectionWithMainStackView;
+                ignoreUnknownSignals: true;
+                target: mainStackView.currentItem;
+                function onQuitTheSetupTaskFrom()
+                {
+                    console.log("source : main.qml -> signal quit the setup task recived from setupTask.qml");
+                    mainStackView.pop();
+                }
+
             }
 
 
@@ -116,7 +128,7 @@ Window
         StackView
         {
             id:mainStackView;
-            visible:  mainStackView.depth>1;
+            visible:mainStackView.depth>1;
             onVisibleChanged:
             {
                 if(visible)

@@ -7,7 +7,7 @@ import "../theScripts/todaytasks.js" as AddToTodayTask
 
 Item
 {
-    signal openTheSetupTaskForm;
+    signal openTheSetupTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
 
     onOpenTheSetupTaskForm:
     {
@@ -93,8 +93,8 @@ Item
                             anchors.fill:parent;
                             onClicked:
                             {
-                                console.log("source : AllTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + " desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
-                                openTheSetupTaskForm();
+                                console.log("source : AllTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + "desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
+                                openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
                             }
                         }
 
