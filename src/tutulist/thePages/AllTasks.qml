@@ -3,6 +3,7 @@ import QtQuick.Controls 2.15
 import "../theScripts/alltasks.js" as AllTasks
 import "../theScripts/config.js" as Configs
 import "../theScripts/completedtasks.js" as AddToCompletedTasks
+import "../theScripts/todaytasks.js" as AddToTodayTask
 Item
 {
     signal reloadAllTasks;
@@ -88,9 +89,41 @@ Item
                         }
                         Rectangle
                         {
+                            id:todayButton;
                             width:45;
                             height:parent.height;
                             anchors.right:parent.right;
+                            color:"gray";
+                            Text
+                            {
+                                text:"today";
+                                anchors.centerIn: parent;
+                            }
+
+                            MouseArea
+                            {
+                                anchors.fill:parent;
+                                onClicked:
+                                {
+                                    console.log("source : AllTasks.qml -> add to today this task clicked, id="+tId);
+                                    const res = AddToTodayTask.addTaskToToday(tId);
+                                    if(res)
+                                    {
+                                        console.log("source : AllTasks.qml -> i confirm the task is completely adde to today task.");
+                                        reloadAllTasks();
+                                    }
+                                    else
+                                        console.log("source : AllTasks.qml -> something went wrong error="+res)
+                                }
+                            }
+                        }
+
+                        Rectangle
+                        {
+                            id:completeButton;
+                            width:45;
+                            height:parent.height;
+                            anchors.right:todayButton.left;
                             color:"purple";
                             Text
                             {
@@ -115,6 +148,7 @@ Item
                                 }
                             }
                         }
+
 
 
 
