@@ -36,21 +36,6 @@ Item
         reloadAllTasks();
     }
 
-//    StackView
-//    {
-//        id:mainStackView;
-//        visible:  false;
-////        onVisibleChanged:
-////        {
-////            if(visible)
-////                console.log("source: allTasks.qml -> theStack View is now visible.");
-////            else
-////                reloadAllTasks();
-////        }
-
-//        initialItem: "./AllTasks.qml";
-//        anchors.fill:parent;
-//    }
 
 
     Rectangle
@@ -71,10 +56,52 @@ Item
             anchors.fill:parent;
 //            anchors.topMargin:35;
             clip:true;
+            header:
+            Item
+            {
+                id:searchBar;
+                width:parent.width;
+                height: 60;
+                //search input;
+                Rectangle
+                {
+                    width:parent.width;
+                    height:parent.height/2;
+                    anchors.verticalCenter: parent.verticalCenter
+                    color:"white";
+                    TextField
+                    {
+                        id:taskTitle;
+                        anchors.fill:parent;
+                        onFocusChanged:
+                        {
+                            console.log("source : AllTasks.qml -> searchBar -> focus changed lets re-focuse on searchbar")
+                            taskTitle.focus=true;
+                        }
+
+                        onTextChanged:
+                        {
+                            //run search query
+                            if(text!=="")
+                            {
+                                listModelMain.clear();
+//                                AllTasks.searchTask(taskTitle.text,listModelMain,"appendToList"); //search like off.
+                                AllTasks.searchTask(taskTitle.text,listModelMain,"appendToList",0); //search like on.
+                            }
+                            else
+                            {
+                                reloadAllTasks();
+                            }
+
+                        }
+                    }
+                }
+            }
             model:
             ListModel
             {
                 id:listModelMain;
+
             }
             delegate:
             Item
@@ -84,6 +111,7 @@ Item
                 Rectangle
                 {
                     anchors.fill: parent;
+
                     color:"magenta";
                     Rectangle
                     {
@@ -99,7 +127,7 @@ Item
                             anchors.fill:parent;
                             onClicked:
                             {
-                                console.log("*******************source : AllTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + "desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
+                                console.log("source : AllTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + "desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
 //                                openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
                                 openTheModifyTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
 

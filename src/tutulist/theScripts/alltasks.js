@@ -1,5 +1,146 @@
 .import "databaseHeader.js" as DBC
 
+function searchTask(searchWord="",targetList,returnType="json",dontLike=1)
+{
+    try
+    {
+        var db = DBC.getDatabase();
+        var result = "1";
+        db.transaction
+                (
+                    function(tx)
+                    {
+                        var rs;
+                        if(dontLike)
+                            rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_title LIKE ?;',searchWord);
+                        else
+                            rs = tx.executeSql("SELECT * FROM "+DBC.table_allTasks+" WHERE t_title LIKE '%"+searchWord+"%' ;");
+
+                        var tableColumns = rs.rows.length;
+
+                        if (rs.rows.length > 0)
+                        {
+                            if(returnType==="json")
+                            {
+                                result= '{ "tasks" : [';
+                                //pepear the json with tasks data:
+                                for(var x=0; x<tableColumns; x++)
+                                {
+                                    var stepCounter=0;
+                                    const theTaskId = rs.rows.item(x).t_id;
+                                    result +=
+                                            //task details are:
+                                            '{ "id":"'+ theTaskId +
+                                            '", "title":"'+ rs.rows.item(x).t_title +
+                                            '", "description":"'+ rs.rows.item(x).t_description +
+                                            '", "timeToPerform":"'+ rs.rows.item(x).t_timeToPerform +
+                                            '", "deadline":"'+ rs.rows.item(x).t_deadline +
+                                            '", "creationDate":"'+ rs.rows.item(x).t_creationDate +
+                                            '", "priority":"'+ rs.rows.item(x).t_priority+'"';
+
+
+                                    //task steps:
+                                    var res_taskSteps = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId);
+                                    var table_taskSteps_Columns = res_taskSteps.rows.length;
+                                    if (table_taskSteps_Columns > 0)
+                                    {
+                                        for(var y=0; y<table_taskSteps_Columns; y++)
+                                        {
+                                            stepCounter++;
+                                            result+='", "child'+stepCounter+'":" ['+res_taskSteps.rows.item(y).ts_id +
+                                                    ','+res_taskSteps.rows.item(y).ts_title+
+                                                    ','+res_taskSteps.rows.item(y).ts_description+
+                                                    ','+res_taskSteps.rows.item(y).ts_completeDate+
+                                                    '"]';
+                                            if(y<table_taskSteps_Columns-1)
+                                                result += ",";
+                                        }
+                                    }
+                                    //end of task steps.
+                                    result += '}';
+
+
+                                    if(x<tableColumns-1)
+                                        result += ",";
+                                }
+                                result += "]}";
+                                console.log("source : allTasks.js/searchTask(json) -> json result values are =" + result+"\n");
+                            }
+
+
+                            else
+                            {
+//                                //append into the list.
+//                                //will collect taskStep data and place into lists
+//                                var taskStepId;//list
+//                                var taskStepTitle;//list
+//                                var taskStepDescription;//list
+//                                var taskStepCompleteDate;//list
+                                for(var k=0; k<tableColumns; k++)
+                                {
+                                    //append task detials and taskStep detials.
+
+                                    /*console.log("source: allTasks.js -> print data -> id=",rs.rows.item(k).t_id, " title=", rs.rows.item(k).t_title, " desc=",
+                                                rs.rows.item(k).t_description, " deadline=",rs.rows.item(k).t_deadline,
+                                                " creation=",rs.rows.item(k).t_creationDate," priority=",rs.rows.item(k).t_priority,
+                                                " ttp=",rs.rows.item(k).t_timeToPerform);*/
+
+
+                                    targetList.append({
+                                                          tId: rs.rows.item(k).t_id,
+                                                          tTitle : rs.rows.item(k).t_title > 15 ? rs.rows.item(k).t_title.slice(0,12) + ".." :  rs.rows.item(k).t_title,
+                                                          tDesc: rs.rows.item(k).t_description,
+                                                          tTimerToPerForm: rs.rows.item(k).t_timeToPerform,
+                                                          tDeadline: rs.rows.item(k).t_deadline,
+                                                          tCreation: rs.rows.item(k).t_creationDate,
+                                                          tPriority: Number(rs.rows.item(k).t_priority),
+                                                      });
+
+//                                    //task steps:
+//                                    var res_taskSteps1 = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId);
+//                                    var table_taskSteps_Columns1 = res_taskSteps1.rows.length;
+//                                    if (table_taskSteps_Columns1 > 0)
+//                                    {
+//                                        for(var f=0; f<table_taskSteps_Columns1; f++)
+//                                        {
+//                                            taskStepId[f]=res_taskSteps1.rows.item(f).ts_id;
+//                                            taskStepTitle[f]=res_taskSteps1.rows.item(f).ts_title;
+//                                            taskStepDescription[f]=res_taskSteps1.rows.item(f).ts_description;
+//                                            taskStepCompleteDate[f]=res_taskSteps1.rows.item(f).ts_completeDate;
+//                                        }
+//                                    }
+                                }
+//                                //end of task steps.
+
+                                console.log("source : allTasks.js/searchTask(json) -> appended.");
+                                return 0;
+                            }
+
+                        }
+
+                        else //not found so do like %
+                        {
+                            console.log("source : allTasks.js/searchTask(json) -> row data is less than 0.");
+                        }
+
+                    }
+                    );
+        return result;
+
+    }
+    catch(error)
+    {
+        console.log("source : allTasks.js/searchTask() -> error= "+error);
+        return "source : allTasks.js/searchTask() -> error= "+error;
+    }
+
+
+}
+
+
+
+
+
 function updatePartOfTask(taskId,partField,partValue)//return 1 means query OK, return etc means query failed
 {
     //this is quick way to update just one field for that table.
