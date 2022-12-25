@@ -20,5 +20,6 @@
         <file>theScripts/alltasks.js</file>
         <file>theScripts/completedtasks.js</file>
         <file>theScripts/databaseHeader.js</file>
+        <file>theForms/modifyTask.qml</file>
     </qresource>
 </RCC>
