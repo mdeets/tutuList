@@ -258,9 +258,10 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                 (
                     function(tx)
                     {
-                        //fetch completed tasks id and make a list from them to avoid listing compelted tasks for AllTasks list.
-                        //then fetch all tasks detaisl.s
-                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') ORDER BY t_creationDate ASC;');
+                        //fetch complete tasks id to avoid lising completeTasks inside of allTasks.
+                        //fetch today tasks id to avoid lising today tasks inside of allTasks.
+                        //then fetch all tasks details.
+                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+', '+DBC.table_todayTasks+') ORDER BY t_creationDate ASC;');
                         var tableColumns = rs.rows.length;
 
                         if (rs.rows.length > 0)
