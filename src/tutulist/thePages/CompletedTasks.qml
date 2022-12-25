@@ -31,10 +31,7 @@ Item
         id:theListBase;
         anchors
         {
-            left:parent.left;
-            right:parent.right;
-            top:parent.top;
-            bottom:addNewQuickTask.top;
+            fill:parent;
         }
         color:"brown";
 
@@ -172,43 +169,5 @@ Item
 
 
     }
-
-    Rectangle
-    {
-        id:addNewQuickTask;
-        width:parent.width;
-        height:50;
-        color:"gray";
-        anchors.bottom:parent.bottom;
-        TextField
-        {
-            id:taskTitle;
-            width:parent.width/2;
-            height:parent.height;
-        }
-        Rectangle
-        {
-            anchors.right:parent.right;
-            color:"blue";
-            width:40;
-            height:parent.height;
-            MouseArea
-            {
-                anchors.fill:parent;
-                onClicked:
-                {
-                    console.log("source : CompletedTasks.qml -> on submit new task button clicked.");
-                    const res=  TodayTasks.addQuicklyNewTask(taskTitle.text);
-                    if(res)
-                    {
-                        console.log("source : CompletedTasks.qml -> response is ok query submitted as QuickTask.");
-                        taskTitle.clear();
-                        reloadAllTasks();
-                    }
-                }
-            }
-        }
-    }
-
 
 }

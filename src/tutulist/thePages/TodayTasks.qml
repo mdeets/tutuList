@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 //import "../theScripts/TodayTasks.js" as AllTasks
 import "../theScripts/config.js" as Configs
-import "../theScripts/completedtasks.js" as AddToCompletedTasks //just addToCompletedTasks used from CompletedTasks.js
+import "../theScripts/completedtasks.js" as AddToCompletedTasks //just addToCompletedTasks used.
 import "../theScripts/todaytasks.js" as TodayTasks
 Item
 {
@@ -27,10 +27,7 @@ Item
         id:theListBase;
         anchors
         {
-            left:parent.left;
-            right:parent.right;
-            top:parent.top;
-            bottom:addNewQuickTask.top;
+            fill:parent
         }
         color:"brown";
 
@@ -171,42 +168,7 @@ Item
 
     }
 
-    Rectangle
-    {
-        id:addNewQuickTask;
-        width:parent.width;
-        height:50;
-        color:"gray";
-        anchors.bottom:parent.bottom;
-        TextField
-        {
-            id:taskTitle;
-            width:parent.width/2;
-            height:parent.height;
-        }
-        Rectangle
-        {
-            anchors.right:parent.right;
-            color:"blue";
-            width:40;
-            height:parent.height;
-            MouseArea
-            {
-                anchors.fill:parent;
-                onClicked:
-                {
-                    console.log("source : todayTasks.qml -> on submit new task button clicked.");
-                    const res=  TodayTasks.addQuicklyNewTask(taskTitle.text);
-                    if(res)
-                    {
-                        console.log("source : todayTasks.qml -> response is ok query submitted as QuickTask.");
-                        taskTitle.clear();
-                        reloadAllTasks();
-                    }
-                }
-            }
-        }
-    }
+
 
 
 }
