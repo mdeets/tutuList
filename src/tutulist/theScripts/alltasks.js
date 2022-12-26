@@ -519,8 +519,6 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
         console.log("source : allTasks.js/getList() -> error= "+error);
         return "source : allTasks.js/getList() -> error= "+error;
     }
-
-
 }
 
 

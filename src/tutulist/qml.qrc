@@ -22,5 +22,6 @@
         <file>theScripts/databaseHeader.js</file>
         <file>theForms/modifyTask.qml</file>
         <file>theComponents/GetAField_Form_with_Title_and_InputText.qml</file>
+        <file>theComponents/ConfirmYesOrNo.qml</file>
     </qresource>
 </RCC>

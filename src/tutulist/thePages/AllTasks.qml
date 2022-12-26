@@ -4,9 +4,35 @@ import "../theScripts/alltasks.js" as AllTasks
 import "../theScripts/config.js" as Configs
 import "../theScripts/completedtasks.js" as AddToCompletedTasks
 import "../theScripts/todaytasks.js" as AddToTodayTask
+import "../theComponents"
 
+import QtQuick.Dialogs
 Item
 {
+    property int selectedIdToDelete : 0;
+    property string statusRemoveConfirmMessage : "wait";
+    onStatusRemoveConfirmMessageChanged:
+    {
+        if(statusRemoveConfirmMessage=="confirmed")
+        {
+            const res = AllTasks.deleteTask(selectedIdToDelete);
+            if(res)
+            {
+                console.log("source : AllTasks.qml -> i confirm the task is completely removed.");
+                reloadAllTasks();
+            }
+            else
+                console.log("source : AllTasks.qml -> something went wrong error="+res)
+            baseConfirmYesOrNo.visible=false;
+
+        }
+        if(statusRemoveConfirmMessage=="canceled")
+        {
+            baseConfirmYesOrNo.visible=false;
+        }
+    }
+
+
     signal openTheSetupTaskForm;
     signal openTheModifyTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
 
@@ -71,12 +97,12 @@ Item
                     color:"white";
                     TextField
                     {
-                        id:taskTitle;
+                        id:searchWord;
                         anchors.fill:parent;
                         onFocusChanged:
                         {
                             console.log("source : AllTasks.qml -> searchBar -> focus changed lets re-focuse on searchbar")
-                            taskTitle.focus=true;
+                            searchWord.focus=true;
                         }
 
                         onTextChanged:
@@ -85,8 +111,8 @@ Item
                             if(text!=="")
                             {
                                 listModelMain.clear();
-//                                AllTasks.searchTask(taskTitle.text,listModelMain,"appendToList"); //search like off.
-                                AllTasks.searchTask(taskTitle.text,listModelMain,"appendToList",0); //search like on.
+//                                AllTasks.searchTask(searchWord.text,listModelMain,"appendToList"); //search like off.
+                                AllTasks.searchTask(searchWord.text,listModelMain,"appendToList",0); //search like on.
                             }
                             else
                             {
@@ -229,18 +255,17 @@ Item
                             MouseArea
                             {
                                 anchors.fill:parent;
+
+
                                 onClicked:
                                 {
                                     console.log("source : AllTasks.qml -> remove task clicekd, id="+tId);
-                                    const res = AllTasks.deleteTask(tId);
-                                    if(res)
-                                    {
-                                        console.log("source : AllTasks.qml -> i confirm the task is completely removed.");
-                                        reloadAllTasks();
-                                    }
-                                    else
-                                        console.log("source : AllTasks.qml -> something went wrong error="+res)
+                                    baseConfirmYesOrNo.visible=true;
+                                    confirmMessage.textMessage = "are you sure to delete ("+tTitle+") ?";
+                                    selectedIdToDelete=tId;
+                                    confirmMessage.response="wait"
                                 }
+
                             }
                         }
 
@@ -303,6 +328,35 @@ Item
             }
         }
     }
+
+
+
+    Rectangle
+    {
+        id:baseConfirmYesOrNo;
+        anchors.fill: parent;
+        color:"black";
+        opacity: 0.6;
+        visible: false;
+
+        MouseArea
+        {
+            anchors.fill: parent;
+            onClicked:
+            {
+                confirmMessage.response="canceled";
+            }
+        }
+        ConfirmYesOrNo
+        {
+            id:confirmMessage;
+            onResponseChanged:
+            {
+                statusRemoveConfirmMessage=response;
+            }
+        }
+    }
+
 
 
 }
