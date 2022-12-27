@@ -29,7 +29,7 @@ Item
         {
             fill:parent
         }
-        color:"brown";
+        color:"transparent";
 
         ListView
         {
@@ -50,13 +50,13 @@ Item
                 Rectangle
                 {
                     anchors.fill: parent;
-                    color:"magenta";
+                    color:"transparent";
                     Rectangle
                     {
                         id:itemmm2;
                         width: parent.width/1.10;
                         height: 50;
-                        color: "black";
+                        color: "gray";
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 
@@ -90,11 +90,11 @@ Item
                             width:45;
                             height:parent.height;
                             anchors.right:parent.right;
-                            color:"purple";
-                            Text
-                            {
-                                text:"comp";
-                                anchors.centerIn: parent;
+                            color:"transparent";
+                            Image {
+//                                id:completeImage;
+                                anchors.centerIn:parent;
+                                source: Configs.icon_completeTasks;
                             }
 
                             MouseArea
@@ -109,6 +109,7 @@ Item
                                         const res_removeTaskFromToday = TodayTasks.removeTaskFromToday(tId);
                                         if(res_removeTaskFromToday)
                                         {
+//                                            completeImage.source = Configs.icon_uncompleteTasks;
                                             console.log("source : todayTasks.qml -> i confirm the task is removed from todaytask and added into completed tasks.");
                                             reloadAllTasks();
                                         }
@@ -130,10 +131,10 @@ Item
                             height:parent.height;
                             anchors.right:completeTask.left;
                             color:"gray";
-                            Text
+                            Image
                             {
-                                text:"remo";
                                 anchors.centerIn: parent;
+                                source: Configs.icon_removeTodayTask;
                             }
 
                             MouseArea

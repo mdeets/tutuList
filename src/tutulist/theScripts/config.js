@@ -5,7 +5,7 @@ const application_title = "TuTu List";
 const topTitleBar_height = 40;
 const bottomMenu_height = 60;
 
-const pathToIcon = "/theResources/lightMode/24x24/"; // light -> dark or etc to change icons theme
+const pathToIcon = "/theResources/lightMode/"; // light -> dark or etc to change icons theme
 
 //theme colors
 const color_background = "#dedede";
@@ -30,15 +30,19 @@ const table_settings = "tutu_settings1";
 
 
 //menu icons
-const icon_bottomMenu_allTasks = pathToIcon+"allTask.png"; //there is another allTasks.png thats old
-const icon_bottomMenu_todayTasks = pathToIcon+"todayTask.png";
-const icon_bottomMenu_completedTasks = pathToIcon+"completedTask.png";
+const icon_bottomMenu_allTasks = pathToIcon+"24x24/"+"allTask.png"; //there is another allTasks.png thats old
+const icon_bottomMenu_todayTasks = pathToIcon+"24x24/"+"todayTask.png";
+const icon_bottomMenu_completedTasks = pathToIcon+"24x24/"+"completedTask.png";
+
+
+const icon_completeTasks = pathToIcon+"24x24/"+"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
+const icon_uncompleteTasks = pathToIcon+"24x24/"+"checkedTask.png";
+
+const icon_addTodayTask = pathToIcon+"24x24/"+"todayTask.png"; //https://icons8.com/icon/set/user-interface/wired
+const icon_removeTodayTask = pathToIcon+"24x24/"+"removeTask.png"; //https://icons8.com/icon/set/user-interface/wired
+
 
 //action icons https://icons8.com/icon/105072/clipboard
-const icon_removeTasks = pathToIcon+"completedTasks.png";
-const icon_addTasks = pathToIcon+"completedTasks.png";
-const icon_submitTasks = pathToIcon+"completedTasks.png";
-const icon_completeTasks = pathToIcon+"completedTasks.png";
-const icon_uncompleteTasks = pathToIcon+"completedTasks.png";
-const icon_addTodayTask = pathToIcon+"completedTasks.png";
-const icon_removeTodayTask = pathToIcon+"completedTasks.png";
+const icon_removeTasks = icon_removeTodayTask;//pathToIcon+"24x24/"+"completedTasks.png"; //https://icons8.com/icon/set/user-interface/wired
+const icon_addTasks = pathToIcon+"24x24/"+"emptyList.png"; //to form
+const icon_submitTasks = pathToIcon+"24x24/"+"submitQuickTask.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah

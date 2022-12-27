@@ -99,7 +99,7 @@ Window
                 left:parent.left;
                 right:parent.right;
             }
-            color:"cyan";
+            color:"white";
 
 
 

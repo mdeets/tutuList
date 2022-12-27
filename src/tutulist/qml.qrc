@@ -23,5 +23,54 @@
         <file>theForms/modifyTask.qml</file>
         <file>theComponents/GetAField_Form_with_Title_and_InputText.qml</file>
         <file>theComponents/ConfirmYesOrNo.qml</file>
+        <file>theResources/darkMode/100x100/allTask.png</file>
+        <file>theResources/darkMode/100x100/completedTask.png</file>
+        <file>theResources/darkMode/100x100/emptyList.png</file>
+        <file>theResources/darkMode/100x100/todayTask.png</file>
+        <file>theResources/darkMode/24x24/allTask.png</file>
+        <file>theResources/darkMode/24x24/completedTask.png</file>
+        <file>theResources/darkMode/24x24/emptyList.png</file>
+        <file>theResources/darkMode/24x24/todayTask.png</file>
+        <file>theResources/darkMode/50x50/allTask.png</file>
+        <file>theResources/darkMode/50x50/completedTask.png</file>
+        <file>theResources/darkMode/50x50/emptyList.png</file>
+        <file>theResources/darkMode/50x50/todayTask.png</file>
+        <file>theResources/lightMode/50x50/allTask.png</file>
+        <file>theResources/lightMode/50x50/completedTask.png</file>
+        <file>theResources/lightMode/50x50/emptyList.png</file>
+        <file>theResources/lightMode/50x50/todayTask.png</file>
+        <file>theResources/lightMode/24x24/allTask.png</file>
+        <file>theResources/lightMode/24x24/completedTask.png</file>
+        <file>theResources/lightMode/24x24/emptyList.png</file>
+        <file>theResources/lightMode/24x24/todayTask.png</file>
+        <file>theResources/lightMode/100x100/allTask.png</file>
+        <file>theResources/lightMode/100x100/completedTask.png</file>
+        <file>theResources/lightMode/100x100/emptyList.png</file>
+        <file>theResources/lightMode/100x100/todayTask.png</file>
+        <file>theResources/darkMode/100x100/submitQuickTask.png</file>
+        <file>theResources/darkMode/24x24/submitQuickTask.png</file>
+        <file>theResources/darkMode/50x50/submitQuickTask.png</file>
+        <file>theResources/lightMode/100x100/submitQuickTask.png</file>
+        <file>theResources/lightMode/24x24/submitQuickTask.png</file>
+        <file>theResources/lightMode/50x50/submitQuickTask.png</file>
+        <file>theResources/animated-checked.gif</file>
+        <file>theResources/darkMode/100x100/checkedTask.png</file>
+        <file>theResources/darkMode/100x100/uncheckedTask.png</file>
+        <file>theResources/darkMode/24x24/checkedTask.png</file>
+        <file>theResources/darkMode/24x24/uncheckedTask.png</file>
+        <file>theResources/darkMode/50x50/checkedTask.png</file>
+        <file>theResources/darkMode/50x50/uncheckedTask.png</file>
+        <file>theResources/lightMode/100x100/checkedTask.png</file>
+        <file>theResources/lightMode/100x100/uncheckedTask.png</file>
+        <file>theResources/lightMode/24x24/checkedTask.png</file>
+        <file>theResources/lightMode/24x24/uncheckedTask.png</file>
+        <file>theResources/lightMode/50x50/checkedTask.png</file>
+        <file>theResources/lightMode/50x50/uncheckedTask.png</file>
+        <file>theResources/darkMode/100x100/removeTask.png</file>
+        <file>theResources/darkMode/24x24/removeTask.png</file>
+        <file>theResources/darkMode/50x50/removeTask.png</file>
+        <file>theResources/lightMode/24x24/removeTask.png</file>
+        <file>theResources/lightMode/50x50/removeTask.png</file>
+        <file>theResources/lightMode/100x100/removeTask.png</file>
     </qresource>
 </RCC>

@@ -74,7 +74,7 @@ Item
             top:parent.top;
             bottom:addNewQuickTask.top;
         }
-        color:"brown";
+        color:"transparent";
 
         ListView
         {
@@ -82,8 +82,7 @@ Item
             anchors.fill:parent;
 //            anchors.topMargin:35;
             clip:true;
-            header:
-            Item
+            header: Item
             {
                 id:searchBar;
                 width:parent.width;
@@ -92,18 +91,18 @@ Item
                 Rectangle
                 {
                     width:parent.width;
-                    height:parent.height/2;
+                    height:parent.height/1.5;
                     anchors.verticalCenter: parent.verticalCenter
-                    color:"white";
+                    color:"transparent";
                     TextField
                     {
                         id:searchWord;
                         anchors.fill:parent;
-                        onFocusChanged:
-                        {
-                            console.log("source : AllTasks.qml -> searchBar -> focus changed lets re-focuse on searchbar")
-                            searchWord.focus=true;
-                        }
+//                        onFocusChanged:
+//                        {
+//                            console.log("source : AllTasks.qml -> searchBar -> focus changed lets re-focuse on searchbar")
+//                            searchWord.focus=true;
+//                        }
 
                         onTextChanged:
                         {
@@ -138,13 +137,13 @@ Item
                 {
                     anchors.fill: parent;
 
-                    color:"magenta";
+                    color:"transparent";
                     Rectangle
                     {
                         id:itemmm2;
                         width: parent.width/1.10;
                         height: 50;
-                        color: "black";
+                        color: "gray";
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 
@@ -182,10 +181,10 @@ Item
                             width:45;
                             height:parent.height;
                             anchors.right:parent.right;
-                            color:"gray";
-                            Text
+                            color:"transparent";
+                            Image
                             {
-                                text:"today";
+                                source: Configs.icon_addTodayTask;
                                 anchors.centerIn: parent;
                             }
 
@@ -213,10 +212,10 @@ Item
                             width:45;
                             height:parent.height;
                             anchors.right:todayButton.left;
-                            color:"purple";
-                            Text
+                            color:"transparent";
+                            Image
                             {
-                                text:"comp";
+                                source: Configs.icon_completeTasks;
                                 anchors.centerIn: parent;
                             }
 
@@ -245,10 +244,10 @@ Item
                             width:45;
                             height:parent.height;
                             anchors.right:completeButton.left;
-                            color:"cyan";
-                            Text
+                            color:"transparent";
+                            Image
                             {
-                                text:"del";
+                                source: Configs.icon_removeTasks;
                                 anchors.centerIn: parent;
                             }
 
@@ -288,45 +287,58 @@ Item
     {
         id:addNewQuickTask;
         width:parent.width;
-        height:50;
-        color:"gray";
+        height:45;
+        color:"transparent";
         anchors.bottom:parent.bottom;
-        TextField
+        Row
         {
-            id:taskTitle;
-            width:parent.width/2;
-            height:parent.height;
-        }
-        Rectangle
-        {
-            anchors.right:parent.right;
-            color:"blue";
-            width:40;
-            height:parent.height;
-            MouseArea
+            anchors.fill:parent;
+            TextField
             {
-                anchors.fill:parent;
-                onClicked:
+                id:taskTitle;
+                width:parent.width-40;
+                height:parent.height;
+                wrapMode: "WrapAnywhere"
+                maximumLength: 40;
+            }
+            Rectangle
+            {
+                anchors.right:parent.right;
+                color:"gray";
+                width:40;
+                height:parent.height;
+                Image
                 {
-                    console.log("source : AllTasks.qml -> on submit new task button clicked.");
-                    if(taskTitle.text==="")
+                    anchors.centerIn:parent;
+                    source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_addTasks;
+                }
+
+                MouseArea
+                {
+                    anchors.fill:parent;
+                    onClicked:
                     {
-                        console.log("source: allTasks.qml -> add new task via setup and form.");
-                        openTheSetupTaskForm();
-                    }
-                    else
-                    {
-                        const res=  AllTasks.addQuicklyNewTask(taskTitle.text);
-                        if(res)
+                        console.log("source : AllTasks.qml -> on submit new task button clicked.");
+                        if(taskTitle.text==="")
                         {
-                            console.log("source : AllTasks.qml -> response is ok query submitted as QuickTask.");
-                            taskTitle.clear();
-                            reloadAllTasks();
+                            console.log("source: allTasks.qml -> add new task via setup and form.");
+                            openTheSetupTaskForm();
+                        }
+                        else
+                        {
+                            const res=  AllTasks.addQuicklyNewTask(taskTitle.text);
+                            if(res)
+                            {
+                                console.log("source : AllTasks.qml -> response is ok query submitted as QuickTask.");
+                                taskTitle.clear();
+                                reloadAllTasks();
+                            }
                         }
                     }
                 }
             }
         }
+
     }
 
 

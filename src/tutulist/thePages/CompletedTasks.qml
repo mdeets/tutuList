@@ -33,7 +33,7 @@ Item
         {
             fill:parent;
         }
-        color:"brown";
+        color:"transparent";
 
         ListView
         {
@@ -54,13 +54,13 @@ Item
                 Rectangle
                 {
                     anchors.fill: parent;
-                    color:"magenta";
+                    color:"transparent";
                     Rectangle
                     {
                         id:itemmm2;
                         width: parent.width/1.10;
                         height: 50;
-                        color: "black";
+                        color: "gray";
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 
@@ -94,11 +94,11 @@ Item
                             width:45;
                             height:parent.height;
                             anchors.right:parent.right;
-                            color:"purple";
-                            Text
+                            color:"transparent";
+                            Image
                             {
-                                text:"uncomp";
-                                anchors.centerIn: parent;
+                                anchors.centerIn:parent;
+                                source: Configs.icon_uncompleteTasks;
                             }
 
                             MouseArea
@@ -124,10 +124,10 @@ Item
                             width:45;
                             height:parent.height;
                             anchors.right:uncompleteTask.left;
-                            color:"gray";
-                            Text
+                            color:"transparent";
+                            Image
                             {
-                                text:"+today";
+                                source : Configs.icon_addTodayTask;
                                 anchors.centerIn: parent;
                             }
 
