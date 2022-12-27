@@ -23,61 +23,107 @@ Item
         visible:true;
     }
 
+    onCompletedTasksClicked:
+    {
+        buttonCompletedTasks.color="gray";
+        buttonTodayTasks.color="transparent";
+        buttonAllTasks.color="transparent";
+    }
+
+    onAllTasksClicked:
+    {
+        buttonAllTasks.color="gray";
+        buttonTodayTasks.color="transparent";
+        buttonCompletedTasks.color="transparent";
+    }
 
     onTodayTasksClicked:
     {
-
+        buttonTodayTasks.color="gray";
+        buttonAllTasks.color="transparent";
+        buttonCompletedTasks.color="transparent";
     }
 
 
     Rectangle
     {
         id:local_root;
-        anchors.fill:parent;
-        color:"yellow";
+        width:parent.height*3+12
+        anchors.centerIn: parent;
+        height:parent.height;
+        color:"transparent";
         Row
         {
-            anchors.fill:parent;
+            width:parent.width;
+            height:parent.height;
+            anchors.centerIn:parent;
+            spacing: parent.width/25;
 
-            spacing: parent.width/5;
             Rectangle
             {
-                width:parent.width/5;
+                id:buttonAllTasks;
+                width:parent.height;
                 height:parent.height;
-                color:"gray";
+                color:"transparent";
+                radius: 100
                 Image
                 {
                     anchors.centerIn:parent;
-                    property string myvg: Configs.pathToIcon+"allTasks.png";
-                    source: myvg;
+                    source: Configs.icon_bottomMenu_allTasks;
                 }
 
                 MouseArea
                 {
                     anchors.fill: parent;
-                    onClicked: allTasksClicked();
+                    onClicked:
+                    {
+                        allTasksClicked();
+                    }
+
                 }
             }
             Rectangle
             {
-                width:parent.width/5;
+                id:buttonTodayTasks;
+                width:parent.height;
                 height:parent.height;
-                color:"red";
+                color:"transparent";
+                radius: 100
+                Image
+                {
+                    anchors.centerIn:parent;
+                    source: Configs.icon_bottomMenu_todayTasks;
+                }
                 MouseArea
                 {
                     anchors.fill: parent;
-                    onClicked: todayTasksClicked();
+                    onClicked:
+                    {
+                        todayTasksClicked();
+                    }
+
                 }
             }
             Rectangle
             {
-                width:parent.width/5;
+                id:buttonCompletedTasks;
+                width:parent.height;
                 height:parent.height;
-                color:"blue";
+                color:"transparent";
+                radius: 100
+                Image
+                {
+                    anchors.centerIn:parent;
+                    source: Configs.icon_bottomMenu_completedTasks;
+                }
                 MouseArea
                 {
                     anchors.fill: parent;
-                    onClicked: completedTasksClicked()
+                    onClicked:
+                    {
+                        completedTasksClicked()
+                    }
+
                 }
             }
         }
