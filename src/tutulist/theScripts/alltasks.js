@@ -401,7 +401,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                         //fetch complete tasks id to avoid lising completeTasks inside of allTasks.
                         //fetch today tasks id to avoid lising today tasks inside of allTasks.
                         //then fetch all tasks details.
-                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_creationDate ASC;');
+                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_creationDate DESC;');
                         var tableColumns = rs.rows.length;
 
                         if (rs.rows.length > 0)
@@ -430,6 +430,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                     var table_taskSteps_Columns = res_taskSteps.rows.length;
                                     if (table_taskSteps_Columns > 0)
                                     {
+                                        result+= ', "childCount":"' + table_taskSteps_Columns + '"';
                                         for(var y=0; y<table_taskSteps_Columns; y++)
                                         {
                                             stepCounter++;
@@ -442,6 +443,12 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                                 result += ",";
                                         }
                                     }
+                                    else
+                                    {
+                                        //no child (step Task).
+                                        result+= ', "childCount":"0"';
+                                    }
+
                                     //end of task steps.
                                     result += '}';
 
@@ -450,7 +457,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                         result += ",";
                                 }
                                 result += "]}";
-//                                console.log("\nsource : allTasks.js/getList(json) -> json result values are =" + result+"\n");
+                                console.log("\nsource : allTasks.js/getList(json) -> json result values are =" + result+"\n");
                             }
 
 
@@ -498,7 +505,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                 }
 //                                //end of task steps.
 
-                                console.log("source : allTasks.js/getList(json) -> appended.");
+                                console.log("source : allTasks.js/getList(list append) -> appended.");
                                 return 0;
                             }
 

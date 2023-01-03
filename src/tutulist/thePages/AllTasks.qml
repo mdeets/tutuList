@@ -53,6 +53,7 @@ Item
         console.log("source : AllTasks.qml -> signal reloadAllTasks called.");
         listModelMain.clear();
         AllTasks.getList(listModelMain,"appendToList");
+        AllTasks.getList(listModelMain,"json");
     }
 
     anchors.fill:parent;
