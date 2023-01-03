@@ -46,3 +46,7 @@ const icon_removeTodayTask = pathToIcon+"24x24/"+"removeTask.png"; //https://ico
 const icon_removeTasks = icon_removeTodayTask;//pathToIcon+"24x24/"+"completedTasks.png"; //https://icons8.com/icon/set/user-interface/wired
 const icon_addTasks = pathToIcon+"24x24/"+"emptyList.png"; //to form
 const icon_submitTasks = pathToIcon+"24x24/"+"submitQuickTask.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
+
+
+//alltasks -> add new step
+const icon_cancel = pathToIcon+"24x24/"+"cancel.png";

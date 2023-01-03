@@ -147,6 +147,8 @@ Item
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 
+
+
                         MouseArea
                         {
                             anchors.fill:parent;
@@ -159,6 +161,7 @@ Item
                             onClicked:
                             {
                                 console.log("source: AllTasks.qml -> on task clicked, lets add new step to this task");
+                                quicklyAddStep.visible=true;
                             }
                         }
 
@@ -270,6 +273,13 @@ Item
                             }
                         }
 
+                        QuicklySetupTaskStep
+                        {
+                            id:quicklyAddStep;
+                            visible:false;
+                            setTaskId: tId;
+                        }
+
 
 
 
@@ -305,7 +315,7 @@ Item
             }
             Rectangle
             {
-                anchors.right:parent.right;
+//                anchors.right:parent.right;
                 color:"gray";
                 width:40;
                 height:parent.height;

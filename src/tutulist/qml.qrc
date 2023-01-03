@@ -78,5 +78,13 @@
         <file>theComponents/calendar/MyDayPicker.qml</file>
         <file>theComponents/calendar/MyWeekDayPicker.qml</file>
         <file>theComponents/calendar/TheCalendar.qml</file>
+        <file>theComponents/QuicklySetupTaskStep.qml</file>
+        <file>theResources/darkMode/100x100/cancel.png</file>
+        <file>theResources/darkMode/24x24/cancel.png</file>
+        <file>theResources/darkMode/50x50/cancel.png</file>
+        <file>theResources/lightMode/24x24/cancel.png</file>
+        <file>theResources/lightMode/100x100/cancel.png</file>
+        <file>theResources/lightMode/50x50/cancel.png</file>
+        <file>theScripts/steptasks.js</file>
     </qresource>
 </RCC>
