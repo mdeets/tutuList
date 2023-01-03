@@ -6,6 +6,24 @@ Item
 {
     width:parent.width;
     height: Configs.bottomMenu_height;
+    property int setCurrentPage: 0;
+    onSetCurrentPageChanged:
+    {
+        switch(setCurrentPage)
+        {
+        case 1:
+            allTasksClicked();
+            break;
+        case 2:
+            todayTasksClicked();
+            break;
+        case 3:
+            completedTasksClicked();
+            break;
+        default:
+            console.log("source: tutuBottomMenu.qml -> something went wrong when doing the setCurrentPage");
+        }
+    }
 
     signal todayTasksClicked;
     signal allTasksClicked;

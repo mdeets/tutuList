@@ -44,6 +44,7 @@ Window
         {
             console.log("source : main.qml -> result databsae connection check = OK , response="+res_testDB);
             DBheader.initDatabaseTables();
+            tutu_bottonMenu.setCurrentPage= 2;//set as home page.
         }
         else
             console.log("source : main.qml -> result database connection = failed, response=" + res_testDB);
