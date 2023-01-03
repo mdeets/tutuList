@@ -150,13 +150,15 @@ Item
                         MouseArea
                         {
                             anchors.fill:parent;
-                            onClicked:
+                            onPressAndHold:
                             {
-                                console.log("source : AllTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + "desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
+                                console.log("source : AllTasks.qml ->  on task press and hold, details are: id="+tId + " title="+tTitle + "desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
 //                                openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
                                 openTheModifyTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
-
-
+                            }
+                            onClicked:
+                            {
+                                console.log("source: AllTasks.qml -> on task clicked, lets add new step to this task");
                             }
                         }
 
