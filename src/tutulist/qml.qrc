@@ -72,5 +72,11 @@
         <file>theResources/lightMode/24x24/removeTask.png</file>
         <file>theResources/lightMode/50x50/removeTask.png</file>
         <file>theResources/lightMode/100x100/removeTask.png</file>
+        <file>theComponents/calendar/calculateDates.js</file>
+        <file>theComponents/calendar/dark-icon-back-next.png</file>
+        <file>theComponents/calendar/icon-back-next.png</file>
+        <file>theComponents/calendar/MyDayPicker.qml</file>
+        <file>theComponents/calendar/MyWeekDayPicker.qml</file>
+        <file>theComponents/calendar/TheCalendar.qml</file>
     </qresource>
 </RCC>
