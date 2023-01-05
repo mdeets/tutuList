@@ -162,7 +162,7 @@ Item
                         id:itemmm2;
                         width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
                         height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
-                        color: tsId > 0 ? "gold" : "gray"; //tsId >0 means this is task Step. not a task
+                        color: tsId > 0 ? "cyan" : "gray"; //tsId >0 means this is task Step. not a task
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 

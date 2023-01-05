@@ -464,8 +464,6 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
 
                             else
                             {
-//                                //append into the list.
-//                                //will collect taskStep data and place into lists
                                 for(var k=0; k<tableColumns; k++)
                                 {
 
@@ -484,10 +482,10 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                     targetList.append(resultForAppendToList);
 
 
-                                    console.log("source: allTasks.js -> print data -> id=",rs.rows.item(k).t_id, " title=", rs.rows.item(k).t_title, " desc=",
-                                                rs.rows.item(k).t_description, " deadline=",rs.rows.item(k).t_deadline,
-                                                " creation=",rs.rows.item(k).t_creationDate," priority=",rs.rows.item(k).t_priority,
-                                                " ttp=",rs.rows.item(k).t_timeToPerform);
+//                                    console.log("source: allTasks.js -> print data -> id=",rs.rows.item(k).t_id, " title=", rs.rows.item(k).t_title, " desc=",
+//                                                rs.rows.item(k).t_description, " deadline=",rs.rows.item(k).t_deadline,
+//                                                " creation=",rs.rows.item(k).t_creationDate," priority=",rs.rows.item(k).t_priority,
+//                                                " ttp=",rs.rows.item(k).t_timeToPerform);
 
 
                                     var rsStep = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId + ' ORDER BY ts_id ASC');
@@ -496,7 +494,6 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                     {
                                         for(var u=0; u<tblStep; u++)
                                         {
-                                            console.log("step is : " , rsStep.rows.item(u).ts_title);
                                             const stepTaskList =
                                             {
                                                 tId: theTaskId,
@@ -511,7 +508,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                     else
                                     {
                                         //no child (step Task).
-                                        console.log('no step found.');
+                                        console.log('source : allTasks.js/getList(list append) -> no step found.');
                                     }
 
 
