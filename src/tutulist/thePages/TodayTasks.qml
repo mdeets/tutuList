@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 import "../theScripts/config.js" as Configs
 import "../theScripts/completedtasks.js" as AddToCompletedTasks //just addToCompletedTasks used.
 import "../theScripts/todaytasks.js" as TodayTasks
+import "../theScripts/steptasks.js" as StepTaskManager
 Item
 {
     signal reloadAllTasks;
@@ -46,7 +47,7 @@ Item
             Item
             {
                 width: listViewMain.width;
-                height: 70;
+                height: tsId> 0 ? 35:70;
                 Rectangle
                 {
                     anchors.fill: parent;
@@ -54,9 +55,9 @@ Item
                     Rectangle
                     {
                         id:itemmm2;
-                        width: parent.width/1.10;
-                        height: 50;
-                        color: "gray";
+                        width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
+                        height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
+                        color: tsId > 0 ? "cyan" : "gray"; //tsId >0 means this is task Step. not a task
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 
@@ -65,15 +66,18 @@ Item
                             anchors.fill:parent;
                             onClicked:
                             {
-                                console.log("source : todayTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + " desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
+                                if(tsId === 0)
+                                    console.log("source: CompletedTasks.qml -> on task clicked.");
+                                else
+                                    console.log("source: CompletedTasks.qml -> on stepTask clicked.");
                             }
                         }
 
                         Text
                         {
-                            text: tTitle;
-                            color:"white";
-                            font.pointSize: 18;
+                            text: tsId>0 ? tsTitle : tTitle;
+                            color: tsId > 0 ? "black":"white";
+                            font.pointSize: tsId>0 ? 10 : 18;
                             width:parent.width/3;
                             clip:true;
                             anchors
@@ -91,10 +95,11 @@ Item
                             height:parent.height;
                             anchors.right:parent.right;
                             color:"transparent";
-                            Image {
+                            Image
+                            {
 //                                id:completeImage;
                                 anchors.centerIn:parent;
-                                source: Configs.icon_completeTasks;
+                                source: tsId>0 ? tsCompeteDate==="0" ? Configs.icon_completeTasks : Configs.icon_uncompleteTasks :Configs.icon_completeTasks;
                             }
 
                             MouseArea
@@ -102,23 +107,60 @@ Item
                                 anchors.fill:parent;
                                 onClicked:
                                 {
-                                    console.log("source : todayTasks.qml -> complete this task clicked, id="+tId);
-                                    const res = AddToCompletedTasks.completeTask(tId);
-                                    if(res)
+                                    if(tsId>0)
                                     {
-                                        const res_removeTaskFromToday = TodayTasks.removeTaskFromToday(tId);
-                                        if(res_removeTaskFromToday)
+                                        if(tsCompeteDate==="0")
                                         {
-//                                            completeImage.source = Configs.icon_uncompleteTasks;
-                                            console.log("source : todayTasks.qml -> i confirm the task is removed from todaytask and added into completed tasks.");
-                                            reloadAllTasks();
+                                            console.log("source : todayTasks.qml -> complete this step task clicked, tasKStepId="+tsId+ " tId="+tId);
+                                            const queryResult = StepTaskManager.completeStep(tId,tsId);
+                                            if(queryResult)
+                                            {
+                                                console.log("source: todayTasks.qml -> taskStep completed successfully.");
+                                                reloadAllTasks();
+                                            }
+                                            else
+                                            {
+                                                console.log("source: todayTasks.qml -> taskStep failed to complete.");
+                                            }
                                         }
                                         else
-                                            console.log("source : todayTasks.qml -> something went wrong error="+res_removeTaskFromToday);
+                                        {
+                                            console.log("source : todayTasks.qml -> lets uncomplete this taskStep. tsId="+tsId);
+                                            const queryResult = StepTaskManager.uncompleteStep(tId,tsId);
+                                            if(queryResult)
+                                            {
+                                                console.log("source: todayTasks.qml -> taskStep uncompleted successfully.");
+                                                reloadAllTasks();
+                                            }
+                                            else
+                                            {
+                                                console.log("source: todayTasks.qml -> taskStep failed to uncomplete.");
+                                            }
+                                        }
+
 
                                     }
                                     else
-                                        console.log("source : todayTasks.qml -> something went wrong error="+res)
+                                    {
+                                        console.log("source : todayTasks.qml -> complete this task clicked, id="+tId);
+                                        const res = AddToCompletedTasks.completeTask(tId);
+                                        if(res)
+                                        {
+                                            const res_removeTaskFromToday = TodayTasks.removeTaskFromToday(tId);
+                                            if(res_removeTaskFromToday)
+                                            {
+    //                                            completeImage.source = Configs.icon_uncompleteTasks;
+                                                console.log("source : todayTasks.qml -> i confirm the task is removed from todaytask and added into completed tasks.");
+                                                reloadAllTasks();
+                                            }
+                                            else
+                                                console.log("source : todayTasks.qml -> something went wrong error="+res_removeTaskFromToday);
+
+                                        }
+                                        else
+                                            console.log("source : todayTasks.qml -> something went wrong error="+res)
+                                    }
+
                                 }
                             }
                         }
@@ -127,8 +169,9 @@ Item
                         Rectangle
                         {
                             id:removeFromToday;
-                            width:45;
-                            height:parent.height;
+                            width:tsId>0 ? 0: 45;
+                            height:tsId> 0 ? 0 : parent.height;
+                            visible: tsId>0? false:true;
                             anchors.right:completeTask.left;
                             color:"gray";
                             Image
