@@ -39,13 +39,14 @@ Item
     {
         id:addQuicklyBase;
         anchors.fill:parent;
-        color:"transparent";
+        color:"white";
         Row
         {
             anchors.fill:parent;
             TextField
             {
                 id:taskTitle;
+                color:"black";
                 width:parent.width-40;// minus 40px for button
                 height:parent.height;
                 wrapMode: "WrapAnywhere"
