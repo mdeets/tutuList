@@ -5,6 +5,8 @@ import "../theScripts/config.js" as Configs
 import "../theScripts/completedtasks.js" as CompletedTasks //just addToCompletedTasks used from CompletedTasks.js
 import "../theScripts/todaytasks.js" as AddToTodayTasks
 
+import "../theScripts/steptasks.js" as StepTaskManager
+
 Item
 {
     signal reloadAllTasks;
@@ -50,7 +52,7 @@ Item
             Item
             {
                 width: listViewMain.width;
-                height: 70;
+                height: tsId> 0 ? 35:70;
                 Rectangle
                 {
                     anchors.fill: parent;
@@ -58,9 +60,9 @@ Item
                     Rectangle
                     {
                         id:itemmm2;
-                        width: parent.width/1.10;
-                        height: 50;
-                        color: "gray";
+                        width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
+                        height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
+                        color: tsId > 0 ? "cyan" : "gray"; //tsId >0 means this is task Step. not a task
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 
@@ -69,15 +71,18 @@ Item
                             anchors.fill:parent;
                             onClicked:
                             {
-                                console.log("source : CompletedTasks.qml ->  on task clicked, details are: id="+tId + " title="+tTitle + " desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
+                                if(tsId === 0)
+                                    console.log("source: CompletedTasks.qml -> on task clicked.");
+                                else
+                                    console.log("source: CompletedTasks.qml -> on stepTask clicked.");
                             }
                         }
 
                         Text
                         {
-                            text: tTitle;
-                            color:"white";
-                            font.pointSize: 18;
+                            text: tsId>0 ? tsTitle : tTitle;
+                            color: tsId > 0 ? "black":"white";
+                            font.pointSize: tsId>0 ? 10 : 18;
                             width:parent.width/3;
                             clip:true;
                             anchors
@@ -98,7 +103,7 @@ Item
                             Image
                             {
                                 anchors.centerIn:parent;
-                                source: Configs.icon_uncompleteTasks;
+                                source: tsId>0 ? tsCompeteDate==="0" ? Configs.icon_completeTasks : Configs.icon_uncompleteTasks :Configs.icon_uncompleteTasks;
                             }
 
                             MouseArea
@@ -106,23 +111,60 @@ Item
                                 anchors.fill:parent;
                                 onClicked:
                                 {
-                                    console.log("source : CompletedTasks.qml -> uncomplete this task clicked, id="+tId);
-                                    const res = CompletedTasks.uncompleteTask(tId);
-                                    if(res)
+                                    if(tsId>0)
                                     {
-                                            console.log("source : CompletedTasks.qml -> i confirm the task is uncompleted.");
-                                            reloadAllTasks();
+                                        if(tsCompeteDate==="0")
+                                        {
+                                            console.log("source : CompletedTasks.qml -> complete this step task clicked, tasKStepId="+tsId+ " tId="+tId);
+                                            const queryResult = StepTaskManager.completeStep(tId,tsId);
+                                            if(queryResult)
+                                            {
+                                                console.log("source: CompletedTasks.qml -> taskStep completed successfully.");
+                                                reloadAllTasks();
+                                            }
+                                            else
+                                            {
+                                                console.log("source: CompletedTasks.qml -> taskStep failed to complete.");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            console.log("source : CompletedTasks.qml -> lets uncomplete this taskStep. tsId="+tsId);
+                                            const queryResult = StepTaskManager.uncompleteStep(tId,tsId);
+                                            if(queryResult)
+                                            {
+                                                console.log("source: CompletedTasks.qml -> taskStep uncompleted successfully.");
+                                                reloadAllTasks();
+                                            }
+                                            else
+                                            {
+                                                console.log("source: CompletedTasks.qml -> taskStep failed to uncomplete.");
+                                            }
+                                        }
+
+
                                     }
                                     else
-                                        console.log("source : CompletedTasks.qml -> something went wrong error="+res)
+                                    {
+                                        console.log("source : CompletedTasks.qml -> uncomplete this task clicked, id="+tId);
+                                        const res = CompletedTasks.uncompleteTask(tId);
+                                        if(res)
+                                        {
+                                                console.log("source : CompletedTasks.qml -> i confirm the task is uncompleted.");
+                                                reloadAllTasks();
+                                        }
+                                        else
+                                            console.log("source : CompletedTasks.qml -> something went wrong error="+res)
+                                    }
                                 }
                             }
                         }
                         Rectangle
                         {
                             id:addToToday;
-                            width:45;
-                            height:parent.height;
+                            width:tsId>0 ? 0: 45;
+                            height:tsId> 0 ? 0 : parent.height;
+                            visible: tsId>0? false:true;
                             anchors.right:uncompleteTask.left;
                             color:"transparent";
                             Image
