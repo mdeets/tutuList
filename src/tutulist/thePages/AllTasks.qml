@@ -13,22 +13,37 @@ import "../theScripts/steptasks.js" as StepTaskManager
 import QtQuick.Dialogs
 Item
 {
-    property int selectedIdToDelete : 0;
-    property string statusRemoveConfirmMessage : "wait";
+    property int selectedIdToDelete : 0;//used inside this file. didnt set from another.
+    property string statusRemoveConfirmMessage : "wait";//used inside this file. didnt set from another.
+
+    property int selectedStepTaskIdToDelete : 0;//this is for remove taskId.
     onStatusRemoveConfirmMessageChanged:
     {
         if(statusRemoveConfirmMessage=="confirmed")
         {
-            const res = AllTasks.deleteTask(selectedIdToDelete);
-            if(res)
+            if(selectedStepTaskIdToDelete==0)
             {
-                console.log("source : AllTasks.qml -> i confirm the task is completely removed.");
-                reloadAllTasks();
+                const res = AllTasks.deleteTask(selectedIdToDelete);
+                if(res)
+                {
+                    console.log("source : AllTasks.qml -> i confirm the task is completely removed.");
+                    reloadAllTasks();
+                }
+                else
+                    console.log("source : AllTasks.qml -> something went wrong while removing the task, error="+res)
             }
             else
-                console.log("source : AllTasks.qml -> something went wrong error="+res)
+            {
+                const res = StepTaskManager.deleteStepTask(selectedIdToDelete,selectedStepTaskIdToDelete);
+                if(res)
+                {
+                    console.log("source : AllTasks.qml -> i confirm the step task is completely removed.");
+                    reloadAllTasks();
+                }
+                else
+                    console.log("source : AllTasks.qml -> something went wrong while removing the step task, error="+res)
+            }
             baseConfirmYesOrNo.visible=false;
-
         }
         if(statusRemoveConfirmMessage=="canceled")
         {
@@ -233,7 +248,7 @@ Item
                             color:"transparent";
                             Image
                             {
-                                source: Configs.icon_completeTasks;
+                                source: tsId>0 ? tsCompeteDate==="0" ? Configs.icon_completeTasks : Configs.icon_uncompleteTasks :Configs.icon_completeTasks;
                                 anchors.centerIn: parent;
                             }
 
@@ -244,8 +259,36 @@ Item
                                 {
                                     if(tsId>0)
                                     {
-                                        console.log("source : AllTasks.qml -> complete this step task clicked, tasKStepId="+tsId);
-                                        StepTaskManager.
+                                        if(tsCompeteDate==="0")
+                                        {
+                                            console.log("source : AllTasks.qml -> complete this step task clicked, tasKStepId="+tsId+ " tId="+tId);
+                                            const queryResult = StepTaskManager.completeStep(tId,tsId);
+                                            if(queryResult)
+                                            {
+                                                console.log("source: AllTasks.qml -> taskStep completed successfully.");
+                                                reloadAllTasks();
+                                            }
+                                            else
+                                            {
+                                                console.log("source: AllTasks.qml -> taskStep failed to complete.");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            console.log("source : AllTAsks.qml -> lets uncomplete this taskStep. tsId="+tsId);
+                                            const queryResult = StepTaskManager.uncompleteStep(tId,tsId);
+                                            if(queryResult)
+                                            {
+                                                console.log("source: AllTasks.qml -> taskStep uncompleted successfully.");
+                                                reloadAllTasks();
+                                            }
+                                            else
+                                            {
+                                                console.log("source: AllTasks.qml -> taskStep failed to uncomplete.");
+                                            }
+                                        }
+
+
                                     }
                                     else
                                     {
@@ -280,15 +323,26 @@ Item
                             MouseArea
                             {
                                 anchors.fill:parent;
-
-
                                 onClicked:
                                 {
-                                    console.log("source : AllTasks.qml -> remove task clicekd, id="+tId);
                                     baseConfirmYesOrNo.visible=true;
-                                    confirmMessage.textMessage = "are you sure to delete ("+tTitle+") ?";
-                                    selectedIdToDelete=tId;
-                                    confirmMessage.response="wait"
+                                    if(tsId>0)
+                                    {
+                                        console.log("source: AllTasks.qml -> remove step task clicked. tsid="+tsId + " tid="+tId);
+                                        confirmMessage.textMessage = "are you sure to delete step task ("+tsTitle+") ?";
+                                        selectedStepTaskIdToDelete=tsId;
+                                        selectedIdToDelete=tId;
+                                    }
+                                    else
+                                    {
+                                        console.log("source : AllTasks.qml -> remove task clicekd, id="+tId);
+                                        confirmMessage.textMessage = "are you sure to delete task ("+tTitle+") ?";
+                                        selectedStepTaskIdToDelete=0; //to tell the confirm delete this is just task so remove this tId from Task Table.
+                                        selectedIdToDelete=tId;
+                                    }
+                                    confirmMessage.response="wait";
+
+
                                 }
 
                             }
