@@ -14,6 +14,25 @@ const table_taskSteps = Config.table_taskSteps;
 const table_settings = Config.table_settings;
 
 
+function getCurrentDateAndTime()
+{
+    let currentDate = new Date();
+    let cYear = currentDate.getFullYear();
+    let cDay = currentDate.getDate();
+    let cMonth = currentDate.getMonth() + 1;
+    let cHour = (currentDate.getHours()<10? "0"+currentDate.getHours() : currentDate.getHours());
+    let cMinute = (currentDate.getMinutes()<10? "0"+currentDate.getMinutes() : currentDate.getMinutes());
+    let cSecond = (currentDate.getSeconds()<10? "0"+currentDate.getSeconds() : currentDate.getSeconds());
+
+    if(cDay <10)
+        cDay = "0"+cDay;
+    if(cMonth < 10)
+        cMonth = "0"+cMonth;
+//    console.log(cYear + "-" + cMonth + "-" + cDay + " " +  currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds());
+    return  cYear + "-" + cMonth + "-" + cDay + " " + cHour  + ":" + cMinute + ":" + cSecond;
+}
+
+
 function testDatabaseConnection() //return 0 means connection failed , return 1 means connection is ok
 {
     var finalResult = 0;
