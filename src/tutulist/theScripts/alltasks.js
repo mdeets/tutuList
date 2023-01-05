@@ -402,6 +402,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                         //fetch today tasks id to avoid lising today tasks inside of allTasks.
                         //then fetch all tasks details.
                         var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_creationDate DESC;');
+//                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' INNER JOIN '+DBC.table_taskSteps+' ON '+DBC.table_allTasks+'.t_id='+DBC.table_taskSteps+'.t_id WHERE '+DBC.table_allTasks+'.t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND '+DBC.table_allTasks+'.t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_creationDate DESC;');
                         var tableColumns = rs.rows.length;
 
                         if (rs.rows.length > 0)
@@ -426,7 +427,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
 
 
                                     //task steps:
-                                    var res_taskSteps = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId);
+                                    var res_taskSteps = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId + ' ORDER BY ts_id ASC');
                                     var table_taskSteps_Columns = res_taskSteps.rows.length;
                                     if (table_taskSteps_Columns > 0)
                                     {
@@ -465,43 +466,55 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                             {
 //                                //append into the list.
 //                                //will collect taskStep data and place into lists
-//                                var taskStepId;//list
-//                                var taskStepTitle;//list
-//                                var taskStepDescription;//list
-//                                var taskStepCompleteDate;//list
                                 for(var k=0; k<tableColumns; k++)
                                 {
-                                    //append task detials and taskStep detials.
 
-                                    /*console.log("source: allTasks.js -> print data -> id=",rs.rows.item(k).t_id, " title=", rs.rows.item(k).t_title, " desc=",
+                                    const theTaskId = rs.rows.item(k).t_id;
+                                    const resultForAppendToList =
+                                    {
+                                        tId: theTaskId,
+                                        tsId:0, //means this is not task Step, to known wich is task or Wich one is TaskStep for ui.
+                                        tTitle : rs.rows.item(k).t_title > 15 ? rs.rows.item(k).t_title.slice(0,12) + ".." :  rs.rows.item(k).t_title,
+                                        tDesc: rs.rows.item(k).t_description,
+                                        tTimerToPerForm: rs.rows.item(k).t_timeToPerform,
+                                        tDeadline: rs.rows.item(k).t_deadline,
+                                        tCreation: rs.rows.item(k).t_creationDate,
+                                        tPriority: Number(rs.rows.item(k).t_priority),
+                                    };
+                                    targetList.append(resultForAppendToList);
+
+
+                                    console.log("source: allTasks.js -> print data -> id=",rs.rows.item(k).t_id, " title=", rs.rows.item(k).t_title, " desc=",
                                                 rs.rows.item(k).t_description, " deadline=",rs.rows.item(k).t_deadline,
                                                 " creation=",rs.rows.item(k).t_creationDate," priority=",rs.rows.item(k).t_priority,
-                                                " ttp=",rs.rows.item(k).t_timeToPerform);*/
+                                                " ttp=",rs.rows.item(k).t_timeToPerform);
 
 
-                                    targetList.append({
-                                                          tId: rs.rows.item(k).t_id,
-                                                          tTitle : rs.rows.item(k).t_title > 15 ? rs.rows.item(k).t_title.slice(0,12) + ".." :  rs.rows.item(k).t_title,
-                                                          tDesc: rs.rows.item(k).t_description,
-                                                          tTimerToPerForm: rs.rows.item(k).t_timeToPerform,
-                                                          tDeadline: rs.rows.item(k).t_deadline,
-                                                          tCreation: rs.rows.item(k).t_creationDate,
-                                                          tPriority: Number(rs.rows.item(k).t_priority),
-                                                      });
+                                    var rsStep = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId + ' ORDER BY ts_id ASC');
+                                    var tblStep = rsStep.rows.length;
+                                    if (tblStep > 0)
+                                    {
+                                        for(var u=0; u<tblStep; u++)
+                                        {
+                                            console.log("step is : " , rsStep.rows.item(u).ts_title);
+                                            const stepTaskList =
+                                            {
+                                                tId: theTaskId,
+                                                tsId: rsStep.rows.item(u).ts_id,
+                                                tsTitle: rsStep.rows.item(u).ts_title,
+                                                tsDesc: rsStep.rows.item(u).ts_description,
+                                                tsCompeteDate:  rsStep.rows.item(u).ts_completeDate,
+                                            };
+                                            targetList.append(stepTaskList);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //no child (step Task).
+                                        console.log('no step found.');
+                                    }
 
-//                                    //task steps:
-//                                    var res_taskSteps1 = tx.executeSql('SELECT * FROM '+DBC.table_taskSteps+' WHERE t_id = '+ theTaskId);
-//                                    var table_taskSteps_Columns1 = res_taskSteps1.rows.length;
-//                                    if (table_taskSteps_Columns1 > 0)
-//                                    {
-//                                        for(var f=0; f<table_taskSteps_Columns1; f++)
-//                                        {
-//                                            taskStepId[f]=res_taskSteps1.rows.item(f).ts_id;
-//                                            taskStepTitle[f]=res_taskSteps1.rows.item(f).ts_title;
-//                                            taskStepDescription[f]=res_taskSteps1.rows.item(f).ts_description;
-//                                            taskStepCompleteDate[f]=res_taskSteps1.rows.item(f).ts_completeDate;
-//                                        }
-//                                    }
+
                                 }
 //                                //end of task steps.
 

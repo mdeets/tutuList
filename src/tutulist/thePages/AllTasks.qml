@@ -6,6 +6,10 @@ import "../theScripts/completedtasks.js" as AddToCompletedTasks
 import "../theScripts/todaytasks.js" as AddToTodayTask
 import "../theComponents"
 
+import "../theScripts/steptasks.js" as StepTaskManager
+
+//                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' INNER JOIN '+DBC.table_taskSteps+' ON '+DBC.table_allTasks+'.t_id='+DBC.table_taskSteps+'.t_id WHERE '+DBC.table_allTasks+'.t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND '+DBC.table_allTasks+'.t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_creationDate DESC;');
+
 import QtQuick.Dialogs
 Item
 {
@@ -53,7 +57,6 @@ Item
         console.log("source : AllTasks.qml -> signal reloadAllTasks called.");
         listModelMain.clear();
         AllTasks.getList(listModelMain,"appendToList");
-        AllTasks.getList(listModelMain,"json");
     }
 
     anchors.fill:parent;
@@ -133,7 +136,7 @@ Item
             Item
             {
                 width: listViewMain.width;
-                height: 70;
+                height: tsId> 0 ? 35:70;
                 Rectangle
                 {
                     anchors.fill: parent;
@@ -142,9 +145,9 @@ Item
                     Rectangle
                     {
                         id:itemmm2;
-                        width: parent.width/1.10;
-                        height: 50;
-                        color: "gray";
+                        width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
+                        height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
+                        color: tsId > 0 ? "gold" : "gray"; //tsId >0 means this is task Step. not a task
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
 
@@ -156,21 +159,29 @@ Item
                             onPressAndHold:
                             {
                                 console.log("source : AllTasks.qml ->  on task press and hold, details are: id="+tId + " title="+tTitle + "desc="+tDesc + " timetoperform="+tTimerToPerForm+ " deadlione"+tDeadline + " creation="+tCreation + " priority="+tPriority);
-//                                openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
-                                openTheModifyTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
+                                if(tId>0 && tsId===0)
+                                    openTheModifyTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
+                                else
+                                    console.log("soruce : AllTasks.qml -> this is not task, wait for new updates to be able modify stepTasks. task Step Id="+tsId);
+//                              openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
                             }
                             onClicked:
                             {
-                                console.log("source: AllTasks.qml -> on task clicked, lets add new step to this task");
-                                quicklyAddStep.visible=true;
+                                if(tsId === 0)
+                                {
+                                    console.log("source: AllTasks.qml -> on task clicked, lets add new step to this task");
+                                    quicklyAddStep.visible=true;
+                                }
+                                else
+                                    console.log("source: AllTasks.qml -> on stepTask can not add step task.");
                             }
                         }
 
                         Text
                         {
-                            text: tTitle;
-                            color:"white";
-                            font.pointSize: 18;
+                            text: tsId>0 ? tsTitle : tTitle;
+                            color: tsId > 0 ? "black":"white";
+                            font.pointSize: tsId>0 ? 10 : 18;
                             width:parent.width/3;
                             clip:true;
                             anchors
@@ -184,8 +195,9 @@ Item
                         Rectangle
                         {
                             id:todayButton;
-                            width:45;
-                            height:parent.height;
+                            width:tsId>0 ? 0: 45;
+                            height:tsId> 0 ? 0 : parent.height;
+                            visible: tsId>0? false:true;
                             anchors.right:parent.right;
                             color:"transparent";
                             Image
@@ -230,15 +242,23 @@ Item
                                 anchors.fill:parent;
                                 onClicked:
                                 {
-                                    console.log("source : AllTasks.qml -> complete this task clicked, id="+tId);
-                                    const res = AddToCompletedTasks.completeTask(tId);
-                                    if(res)
+                                    if(tsId>0)
                                     {
-                                        console.log("source : AllTasks.qml -> i confirm the task is completely completed.");
-                                        reloadAllTasks();
+                                        console.log("source : AllTasks.qml -> complete this step task clicked, tasKStepId="+tsId);
+                                        StepTaskManager.
                                     }
                                     else
-                                        console.log("source : AllTasks.qml -> something went wrong error="+res)
+                                    {
+                                        console.log("source : AllTasks.qml -> complete this task clicked, id="+tId);
+                                        const res = AddToCompletedTasks.completeTask(tId);
+                                        if(res)
+                                        {
+                                            console.log("source : AllTasks.qml -> i confirm the task is completely completed.");
+                                            reloadAllTasks();
+                                        }
+                                        else
+                                            console.log("source : AllTasks.qml -> something went wrong error="+res)
+                                    }
                                 }
                             }
                         }
