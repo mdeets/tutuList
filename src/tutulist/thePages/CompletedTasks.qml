@@ -9,6 +9,9 @@ import "../theScripts/steptasks.js" as StepTaskManager
 Item
 {
     anchors.fill:parent;
+//    signal mainQMLpleaseOpenSetupTaskForm;
+    signal mainQMLpleaseOpenTheModifyTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
+
     ShowTasks
     {
         id:showCompletedTasks
@@ -110,6 +113,23 @@ Item
             }
 
 
+        }
+    }
+
+    Connections //make connection with page showTasks.qml and the showCompletedTasks. then this will recive by main.qml
+    {
+        id:connectionWithShowCompletedTasks
+        ignoreUnknownSignals: true
+        target: showCompletedTasks;
+//        function onOpenTheSetupTaskForm()
+//        {
+//            console.log("source : CompletedTasks.qml -> signal setupTaskForm recived from showTasks.qml");
+//            mainQMLpleaseOpenSetupTaskForm();
+//        }
+        function onOpenTheModifyTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
+        {
+            console.log("source : CompletedTasks.qml -> signal open-modifytaskform recived from showTasks.qml");
+            mainQMLpleaseOpenTheModifyTaskForm(id,title,desc,timeToPerform,creationDate,priority,deadline);
         }
     }
 }
