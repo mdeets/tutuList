@@ -241,7 +241,6 @@ Item
                                     openTheModifyTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
                                 else
                                     console.log("soruce : showTasks.qml -> "+ componentType + ".qml  -> this is not task, wait for new updates to be able modify stepTasks. task Step Id="+tsId);
-//                              openTheSetupTaskForm(tId,tTitle,tDesc,tTimerToPerForm,tCreation,tPriority,tDeadline);
                             }
                             onClicked:
                             {

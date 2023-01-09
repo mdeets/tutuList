@@ -4,8 +4,44 @@ import "../theComponents/"
 Item
 {
     anchors.fill:parent;
+    signal mainQMLpleaseOpenSetupTaskForm;
+    onMainQMLpleaseOpenSetupTaskForm:
+    {
+        console.log("source: alltasks.qml -> signal openTheSetupTaskForm recived and called.");
+    }
+
     ShowTasks
     {
+        id:showAllTasks;
+    }
+    Connections //make connection with page showTasks.qml and the ShowAllTasks. then this will recive by main.qml
+    {
+        id:connectionWithShowAllTasks
+        ignoreUnknownSignals: true
+        target: showAllTasks;
+        function onOpenTheSetupTaskForm()
+        {
+            console.log("source : AllTasks.qml -> setupTaskForm signal recived from showTasks.qml.");
+            mainQMLpleaseOpenSetupTaskForm();
+//            openTheSetupTaskForm();
+//            mainStackView.push("./theForms/setupTask.qml");
+        }
+//        function onOpenTheModifyTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
+//        {
+//            console.log("source : main.qml -> open-modifytaskform signal recived from AllTask.qml, data are:id="+id + " title="+title, " desc="+desc + " Time2Perform="+timeToPerform+ " creationdate=" +creationDate + " priorty"+priority + " deadline"+deadline);
+
+
+//            mainStackView.push(Qt.resolvedUrl("./theForms/modifyTask.qml"),
+//                               {
+//                                   idValue: Qt.binding(function() { return id }),
+//                                   titleValue: Qt.binding(function() { return title}),
+//                                   descriptionValue: Qt.binding(function() { return desc}),
+//                                   timeToPerformValue: Qt.binding(function() { return timeToPerform}),
+//                                   priorityValue:Qt.binding(function() { return priority}),
+//                                   deadlineValue:Qt.binding(function() { return deadline}),
+//                                   creationdateValue:Qt.binding(function() { return creationDate})
+//                               })
+//        }
 
     }
 }

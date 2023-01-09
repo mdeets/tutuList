@@ -118,27 +118,27 @@ Window
                 id:connectionWithPageLoader
                 ignoreUnknownSignals: true
                 target: pageLoader.valid? pageLoader.item : null
-                function onOpenTheSetupTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
+                function onMainQMLpleaseOpenSetupTaskForm()//onOpenTheSetupTaskForm()//id,title, desc, timeToPerform, creationDate,priority,deadline)
                 {
-                    console.log("source : main.qml -> setupTaskForm signal recived from AllTask.qml. id="+id + " title="+title, " desc="+desc + " Time2Perform="+timeToPerform+ " creationdate=" +creationDate + " priorty"+priority + " deadline"+deadline);
+                    console.log("source : main.qml -> mainQMLpleaseOpenSetupTaskForm signal recived from AllTask.qml.");// id="+id + " title="+title, " desc="+desc + " Time2Perform="+timeToPerform+ " creationdate=" +creationDate + " priorty"+priority + " deadline"+deadline);
                     mainStackView.push("./theForms/setupTask.qml");
                 }
-                function onOpenTheModifyTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
-                {
-                    console.log("source : main.qml -> open-modifytaskform signal recived from AllTask.qml, data are:id="+id + " title="+title, " desc="+desc + " Time2Perform="+timeToPerform+ " creationdate=" +creationDate + " priorty"+priority + " deadline"+deadline);
+//                function onOpenTheModifyTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
+//                {
+//                    console.log("source : main.qml -> open-modifytaskform signal recived from AllTask.qml, data are:id="+id + " title="+title, " desc="+desc + " Time2Perform="+timeToPerform+ " creationdate=" +creationDate + " priorty"+priority + " deadline"+deadline);
 
 
-                    mainStackView.push(Qt.resolvedUrl("./theForms/modifyTask.qml"),
-                                       {
-                                           idValue: Qt.binding(function() { return id }),
-                                           titleValue: Qt.binding(function() { return title}),
-                                           descriptionValue: Qt.binding(function() { return desc}),
-                                           timeToPerformValue: Qt.binding(function() { return timeToPerform}),
-                                           priorityValue:Qt.binding(function() { return priority}),
-                                           deadlineValue:Qt.binding(function() { return deadline}),
-                                           creationdateValue:Qt.binding(function() { return creationDate})
-                                       })
-                }
+//                    mainStackView.push(Qt.resolvedUrl("./theForms/modifyTask.qml"),
+//                                       {
+//                                           idValue: Qt.binding(function() { return id }),
+//                                           titleValue: Qt.binding(function() { return title}),
+//                                           descriptionValue: Qt.binding(function() { return desc}),
+//                                           timeToPerformValue: Qt.binding(function() { return timeToPerform}),
+//                                           priorityValue:Qt.binding(function() { return priority}),
+//                                           deadlineValue:Qt.binding(function() { return deadline}),
+//                                           creationdateValue:Qt.binding(function() { return creationDate})
+//                                       })
+//                }
 
             }
             Connections //make connection with page setupTask.qml to quit after new task saved successfully.
