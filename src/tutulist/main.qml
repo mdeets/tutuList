@@ -113,19 +113,23 @@ Window
                 property bool valid: item !== null;
             }
 
-            Connections //make connection with page AllTasks.qml and the PageLoader
+            Connections //make connection with page AllTasks.qml & TodayTasks.qml & CompletedTasks.qml and the PageLoader
             {
                 id:connectionWithPageLoader
                 ignoreUnknownSignals: true
                 target: pageLoader.valid? pageLoader.item : null
+
+                //callable by AllTasks.qml for now.
                 function onMainQMLpleaseOpenSetupTaskForm()
                 {
-                    console.log("source : main.qml -> signal mainQMLpleaseOpenSetupTaskForm recived from AllTask.qml.");
+                    console.log("source : main.qml -> signal mainQMLpleaseOpenSetupTaskForm recived from AllTasks.qml.");
                     mainStackView.push("./theForms/setupTask.qml");
                 }
+
+                //callable by AllTasks.qml or TodayTasks.qml or CompletedTasks.qml for now.
                 function onMainQMLpleaseOpenTheModifyTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
                 {
-                    console.log("source : main.qml -> signal mainQMLpleaseOpenTheModifyTaskForm recived from AllTask.qml");
+                    console.log("source : main.qml -> signal mainQMLpleaseOpenTheModifyTaskForm recived from AllTasks.qml or TodayTasks.qml or CompletedTasks.qml");
 
 
                     mainStackView.push(Qt.resolvedUrl("./theForms/modifyTask.qml"),

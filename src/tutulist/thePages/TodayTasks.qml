@@ -9,7 +9,7 @@ import "../theScripts/completedtasks.js" as AddToCompletedTasks //just addToComp
 Item
 {
     anchors.fill:parent;
-    signal mainQMLpleaseOpenSetupTaskForm;
+//    signal mainQMLpleaseOpenSetupTaskForm;
     signal mainQMLpleaseOpenTheModifyTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
 
     ShowTasks
@@ -108,11 +108,11 @@ Item
         id:connectionWithShowTodayTasks
         ignoreUnknownSignals: true
         target: showTodayTasks;
-        function onOpenTheSetupTaskForm()
-        {
-            console.log("source : TodayTasks.qml -> signal setupTaskForm recived from showTasks.qml");
-            mainQMLpleaseOpenSetupTaskForm();
-        }
+//        function onOpenTheSetupTaskForm()
+//        {
+//            console.log("source : TodayTasks.qml -> signal setupTaskForm recived from showTasks.qml");
+//            mainQMLpleaseOpenSetupTaskForm();
+//        }
         function onOpenTheModifyTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
         {
             console.log("source : TodayTasks.qml -> signal open-modifytaskform recived from showTasks.qml");

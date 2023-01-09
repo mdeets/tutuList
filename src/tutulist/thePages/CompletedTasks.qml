@@ -9,7 +9,7 @@ import "../theScripts/steptasks.js" as StepTaskManager
 Item
 {
     anchors.fill:parent;
-//    signal mainQMLpleaseOpenSetupTaskForm;
+////    signal mainQMLpleaseOpenSetupTaskForm;
     signal mainQMLpleaseOpenTheModifyTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
 
     ShowTasks
@@ -121,11 +121,11 @@ Item
         id:connectionWithShowCompletedTasks
         ignoreUnknownSignals: true
         target: showCompletedTasks;
-//        function onOpenTheSetupTaskForm()
+/*//        function onOpenTheSetupTaskForm()
 //        {
 //            console.log("source : CompletedTasks.qml -> signal setupTaskForm recived from showTasks.qml");
 //            mainQMLpleaseOpenSetupTaskForm();
-//        }
+//        }*/
         function onOpenTheModifyTaskForm(id,title, desc, timeToPerform, creationDate,priority,deadline)
         {
             console.log("source : CompletedTasks.qml -> signal open-modifytaskform recived from showTasks.qml");
