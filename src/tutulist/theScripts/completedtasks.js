@@ -240,6 +240,7 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                                     {
                                         tId: theTaskId,
                                         tsId:0, //means this is not task Step, to known wich is task or Wich one is TaskStep for ui.
+//                                        tsCompeteDate: 0, //when wants send signal from showTask.qml to completedTasks.qml page needs pass this, so make it but fill with empty value
                                         tTitle : rs.rows.item(k).t_title > 15 ? rs.rows.item(k).t_title.slice(0,12) + ".." :  rs.rows.item(k).t_title,
                                         tDesc: rs.rows.item(k).t_description,
                                         tTimerToPerForm: rs.rows.item(k).t_timeToPerform,
