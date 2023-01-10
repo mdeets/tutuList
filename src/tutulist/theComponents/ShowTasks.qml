@@ -149,7 +149,7 @@ Item
 ////            bottom:addNewQuickTask.top;
 //            bottom:parent.bottom
 //        }
-        color:"transparent";
+        color:Configs.color_background;
 
         ListView
         {
@@ -191,7 +191,7 @@ Item
                     width:parent.width;
                     height:parent.height/1.5;
                     anchors.verticalCenter: parent.verticalCenter;
-                    color:"white";
+                    color:Configs.color_bg_text;
                     border.color: Configs.color_bg_indicator;
                     radius:10;
                     clip:true;
@@ -233,7 +233,7 @@ Item
 //                    id:baseButtonSearchNow;
                     width:24;
                     height:width;
-                    color:"white";
+                    color:"transparent";
                     anchors
                     {
                         right:parent.right;
@@ -278,7 +278,7 @@ Item
                         id:itemmm2;
                         width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
                         height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
-                        color: tsId > 0 ? "gray" : "gray"; //tsId >0 means this is task Step. not a task
+                        color: tsId > 0 ? "#dedede" : "#dedede"; //tsId >0 means this is task Step. not a task
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
                         Rectangle
@@ -532,7 +532,7 @@ Item
         {
             id:taskTitleBase;
             anchors.fill:parent;
-            color:"white";
+            color:Configs.color_bg_text;
             border.color: Configs.color_bg_indicator;
             radius:10;
             clip:true;

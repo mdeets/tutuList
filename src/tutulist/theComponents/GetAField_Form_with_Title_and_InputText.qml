@@ -19,6 +19,7 @@ Item
         {
             id:lableText;
             text: setLabel;
+            color:Configs.color_font_title;
         }
 
         Rectangle
