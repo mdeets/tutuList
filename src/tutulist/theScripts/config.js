@@ -15,7 +15,7 @@ const color_font_text = "black";
 const color_bg_button = "transparent";
 const color_font_title = "black";
 const font_size_title = 20;
-
+const font_size_text = 12;
 //theme colors
 const color_background = "white";
 const color_text = "red";
@@ -40,6 +40,10 @@ const table_settings = "tutu_settings1";
 //menubar icon https://icons8.com/icons/authors/klDPcgJ2LxJD/febrian-hidayat/external-febrian-hidayat-basic-outline-febrian-hidayat/external-ui-essential-febrian-hidayat-basic-outline-febrian-hidayat
 const icon_menubar = pathToIcon+"100x100/"+"menubar.png";
 
+
+const icon_search_colored= pathToIcon+"24x24/"+"search-colored.png";
+//icon search button https://icons8.com/icon/set/free-icons/ios-filled
+const icon_search = pathToIcon+"24x24/"+"search.png";
 //menu icons
 const icon_bottomMenu_allTasks = pathToIcon+"24x24/"+"allTask.png"; //there is another allTasks.png thats old
 const icon_bottomMenu_todayTasks = pathToIcon+"24x24/"+"todayTask.png";

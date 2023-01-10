@@ -160,50 +160,101 @@ Item
             header: Item
             {
                 id:searchBar;
-                width: searchAllowed? parent.width: 0;
+                width: searchAllowed? parent.width/1.50: 0;
                 height: searchAllowed? 60 : 10;
+                anchors.horizontalCenter:parent.horizontalCenter
                 visible:searchAllowed
+                function doSearch()
+                {
+                    if(componentType == "alltasks")
+                    {
+                        //run search query
+                        if(searchWord.text!=="")
+                        {
+                            listModelMain.clear();
+//                                AllTasks.searchTask(searchWord.text,listModelMain,"appendToList"); //search like off.
+                            AllTasks.searchTask(searchWord.text,listModelMain,"appendToList",0); //search like on.
+                        }
+                        else
+                        {
+                            reloadAllTasks();
+                        }
+                    }
+                    else
+                    {
+                        searchTextChanged(searchWord.text);
+                    }
+                }
                 //search input;
                 Rectangle
                 {
                     width:parent.width;
                     height:parent.height/1.5;
-                    anchors.verticalCenter: parent.verticalCenter
-                    color:"transparent";
-                    TextField
+                    anchors.verticalCenter: parent.verticalCenter;
+                    color:"white";
+                    border.color: Configs.color_bg_indicator;
+                    radius:10;
+                    clip:true;
+//                    TextField
+                    TextInput
                     {
                         id:searchWord;
                         anchors.fill:parent;
-//                        onFocusChanged:
-//                        {
-//                            console.log("source : showTasks.qml -> "+ componentType + ".qml  -> searchBar -> focus changed lets re-focuse on searchbar")
-//                            searchWord.focus=true;
-//                        }
-
-                        onTextChanged:
+                        color:Configs.color_font_text;
+                        font.pointSize: Configs.font_size_text;
+                        padding:15;
+                        topPadding: 28;
+                        maximumLength: 40;
+                        onEditingFinished:
                         {
-                            if(componentType == "alltasks")
-                            {
-                                //run search query
-                                if(text!=="")
-                                {
-                                    listModelMain.clear();
-    //                                AllTasks.searchTask(searchWord.text,listModelMain,"appendToList"); //search like off.
-                                    AllTasks.searchTask(searchWord.text,listModelMain,"appendToList",0); //search like on.
-                                }
-                                else
-                                {
-                                    reloadAllTasks();
-                                }
-                            }
-                            else
-                            {
-                                searchTextChanged(searchWord.text);
-                            }
-
-
+                            doSearch();
+                        }
+//                        onTextChanged:
+//                        {
+//                            if(text === "")
+//                                reloadAllTasks()
+//                        }
+                    }
+                    Text
+                    {
+                        text: "Search task";
+                        color: "#aaa"
+                        visible: !searchWord.text
+                        anchors
+                        {
+                            verticalCenter: parent.verticalCenter;
+                            left:parent.left;
+                            leftMargin:15;
                         }
                     }
+                }
+                Rectangle
+                {
+//                    id:baseButtonSearchNow;
+                    width:24;
+                    height:width;
+                    color:"white";
+                    anchors
+                    {
+                        right:parent.right;
+                        rightMargin:5;
+                        verticalCenter: parent.verticalCenter;
+
+                    }
+                    Image
+                    {
+                        anchors.fill: parent;
+                        source: Configs.icon_search_colored;
+                    }
+                    MouseArea
+                    {
+                        anchors.fill: parent;
+                        onClicked:
+                        {
+                            doSearch();
+                        }
+                    }
+
                 }
             }
             model:
@@ -227,7 +278,7 @@ Item
                         id:itemmm2;
                         width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
                         height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
-                        color: tsId > 0 ? "cyan" : "gray"; //tsId >0 means this is task Step. not a task
+                        color: tsId > 0 ? "gray" : "gray"; //tsId >0 means this is task Step. not a task
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
                         Rectangle
@@ -493,10 +544,24 @@ Item
                 id:taskTitle;
                 anchors.fill: parent;
                 padding: 15;
+                font.pointSize: Configs.font_size_text;
                 topPadding: 30;
                 wrapMode: "WrapAnywhere"
                 maximumLength: 25;
                 color:Configs.color_font_text;
+                onEditingFinished:
+                {
+                    if(text!=="")
+                    {
+                        const res=  AllTasks.addQuicklyNewTask(taskTitle.text);
+                        if(res)
+                        {
+                            console.log("source : showTasks.qml -> "+ componentType + ".qml  -> response is ok query submitted as QuickTask.");
+                            taskTitle.clear();
+                            reloadAllTasks();
+                        }
+                    }
+                }
             }
         }
 
