@@ -230,7 +230,14 @@ Item
                         color: tsId > 0 ? "cyan" : "gray"; //tsId >0 means this is task Step. not a task
                         radius:15;
                         anchors.horizontalCenter: parent.horizontalCenter;
-
+                        Rectangle
+                        {
+//                            id:priorityShower;
+                            width: tsId > 0 ? 0 : 5;
+                            height: tsId > 0 ? 0 : parent.height;
+                            color: tPriority <= 7 ? "red" : tPriority <= 14 ? "orange": tPriority > 21 ? "green": "black";
+                            radius:parent.radius;
+                        }
 
 
                         MouseArea
