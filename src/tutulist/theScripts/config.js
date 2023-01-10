@@ -8,22 +8,25 @@ const iconPackMode = "lightMode";
 const pathToIcon = "/theResources/"+iconPackMode+"/"; // light -> dark or etc to change icons theme
 
 
+//button style , text input style from  https://dribbble.com/shots/14794406-Task-detail-desktop-app/attachments/6500905?mode=media
 
 //indicator colors
 const color_bg_indicator ="#90e0ef";
 const color_bg_text = "white";//white
 const color_font_text = "black";//black
-const color_bg_button = "transparent";
 const color_font_title = "black";//black
 
 const font_size_title = 20;
 const font_size_text = 10;
 //theme colors
 const color_background = "white";//white
-const color_text = "red";
+//const color_text = "red";
 
-const color_button_background = "blue";
-const color_button_text = "pink";
+const color_button_background = "#F2F4F6";
+const color_button_text = "black";
+
+const color_button_text_cancel = "#AB193C";
+const color_button_background_cancel = "#FCF0F0";
 
 const color_input_background = "white";
 const color_input_text = "black";

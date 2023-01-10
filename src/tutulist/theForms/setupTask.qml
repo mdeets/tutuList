@@ -6,7 +6,7 @@ Item
 {
     Component.onCompleted:
     {
-        taskTitle.text = "";
+//        taskTitle.text = "";
         taskDescription.text = "";
         taskPriority.text = "";
         taskDeadline.text = "";
@@ -41,11 +41,12 @@ Item
     }
 
     anchors.fill:parent;
-
     Rectangle
     {
         id:local_root;
-        anchors.fill:parent;
+        height:parent.height;
+        width: parent.width;
+        anchors.centerIn:parent;
         color:Configs.color_background;
         MouseArea
         {
@@ -114,8 +115,6 @@ Item
                 right:parent.right;
                 bottom:parent.bottom;
             }
-
-    //        anchors.fill: parent;
             color:Configs.color_background
 
             ListView
@@ -159,60 +158,42 @@ Item
                     setLabel: "Time To Perform:";
                     setPlaceHolderInput: "enter the for time to perform";
                 }
+                //button place.
 
-
-                Row
+                Rectangle
                 {
-                    id:baseButtons;
-                    height:45;
-                    width:parent.width;
-                    anchors.top:taskTimetoperform.bottom;
-                    Rectangle
+                    width:parent.width/1.25;
+                    height:40;
+                    color:"transparent"
+                    anchors
                     {
-                        id:cancelButton;
-                        width:parent.width/2;
-                        height:45;
-                        color:"red";
-                        Text
+                        top:taskTimetoperform.bottom;
+                        horizontalCenter:parent.horizontalCenter;
+                    }
+                    clip:true;
+                    TutuButton
+                    {
+                        setRightButtonText:"Save";
+                        setRightButtonBackColor: Configs.color_button_background;
+                        setRightButtonFontColor: Configs.color_button_text;
+                        setRightButtonBorderColor: "transparent";
+
+                        setLeftButtonText: "Cancel";
+                        setLeftButtonBackColor: Configs.color_button_background_cancel;
+                        setLeftButtonFontColor: Configs.color_button_text_cancel;
+                        setLeftButtonBorderColor: "transparent";
+
+                        onLeftButtonClicked:
                         {
-                            text:"cancel";
-                            anchors.centerIn:parent;
+                            console.log("source : modifytask.qml -> cancel button clicked");
+                            quitTheSetupTaskFrom();
                         }
-                        MouseArea
+                        onRightButtonClicked:
                         {
-                            anchors.fill:parent;
-                            onClicked:
-                            {
-                                console.log("source : modifytask.qml -> cancel button clicked");
-                                quitTheSetupTaskFrom();
-                            }
+                            console.log("source : setupTask.qml -> save button clicked");
+                            saveTheSetupTaskForm();
                         }
                     }
-
-                    Rectangle
-                    {
-                        id:submitButton;
-                        width:parent.width/2;
-                        height:45;
-                        color:"green";
-                        Text
-                        {
-                            text:"Save";
-                            anchors.centerIn:parent;
-                        }
-                        MouseArea
-                        {
-                            anchors.fill:parent;
-                            onClicked:
-                            {
-                                console.log("source : setupTask.qml -> save button clicked");
-                                saveTheSetupTaskForm();
-                            }
-                        }
-                    }
-
-
-
                 }
 
 
@@ -223,6 +204,8 @@ Item
 
 
         }
+
+
     }
 
 

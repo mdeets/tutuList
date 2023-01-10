@@ -3,7 +3,7 @@
 import QtQuick 2.15
 import "../theComponents"
 import "../theScripts/alltasks.js" as AllTask
-
+import "../theScripts/config.js" as Configs
 
 Item
 {
@@ -62,113 +62,172 @@ Item
 
     Rectangle
     {
-        color:"gray";
+        id:local_root;
+        color:Configs.color_background;
         anchors.fill: parent;
-    }
-
-    ListView
-    {
-        anchors.fill:parent;
-        Column
+        MouseArea
         {
             anchors.fill: parent;
-            spacing:50
-
-            GetAField_Form_with_Title_and_InputText
-            {
-                id:taskTitle;
-                setLabel: "Title:";
-                defaultValue: titleValue;
-                setPlaceHolderInput: "enter the for title";
-            }
-            GetAField_Form_with_Title_and_InputText
-            {
-                id:taskDescription
-                setLabel: "Description:";
-                defaultValue: descriptionValue;
-                setPlaceHolderInput: "enter the for description";
-            }
-
-            GetAField_Form_with_Title_and_InputText
-            {
-                id:taskPriority
-                setLabel: "Priority:";
-                defaultValue: priorityValue;
-                setPlaceHolderInput: "enter the for priority";
-            }
-            GetAField_Form_with_Title_and_InputText
-            {
-                id:taskDeadline
-                setLabel: "Deadline:";
-                defaultValue: deadlineValue;
-                setPlaceHolderInput: "enter the for deadline";
-            }
-            GetAField_Form_with_Title_and_InputText
-            {
-                id:taskTimetoperform
-                setLabel: "Time To Perform:";
-                defaultValue: timeToPerformValue;
-                setPlaceHolderInput: "enter the for time to perform";
-            }
-
-
-            Row
-            {
-                id:baseButtons;
-                height:45;
-                width:parent.width;
-                Rectangle
-                {
-                    id:cancelButton;
-                    width:parent.width/2;
-                    height:45;
-                    color:"red";
-                    Text
-                    {
-                        text:"cancel";
-                        anchors.centerIn:parent;
-                    }
-                    MouseArea
-                    {
-                        anchors.fill:parent;
-                        onClicked:
-                        {
-                            console.log("source : modifytask.qml -> cancel button clicked");
-                            quitFromModifyTaskForm();
-                        }
-                    }
-                }
-
-
-
-                Rectangle
-                {
-                    id:submitButton;
-                    width:parent.width/2;
-                    height:45;
-                    color:"green";
-                    Text
-                    {
-                        text:"modify and save.";
-                        anchors.centerIn:parent;
-                    }
-                    MouseArea
-                    {
-                        anchors.fill:parent;
-                        onClicked:
-                        {
-                            console.log("source : modifytask.qml -> save button clicked");
-                            saveTheModifiedTaskForm();
-                        }
-                    }
-                }
-
-            }
-
-
         }
 
+        Rectangle
+        {
+            id:titleBar;
+            width:parent.width;
+            height:60;
+            color:Configs.color_background;
+            Rectangle
+            {
+                id:baseButtonBack;
+                width:24;
+                height:24;
+                color:"transparent";
+    //            border.color: Configs.color_bg_indicator;
+                radius:100;
+                anchors
+                {
+                    verticalCenter: parent.verticalCenter;
+                    left:parent.left;
+                    leftMargin:15;
+                }
+                Image
+                {
+                    anchors.fill: parent;
+                    source: Configs.icon_back;
+                }
+                MouseArea
+                {
+                    anchors.fill: parent;
+                    onClicked:
+                    {
+                        quitFromModifyTaskForm();
+                    }
+                }
+            }
+            Text
+            {
+                anchors
+                {
+                    left:baseButtonBack.right;
+                    leftMargin:25;
+                    top:baseButtonBack.top;
+                    topMargin:-5;
+                }
+                text:"Modify Task";
+                font.pointSize: Configs.font_size_title
+                color: Configs.color_font_title
+
+            }
+        }
+
+        Rectangle
+        {
+            anchors
+            {
+                top:titleBar.bottom;
+                topMargin:10;
+                left:parent.left;
+                right:parent.right;
+                bottom:parent.bottom;
+            }
+            color:Configs.color_background
+            ListView
+            {
+                anchors.fill:parent;
+                Column
+                {
+//                    anchors.fill: parent;
+                    width:parent.width;
+                    height:parent.height;
+                    spacing:50
+
+                    GetAField_Form_with_Title_and_InputText
+                    {
+                        id:taskTitle;
+                        anchors.top:parent.top;
+                        setLabel: "Title:";
+                        setPlaceHolderInput: "enter the for title";
+                        defaultValue: titleValue;
+                    }
+                    GetAField_Form_with_Title_and_InputText
+                    {
+                        id:taskDescription
+                        anchors.top:taskTitle.bottom;
+                        setLabel: "Description:";
+                        setPlaceHolderInput: "enter the for description";
+                        setHeight:100;
+                        defaultValue: descriptionValue;
+                    }
+
+                    GetAField_Form_with_Title_and_InputText
+                    {
+                        id:taskPriority;
+                        anchors.top:taskDescription.bottom;
+                        setLabel: "Priority:";
+                        setPlaceHolderInput: "enter the for priority";
+                        defaultValue: priorityValue;
+                    }
+                    GetAField_Form_with_Title_and_InputText
+                    {
+                        id:taskDeadline
+                        anchors.top:taskPriority.bottom;
+                        setLabel: "Deadline:";
+                        setPlaceHolderInput: "enter the for deadline";
+                        defaultValue: deadlineValue;
+                    }
+                    GetAField_Form_with_Title_and_InputText
+                    {
+                        id:taskTimetoperform
+                        anchors.top:taskDeadline.bottom;
+                        setLabel: "Time To Perform:";
+                        setPlaceHolderInput: "enter the for time to perform";
+                        defaultValue: timeToPerformValue;
+                    }
+
+
+                    Rectangle
+                    {
+                        width:parent.width/1.25;
+                        height:40;
+                        color:"transparent"
+                        anchors
+                        {
+                            top:taskTimetoperform.bottom;
+                            horizontalCenter:parent.horizontalCenter;
+                        }
+                        clip:true;
+                        TutuButton
+                        {
+                            setRightButtonText:"Modify";
+                            setRightButtonBackColor: Configs.color_button_background;
+                            setRightButtonFontColor: Configs.color_button_text;
+                            setRightButtonBorderColor: "transparent";
+
+                            setLeftButtonText: "Cancel";
+                            setLeftButtonBackColor: Configs.color_button_background_cancel;
+                            setLeftButtonFontColor: Configs.color_button_text_cancel;
+                            setLeftButtonBorderColor: "transparent";
+
+                            onLeftButtonClicked:
+                            {
+                                console.log("source : modifytask.qml -> cancel button clicked");
+                                quitFromModifyTaskForm();
+                            }
+                            onRightButtonClicked:
+                            {
+                                console.log("source : modifytask.qml -> save button clicked");
+                                saveTheModifiedTaskForm();
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        }
     }
+
+
 
 }
 

@@ -160,7 +160,7 @@ Item
             header: Item
             {
                 id:searchBar;
-                width: searchAllowed? parent.width/1.50: 0;
+                width: searchAllowed? parent.width/1.25: 0;
                 height: searchAllowed? 60 : 10;
                 anchors.horizontalCenter:parent.horizontalCenter
                 visible:searchAllowed
@@ -283,7 +283,7 @@ Item
                         anchors.horizontalCenter: parent.horizontalCenter;
                         Rectangle
                         {
-//                            id:priorityShower;
+                            id:priorityShower;
                             width: tsId > 0 ? 0 : 5;
                             height: tsId > 0 ? 0 : parent.height;
                             color: tPriority <= 7 ? "red" : tPriority <= 14 ? "orange": tPriority > 21 ? "green": "black";
@@ -307,7 +307,9 @@ Item
                                 if(tsId === 0)
                                 {
                                     console.log("source: showTasks.qml -> "+ componentType + ".qml  -> on task clicked, lets add new step to this task");
+                                    priorityShower.visible=false;
                                     quicklyAddStep.visible=true;
+
                                 }
                                 else
                                     console.log("source: showTasks.qml -> "+ componentType + ".qml  -> on stepTask can not add step task.");
@@ -496,6 +498,10 @@ Item
                             id:quicklyAddStep;
                             visible:false;
                             setTaskId: tId;
+                            onCancelButtonClicked:
+                            {
+                                priorityShower.visible=true;
+                            }
                         }
 
 

@@ -39,16 +39,20 @@ Item
     {
         id:addQuicklyBase;
         anchors.fill:parent;
-        color:"white";
+        color:Configs.color_input_background;
+        border.color: Configs.color_bg_indicator;
+        radius:15;
         Row
         {
             anchors.fill:parent;
-            TextField
+//            TextField
+            TextInput
             {
                 id:taskTitle;
-                color:"black";
+                color:Configs.color_font_text;
                 width:parent.width-40;// minus 40px for button
                 height:parent.height;
+                padding:14;
                 wrapMode: "WrapAnywhere"
                 maximumLength: setMaxLenght;
             }
@@ -56,7 +60,7 @@ Item
             {
                 id:submitButton;
 //                anchors.right:parent.right;
-                color:"gray";
+                color:"transparent";
                 width:40;
                 height:parent.height;
                 Image
