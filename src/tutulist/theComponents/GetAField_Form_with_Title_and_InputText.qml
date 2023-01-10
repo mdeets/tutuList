@@ -1,16 +1,19 @@
 import QtQuick 2.15
-
+import "../theScripts/config.js" as Configs
 Item
 {
     property string get_entered_value : "";
     property string setLabel : "Default label:";
     property string setPlaceHolderInput: "Enter the " + setLabel;
+    property int setHeight: 40;
     property string defaultValue: "";
     width: parent.width;
-    height:40;
+    height:setHeight+50;
     Column
     {
-        anchors.fill:parent;
+        width:parent.width/1.25
+        height: parent.height
+        anchors.horizontalCenter: parent.horizontalCenter;
         spacing:10;
         Text
         {
@@ -21,14 +24,21 @@ Item
         Rectangle
         {
             width:parent.width;
-            height:40;
-            color:"white";
+            height:setHeight;
+            color:Configs.color_bg_text;
+            radius:25;
+            clip:true;
+            border.color: Configs.color_bg_indicator;
             TextInput
             {
                 id:inputText;
                 anchors.fill:parent;
-                color:"black";
+                color:Configs.color_font_text;
+                font.pointSize: Configs.font_size_text;
                 text: defaultValue;
+                padding:28;
+                wrapMode: TextInput.WrapAnywhere
+                topPadding: setHeight>40 ? setHeight/3.50: 28;
                 onTextChanged:
                 {
                     get_entered_value= text;
@@ -39,7 +49,10 @@ Item
                     text: setPlaceHolderInput;
                     color: "#aaa"
                     visible: !inputText.text
-                    anchors.centerIn:parent;
+                    topPadding: setHeight/3.50;
+                    leftPadding: 28;
+
+//                    anchors.centerIn:parent;
                 }
             }
         }

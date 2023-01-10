@@ -244,7 +244,7 @@ Item
                     Image
                     {
                         anchors.fill: parent;
-                        source: Configs.icon_search_colored;
+                        source: Configs.icon_search;//Configs.icon_search_colored;
                     }
                     MouseArea
                     {
@@ -520,35 +520,30 @@ Item
         height:addNewTaskAllowed? 45 : 0;
         visible: addNewTaskAllowed;
         color:Configs.color_bg_text;
-        radius:100;
+        radius:10;
         clip:true;
         anchors
         {
             bottom:parent.bottom;
-            bottomMargin:90;
+            bottomMargin:80;
             horizontalCenter:parent.horizontalCenter;
         }
-
-
         Rectangle
         {
             id:taskTitleBase;
-            width:parent.width-40;
-            height:parent.height;
-            radius:parent.radius;
-            color:"transparent";
-
-//            TextField
+            anchors.fill:parent;
+            color:"white";
+            border.color: Configs.color_bg_indicator;
+            radius:10;
+            clip:true;
             TextInput
             {
                 id:taskTitle;
-                anchors.fill: parent;
-                padding: 15;
-                font.pointSize: Configs.font_size_text;
-                topPadding: 30;
-                wrapMode: "WrapAnywhere"
-                maximumLength: 25;
+                anchors.fill:parent;
                 color:Configs.color_font_text;
+                font.pointSize: Configs.font_size_text;
+                padding:14;
+                maximumLength: 40;
                 onEditingFinished:
                 {
                     if(text!=="")
@@ -563,17 +558,33 @@ Item
                     }
                 }
             }
-        }
+            Text
+            {
+                text: "Add new task";
+                color: "#aaa"
+                visible: !taskTitle.text
+                padding: 14
+//                anchors
+//                {
+//                    verticalCenter: parent.verticalCenter;
+//                    left:parent.left;
+//                    leftMargin:15;
+//                }
+            }
 
+
+
+        }
 
         Rectangle
         {
             id:button;
-            color:Configs.color_bg_button;
-            width:40;
-            height:parent.height;
+            color:"transparent"
+            width:parent.height-5;
+            height:parent.height-5;
             radius:parent.radius;
-            anchors.left:taskTitleBase.right;
+            anchors.right:parent.right;
+            anchors.verticalCenter: parent.verticalCenter;
             Image
             {
                 anchors.centerIn:parent;
@@ -604,6 +615,8 @@ Item
                 }
             }
         }
+
+
 
     }
 

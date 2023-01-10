@@ -117,5 +117,11 @@
         <file>theResources/lightMode/100x100/search-colored.png</file>
         <file>theResources/lightMode/24x24/search-colored.png</file>
         <file>theResources/lightMode/50x50/search-colored.png</file>
+        <file>theResources/darkMode/100x100/back.png</file>
+        <file>theResources/darkMode/24x24/back.png</file>
+        <file>theResources/darkMode/50x50/back.png</file>
+        <file>theResources/lightMode/100x100/back.png</file>
+        <file>theResources/lightMode/24x24/back.png</file>
+        <file>theResources/lightMode/50x50/back.png</file>
     </qresource>
 </RCC>

@@ -2,20 +2,21 @@
 const application_width = 720/2+10;
 const application_height = 1339/1.7;
 const application_title = "TuTu List";
-const topTitleBar_height = 40;
-const bottomMenu_height = 60;
+const topTitleBar_height = 50;
+const bottomMenu_height = 50;
 const pathToIcon = "/theResources/lightMode/"; // light -> dark or etc to change icons theme
 
 
 
 //indicator colors
 const color_bg_indicator ="#90e0ef";
-const color_bg_text = "#90e0ef";
+const color_bg_text = "white";
 const color_font_text = "black";
 const color_bg_button = "transparent";
 const color_font_title = "black";
+
 const font_size_title = 20;
-const font_size_text = 12;
+const font_size_text = 10;
 //theme colors
 const color_background = "white";
 const color_text = "red";
@@ -41,13 +42,17 @@ const table_settings = "tutu_settings1";
 const icon_menubar = pathToIcon+"100x100/"+"menubar.png";
 
 
+//icon back, setupTask https://icons8.com/icon/set/arrows/ios-filled
+const icon_back = pathToIcon+"24x24/"+"back.png";
+
+
 const icon_search_colored= pathToIcon+"24x24/"+"search-colored.png";
 //icon search button https://icons8.com/icon/set/free-icons/ios-filled
 const icon_search = pathToIcon+"24x24/"+"search.png";
 //menu icons
-const icon_bottomMenu_allTasks = pathToIcon+"24x24/"+"allTask.png"; //there is another allTasks.png thats old
-const icon_bottomMenu_todayTasks = pathToIcon+"24x24/"+"todayTask.png";
-const icon_bottomMenu_completedTasks = pathToIcon+"24x24/"+"completedTask.png";
+const icon_bottomMenu_allTasks = pathToIcon+"50x50/"+"allTask.png"; //there is another allTasks.png thats old
+const icon_bottomMenu_todayTasks = pathToIcon+"50x50/"+"todayTask.png";
+const icon_bottomMenu_completedTasks = pathToIcon+"50x50/"+"completedTask.png";
 
 
 const icon_completeTasks = pathToIcon+"24x24/"+"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
