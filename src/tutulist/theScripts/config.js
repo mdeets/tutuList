@@ -13,6 +13,8 @@ const color_bg_indicator ="#90e0ef";
 const color_bg_text = "#90e0ef";
 const color_font_text = "black";
 const color_bg_button = "transparent";
+const color_font_title = "black";
+const font_size_title = 20;
 
 //theme colors
 const color_background = "white";
@@ -35,6 +37,8 @@ const table_todayTasks = "tutu_todayTasks3";
 const table_taskSteps = "tutu_taskSteps1";
 const table_settings = "tutu_settings1";
 
+//menubar icon https://icons8.com/icons/authors/klDPcgJ2LxJD/febrian-hidayat/external-febrian-hidayat-basic-outline-febrian-hidayat/external-ui-essential-febrian-hidayat-basic-outline-febrian-hidayat
+const icon_menubar = pathToIcon+"100x100/"+"menubar.png";
 
 //menu icons
 const icon_bottomMenu_allTasks = pathToIcon+"24x24/"+"allTask.png"; //there is another allTasks.png thats old
@@ -58,7 +62,6 @@ const icon_backward = pathToIcon + "24x24/"+"backward.png"; //https://icons8.com
 
 //alltasks -> add new step
 const icon_cancel = pathToIcon+"24x24/"+"cancel.png";
-
 const icon_add = pathToIcon+"24x24/"+"add.png";
 
 /*
