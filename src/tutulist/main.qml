@@ -96,7 +96,8 @@ Window
             anchors
             {
                 top: tutu_titleBar.bottom;
-                bottom: tutu_bottonMenu.top;
+//                bottom: tutu_bottonMenu.top;
+                bottom:parent.bottom;
                 left:parent.left;
                 right:parent.right;
             }
@@ -179,20 +180,19 @@ Window
             }
 
             initialItem: "./thePages/LoadingPage.qml";
-            anchors
-            {
-                top:tutu_titleBar.bottom;
-                left:parent.left;
-                right:parent.right;
-                bottom:parent.bottom;
-            }
+            anchors.fill:parent;
         }
 
 
-        TutuBottomMenu
+        TutuIndicator
         {
             id:tutu_bottonMenu;
-            anchors.bottom:parent.bottom;
+            anchors
+            {
+                bottom:parent.bottom;
+                bottomMargin:25;
+            }
+
             onHide:
             {
                 this.visible=false;

@@ -140,13 +140,15 @@ Item
     Rectangle
     {
         id:theListBase;
-        anchors
-        {
-            left:parent.left;
-            right:parent.right;
-            top:parent.top;
-            bottom:addNewQuickTask.top;
-        }
+        anchors.fill:parent;
+//        anchors
+//        {
+//            left:parent.left;
+//            right:parent.right;
+//            top:parent.top;
+////            bottom:addNewQuickTask.top;
+//            bottom:parent.bottom
+//        }
         color:"transparent";
 
         ListView
@@ -456,54 +458,75 @@ Item
     Rectangle
     {
         id:addNewQuickTask;
-        width:addNewTaskAllowed? parent.width: 0;
+        width:addNewTaskAllowed? parent.width/1.25: 0;
         height:addNewTaskAllowed? 45 : 0;
         visible: addNewTaskAllowed;
-        color:"transparent";
-        anchors.bottom:parent.bottom;
-        Row
+        color:Configs.color_bg_text;
+        radius:100;
+        clip:true;
+        anchors
         {
-            anchors.fill:parent;
-            TextField
+            bottom:parent.bottom;
+            bottomMargin:90;
+            horizontalCenter:parent.horizontalCenter;
+        }
+
+
+        Rectangle
+        {
+            id:taskTitleBase;
+            width:parent.width-40;
+            height:parent.height;
+            radius:parent.radius;
+            color:"transparent";
+
+//            TextField
+            TextInput
             {
                 id:taskTitle;
-                width:parent.width-40;
-                height:parent.height;
+                anchors.fill: parent;
+                padding: 15;
+                topPadding: 30;
                 wrapMode: "WrapAnywhere"
-                maximumLength: 40;
+                maximumLength: 25;
+                color:Configs.color_font_text;
             }
-            Rectangle
-            {
-//                anchors.right:parent.right;
-                color:"gray";
-                width:40;
-                height:parent.height;
-                Image
-                {
-                    anchors.centerIn:parent;
-                    source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_addTasks;
-                }
+        }
 
-                MouseArea
+
+        Rectangle
+        {
+            id:button;
+            color:Configs.color_bg_button;
+            width:40;
+            height:parent.height;
+            radius:parent.radius;
+            anchors.left:taskTitleBase.right;
+            Image
+            {
+                anchors.centerIn:parent;
+                source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_add;
+            }
+
+            MouseArea
+            {
+                anchors.fill:parent;
+                onClicked:
                 {
-                    anchors.fill:parent;
-                    onClicked:
+                    console.log("source : showTasks.qml -> "+ componentType + ".qml  -> on submit new task button clicked.");
+                    if(taskTitle.text==="")
                     {
-                        console.log("source : showTasks.qml -> "+ componentType + ".qml  -> on submit new task button clicked.");
-                        if(taskTitle.text==="")
+                        console.log("source: showTasks.qml -> "+ componentType + ".qml  -> add new task via setup and form.");
+                        openTheSetupTaskForm();
+                    }
+                    else
+                    {
+                        const res=  AllTasks.addQuicklyNewTask(taskTitle.text);
+                        if(res)
                         {
-                            console.log("source: showTasks.qml -> "+ componentType + ".qml  -> add new task via setup and form.");
-                            openTheSetupTaskForm();
-                        }
-                        else
-                        {
-                            const res=  AllTasks.addQuicklyNewTask(taskTitle.text);
-                            if(res)
-                            {
-                                console.log("source : showTasks.qml -> "+ componentType + ".qml  -> response is ok query submitted as QuickTask.");
-                                taskTitle.clear();
-                                reloadAllTasks();
-                            }
+                            console.log("source : showTasks.qml -> "+ componentType + ".qml  -> response is ok query submitted as QuickTask.");
+                            taskTitle.clear();
+                            reloadAllTasks();
                         }
                     }
                 }

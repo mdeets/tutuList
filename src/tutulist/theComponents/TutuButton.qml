@@ -1,19 +1,24 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 
-Item {
+Item
+{
     width: 200; height: 200
-
-    Component {
+    Component
+    {
         id: redSquare
 
-        Rectangle {
+        Rectangle
+        {
             color: "red"
             width: 101
             height: 101
         }
     }
 
-    Loader { sourceComponent: redSquare }
+    Loader
+    {
+        sourceComponent: redSquare
+    }
 //    Loader { sourceComponent: redSquare; x: 20 }
 }

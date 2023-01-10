@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>theComponents/TutuBottomMenu.qml</file>
+        <file>theComponents/TutuIndicator.qml</file>
         <file>theComponents/TutuButton.qml</file>
         <file>theComponents/TuTuTitleBar.qml</file>
         <file>theForms/setupTask.qml</file>
@@ -93,5 +93,11 @@
         <file>theResources/darkMode/100x100/backward.png</file>
         <file>theResources/darkMode/24x24/backward.png</file>
         <file>theResources/darkMode/50x50/backward.png</file>
+        <file>theResources/darkMode/100x100/add.png</file>
+        <file>theResources/darkMode/24x24/add.png</file>
+        <file>theResources/darkMode/50x50/add.png</file>
+        <file>theResources/lightMode/100x100/add.png</file>
+        <file>theResources/lightMode/24x24/add.png</file>
+        <file>theResources/lightMode/50x50/add.png</file>
     </qresource>
 </RCC>

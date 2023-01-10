@@ -4,11 +4,18 @@ const application_height = 1339/1.7;
 const application_title = "TuTu List";
 const topTitleBar_height = 40;
 const bottomMenu_height = 60;
-
 const pathToIcon = "/theResources/lightMode/"; // light -> dark or etc to change icons theme
 
+
+
+//indicator colors
+const color_bg_indicator ="#90e0ef";
+const color_bg_text = "#90e0ef";
+const color_font_text = "black";
+const color_bg_button = "transparent";
+
 //theme colors
-const color_background = "#dedede";
+const color_background = "white";
 const color_text = "red";
 
 const color_button_background = "blue";
@@ -52,9 +59,18 @@ const icon_backward = pathToIcon + "24x24/"+"backward.png"; //https://icons8.com
 //alltasks -> add new step
 const icon_cancel = pathToIcon+"24x24/"+"cancel.png";
 
+const icon_add = pathToIcon+"24x24/"+"add.png";
 
 /*
-  user interface idee
+//icon back
+//https://icons8.com/icon/set/user-interface/ios
+
+   color chumes:
+   https://coolors.co/palettes/trending
+
+
+    user interface idee
+
 
   https://dribbble.com/shots/17777364-Productivity-Mobile-App-iOS-Android-UI
 
