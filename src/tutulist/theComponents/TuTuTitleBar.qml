@@ -5,6 +5,8 @@ Item
 {
     width:parent.width;
     height: Configs.topTitleBar_height;
+    signal buttonMainMenuClicked;
+
     Rectangle
     {
         id:local_root;
@@ -33,6 +35,7 @@ Item
             onClicked:
             {
                 console.log("on menubar clicked");
+                buttonMainMenuClicked();
             }
         }
     }

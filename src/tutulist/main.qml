@@ -88,6 +88,10 @@ Window
         TuTuTitleBar
         {
             id:tutu_titleBar;
+            onButtonMainMenuClicked:
+            {
+                mainStackView.push("./thePages/settings/Settings.qml");
+            }
         }
 
         Rectangle

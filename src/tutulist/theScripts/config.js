@@ -9,6 +9,8 @@ const pathToIcon = "/theResources/"+iconPackMode+"/"; // light -> dark or etc to
 
 
 //button style , text input style from  https://dribbble.com/shots/14794406-Task-detail-desktop-app/attachments/6500905?mode=media
+//notifcation from https://dribbble.com/shots/16891665-Daily-UI-011-Flash-Message
+//settings from https://dribbble.com/shots/14630755-Cards-Dark-UI
 
 //indicator colors
 const color_bg_indicator ="#90e0ef";
