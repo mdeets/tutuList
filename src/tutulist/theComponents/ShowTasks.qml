@@ -543,12 +543,12 @@ Item
                 color:Configs.color_font_text;
                 font.pointSize: Configs.font_size_text;
                 padding:14;
-                maximumLength: 413; //after this length the wrapper will be bugged and i dont need more charecter right there.
+                maximumLength: 400; //after this length the wrapper will be bugged and i dont need more charecter right there.
                 wrapMode: TextInput.WrapAtWordBoundaryOrAnywhere
 
                 onContentHeightChanged:
                 {
-                    if(taskTitle.contentHeight>18)//its more than one line
+                    if(taskTitle.contentHeight>20)//its more than one line, if defualt size box was small or big depens on this. and this depens on font size of textinput, per each line this value will addition with 15 or 18 or something close to that
                     {
                         //linesCount = taskTitle.contentHeight/15
                         addNewQuickTask.height = (12.50*taskTitle.contentHeight/15)+45;//append 12.50px per each line and 45 is defualt value of text.height
