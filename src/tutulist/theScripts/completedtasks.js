@@ -73,7 +73,7 @@ function completeTask(taskId)//return 1 means query DONE, return etc means failu
 
 
 
-function getList(targetList,returnType="json") //return ETC means OK, return 1 is error
+function getList(targetList,returnType="json",isSearching="searchOn",isSearchLikeOn="likeOn",searchingText="") //return ETC means OK, return 1 is error
 {
     /*
       function copied from allTasks.js
@@ -177,7 +177,27 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                     {
                         //fetch todayTask ids
                         //then fetch task detials via that id
-                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id IN (SELECT t_id FROM '+DBC.table_completedTasks+') ORDER BY t_creationDate DESC;');
+                        var rs;
+
+                        //is it get list for search or normal?
+                        if(isSearching==="searchOn")
+                        {
+                            if(isSearchLikeOn==="likeOn")
+                            {//searchingText
+                                rs = tx.executeSql("SELECT * FROM "+DBC.table_allTasks+" WHERE t_title LIKE '%"+searchingText+"%' AND t_id IN (SELECT t_id FROM "+DBC.table_completedTasks+") ORDER BY t_priority ASC;");
+                            }
+                            else
+                            {
+                                rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_title LIKE '+searchingText+' AND t_id IN (SELECT t_id FROM '+DBC.table_completedTasks+') ORDER BY t_priority ASC;');
+                            }
+                        }
+                        else
+                        {
+                             rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id IN (SELECT t_id FROM '+DBC.table_completedTasks+') ORDER BY t_priority ASC;');
+                        }
+
+
+
                         var tableColumns = rs.rows.length;
 
                         if (rs.rows.length > 0)

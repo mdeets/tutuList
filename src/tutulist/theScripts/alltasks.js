@@ -418,7 +418,7 @@ function getList(targetList,returnType="json",isSearching="searchOn",isSearchLik
                         }
                         else
                         {
-                             rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_priority DESC;');
+                             rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_priority ASC;');
                         }
 
 

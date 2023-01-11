@@ -16,15 +16,22 @@ Item
     {
         id:showCompletedTasks
         componentType: "completedtasks";
-        searchAllowed:false;
+        searchAllowed:true;
         addNewTaskAllowed:false;
         setIconDelete: ""; //this section dont need delete button right now.
         setIconLeft: Configs.icon_addTodayTask;
         setIconRight: Configs.icon_uncompleteTasks;
-//                onSearchAllowedChanged:  function(text)
-//                {
+        onSearchTextChanged:  function(text)
+        {
+            console.log("source : completedTasks.qml -> search allowed here. text="+text);
+            showCompletedTasks.listModelAccessForOutSide.clear();
+            CompletedTasks.getList(showCompletedTasks.listModelAccessForOutSide,"appendToList","searchOn","likeOn",text);
+        }
 
-//                }
+//        onATaskCreatedViaQuicklyCreation: function(tId)
+//        {
+//            console.log("source: completedTasks.qm -> aTaskCreatedViaQuicklyCreation called. tId=" + tId)
+//        }
 
         onButtonRightClicked: function(tId,tsId,tsCompeteDate)
         {

@@ -16,14 +16,16 @@ Item
     {
         id:showTodayTasks
         componentType: "todaytasks";
-        searchAllowed:false;
-        addNewTaskAllowed:false;
+        searchAllowed:true;
+        addNewTaskAllowed:false; // not works fine, just add task into alltAsks table not todayTasks.
         setIconLeft: Configs.icon_backward;
         setIconRight:Configs.icon_completeTasks;
-        //        onSearchAllowedChanged:  function(text)
-        //        {
-
-        //        }
+        onSearchTextChanged:  function(text)
+        {
+            console.log("source : todayTasks.qml -> search allowed here. text="+text);
+            showTodayTasks.listModelAccessForOutSide.clear();
+            TodayTasks.getList(showTodayTasks.listModelAccessForOutSide,"appendToList","searchOn","likeOn",text);
+        }
 
         onButtonRightClicked: function(tId,tsId,tsCompeteDate)
         {

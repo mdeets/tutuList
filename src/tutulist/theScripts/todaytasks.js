@@ -1,5 +1,9 @@
 .import "databaseHeader.js" as DBC
 
+
+
+
+
 function removeTaskFromToday(taskId)//return 1 means Query is successfuly executed, etc means error.
 //this function is copied from completedTasks.js
 {
@@ -69,7 +73,7 @@ function addTaskToToday(taskId) //return 1 means Query is OK, etc is failure
     }
 }
 
-function getList(targetList,returnType="json") //return ETC means OK, return 1 is error
+function getList(targetList,returnType="json",isSearching="searchOn",isSearchLikeOn="likeOn",searchingText="") //return ETC means OK, return 1 is error
 {
     /*
       function copied from allTasks.js
@@ -173,7 +177,25 @@ function getList(targetList,returnType="json") //return ETC means OK, return 1 i
                     {
                         //fetch todayTask ids
                         //then fetch task detials via that id
-                        var rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_creationDate ASC;');
+                        var rs;
+
+                        //is it get list for search or normal?
+                        if(isSearching==="searchOn")
+                        {
+                            if(isSearchLikeOn==="likeOn")
+                            {//searchingText
+                                rs = tx.executeSql("SELECT * FROM "+DBC.table_allTasks+" WHERE t_title LIKE '%"+searchingText+"%' AND t_id IN (SELECT t_id FROM "+DBC.table_todayTasks+") ORDER BY t_priority ASC;");
+                            }
+                            else
+                            {
+                                rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_title LIKE '+searchingText+' AND t_id IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_priority ASC;');
+                            }
+                        }
+                        else
+                        {
+                             rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id IN (SELECT t_id FROM '+DBC.table_todayTasks+') ORDER BY t_priority ASC;');
+                        }
+
                         var tableColumns = rs.rows.length;
 
                         if (rs.rows.length > 0)

@@ -13,8 +13,6 @@ import "../theScripts/steptasks.js" as StepTaskManager
 
 Item
 {
-
-
     anchors.fill:parent;
 
     /* componenet setup starts */
@@ -28,17 +26,13 @@ Item
     signal buttonRightClicked(int tId, int tsId, string tsCompeteDate);
     signal buttonLeftClicked(int tId, int tsId, string tsCompeteDate);
     signal searchTextChanged(string text);
+    property ListModel listModelAccessForOutSide: listModelMain //to make accses for whos using this component to append something into this listModel
+
 //    signal aTaskCreatedViaQuicklyCreation(int tId);
 //    onATaskCreatedViaQuicklyCreation:
 //    {
 //        console.log("source: showTasks.qml -> "+componentType + ".qml -> signal aTaskCreatedViaQuicklyCreation called.");
 //    }
-
-    signal clearListView;
-    onClearListView:
-    {
-        listModelMain.clear();
-    }
 
     onSearchTextChanged: function(text)
     {
