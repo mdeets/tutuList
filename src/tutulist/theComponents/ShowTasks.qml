@@ -558,31 +558,12 @@ Item
                 maximumLength: 413; //after this length the wrapper will be bugged and i dont need more charecter right there.
                 wrapMode: TextInput.WrapAtWordBoundaryOrAnywhere
 
-//                onAutoScrollChanged:
-//                {
-//                    console.log("transatins")
-//                }
-
-//                onTextChanged:
-//                {
-//                    console.log("textlength = " , text, " l=" , text.length , " window.width=" , parent.width);
-//                    if(text.length <= 0)
-//                        addNewQuickTask.height = 45; //default value
-//                    else
-//                    {
-////                        addNewQuickTask.height += parent.width/text.length**2;
-////                        console.log(taskTitle.contentWidth)
-//                        console.log(taskTitle.contentHeight)
-//                    }
-//                }
                 onContentHeightChanged:
                 {
-                    console.log("----------------------\ncont h changed." , taskTitle.contentHeight)
                     if(taskTitle.contentHeight>15)//its more than one line
                     {
-                        const lines = taskTitle.contentHeight/15; //count how much line we has
-                        addNewQuickTask.height = (12.50*lines)+45;//append 5px per line and plus defualt value
-                        console.log(taskTitle.length)
+                        //linesCount = taskTitle.contentHeight/15
+                        addNewQuickTask.height = (12.50*taskTitle.contentHeight/15)+45;//append 12.50px per each line and 45 is defualt value of text.height
                     }
                     else // make base input height to default value
                     {
