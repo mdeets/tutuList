@@ -146,8 +146,14 @@ Item
         ListView
         {
             id:listViewMain;
-            anchors.fill:parent;
-//            anchors.topMargin:35;
+            anchors
+            {
+                fill:parent;
+                topMargin:5;
+                bottomMargin:100; //to fix unacceable listView items, whos filled or blocked with bottom indicator and add-quickly-new-task boxes
+            }
+
+
             clip:true;
             header: Item
             {
@@ -249,6 +255,8 @@ Item
 
                 }
             }
+
+
             model:
             ListModel
             {
@@ -262,7 +270,6 @@ Item
                 Rectangle
                 {
                     anchors.fill: parent;
-
                     color:"transparent";
                     Rectangle
                     {
@@ -505,6 +512,7 @@ Item
 
             }//end of item delegate
 
+
         }//end of list view
 
 
@@ -521,7 +529,7 @@ Item
         anchors
         {
             bottom:parent.bottom;
-            bottomMargin:80;
+            bottomMargin:65;
             horizontalCenter:parent.horizontalCenter;
         }
         MouseArea

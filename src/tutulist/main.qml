@@ -194,7 +194,7 @@ Window
             anchors
             {
                 bottom:parent.bottom;
-                bottomMargin:25;
+                bottomMargin:10;
             }
 
             onHide:
