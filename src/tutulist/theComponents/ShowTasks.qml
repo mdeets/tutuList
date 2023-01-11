@@ -209,11 +209,11 @@ Item
                         {
                             doSearch();
                         }
-//                        onTextChanged:
-//                        {
-//                            if(text === "")
-//                                reloadAllTasks()
-//                        }
+                        onTextChanged:
+                        {
+                            if(text === "")
+                                doSearch();
+                        }
                     }
                     Text
                     {
