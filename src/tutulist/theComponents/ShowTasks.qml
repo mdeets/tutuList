@@ -190,7 +190,8 @@ Item
                     TextInput
                     {
                         id:searchWord;
-                        anchors.fill:parent;
+                        width:parent.width-baseButtonSearchNow.width;//to avoid filling background button with this textinput
+                        height:parent.height;
                         color:Configs.color_font_text;
                         font.pointSize: Configs.font_size_text;
                         padding:15;
@@ -221,7 +222,7 @@ Item
                 }
                 Rectangle
                 {
-//                    id:baseButtonSearchNow;
+                    id:baseButtonSearchNow;
                     width:24;
                     height:width;
                     color:"transparent";
