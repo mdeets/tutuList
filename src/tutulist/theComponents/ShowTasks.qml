@@ -541,15 +541,55 @@ Item
             color:Configs.color_bg_text;
             border.color: Configs.color_bg_indicator;
             radius:10;
-            clip:true;
             TextInput
             {
                 id:taskTitle;
-                anchors.fill:parent;
+                anchors
+                {
+                    top:parent.top;
+                    bottom:parent.bottom;
+                    left:parent.left;
+                    right:parent.right;
+                    rightMargin:button.width-5;  //button.width-5 bc of button has transparent background and to avoid to dont fill the button background with textinput (when language changes into a right to left style some first charecter of text will be under that button.
+                }
                 color:Configs.color_font_text;
                 font.pointSize: Configs.font_size_text;
                 padding:14;
-                maximumLength: 40;
+                maximumLength: 413; //after this length the wrapper will be bugged and i dont need more charecter right there.
+                wrapMode: TextInput.WrapAtWordBoundaryOrAnywhere
+
+//                onAutoScrollChanged:
+//                {
+//                    console.log("transatins")
+//                }
+
+//                onTextChanged:
+//                {
+//                    console.log("textlength = " , text, " l=" , text.length , " window.width=" , parent.width);
+//                    if(text.length <= 0)
+//                        addNewQuickTask.height = 45; //default value
+//                    else
+//                    {
+////                        addNewQuickTask.height += parent.width/text.length**2;
+////                        console.log(taskTitle.contentWidth)
+//                        console.log(taskTitle.contentHeight)
+//                    }
+//                }
+                onContentHeightChanged:
+                {
+                    console.log("----------------------\ncont h changed." , taskTitle.contentHeight)
+                    if(taskTitle.contentHeight>15)//its more than one line
+                    {
+                        const lines = taskTitle.contentHeight/15; //count how much line we has
+                        addNewQuickTask.height = (12.50*lines)+45;//append 5px per line and plus defualt value
+                        console.log(taskTitle.length)
+                    }
+                    else // make base input height to default value
+                    {
+                        addNewQuickTask.height = 45;
+                    }
+                }
+
                 onEditingFinished:
                 {
                     if(text!=="")
@@ -586,11 +626,14 @@ Item
         {
             id:button;
             color:"transparent"
-            width:parent.height-5;
-            height:parent.height-5;
+            width:45;
+            height:45;
             radius:parent.radius;
-            anchors.right:parent.right;
-            anchors.verticalCenter: parent.verticalCenter;
+            anchors
+            {
+                right:parent.right;
+                bottom:parent.bottom;
+            }
             Image
             {
                 anchors.centerIn:parent;
