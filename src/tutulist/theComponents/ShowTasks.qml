@@ -141,14 +141,6 @@ Item
     {
         id:theListBase;
         anchors.fill:parent;
-//        anchors
-//        {
-//            left:parent.left;
-//            right:parent.right;
-//            top:parent.top;
-////            bottom:addNewQuickTask.top;
-//            bottom:parent.bottom
-//        }
         color:Configs.color_background;
 
         ListView
@@ -195,7 +187,6 @@ Item
                     border.color: Configs.color_bg_indicator;
                     radius:10;
                     clip:true;
-//                    TextField
                     TextInput
                     {
                         id:searchWord;
@@ -261,7 +252,6 @@ Item
             ListModel
             {
                 id:listModelMain;
-
             }
             delegate:
             Item
@@ -523,9 +513,8 @@ Item
     {
         id:addNewQuickTask;
         width:addNewTaskAllowed? parent.width/1.25: 0;
-        height:addNewTaskAllowed? 45 : 0;
-        visible: addNewTaskAllowed;
-        color:Configs.color_bg_text;
+        height:addNewTaskAllowed? 45: 0;
+        color:"transparent"//child has color dont need color here.
         radius:10;
         clip:true;
         anchors
@@ -534,24 +523,23 @@ Item
             bottomMargin:80;
             horizontalCenter:parent.horizontalCenter;
         }
+        MouseArea
+        {
+            anchors.fill: parent
+        }
+
         Rectangle
         {
             id:taskTitleBase;
-            anchors.fill:parent;
+            anchors.fill: parent
             color:Configs.color_bg_text;
             border.color: Configs.color_bg_indicator;
             radius:10;
             TextInput
             {
                 id:taskTitle;
-                anchors
-                {
-                    top:parent.top;
-                    bottom:parent.bottom;
-                    left:parent.left;
-                    right:parent.right;
-                    rightMargin:button.width-5;  //button.width-5 bc of button has transparent background and to avoid to dont fill the button background with textinput (when language changes into a right to left style some first charecter of text will be under that button.
-                }
+                width:parent.width - (button.width-5);  //button.width-5 bc of button has transparent background and to avoid to dont fill the button background with textinput (when language changes into a right to left style some first charecter of text will be under that button.
+                height:parent.height;
                 color:Configs.color_font_text;
                 font.pointSize: Configs.font_size_text;
                 padding:14;
@@ -560,7 +548,7 @@ Item
 
                 onContentHeightChanged:
                 {
-                    if(taskTitle.contentHeight>15)//its more than one line
+                    if(taskTitle.contentHeight>18)//its more than one line
                     {
                         //linesCount = taskTitle.contentHeight/15
                         addNewQuickTask.height = (12.50*taskTitle.contentHeight/15)+45;//append 12.50px per each line and 45 is defualt value of text.height
@@ -588,19 +576,10 @@ Item
             Text
             {
                 text: "Add new task";
-                color: "#aaa"
-                visible: !taskTitle.text
-                padding: 14
-//                anchors
-//                {
-//                    verticalCenter: parent.verticalCenter;
-//                    left:parent.left;
-//                    leftMargin:15;
-//                }
+                color: "#aaa";
+                visible: !taskTitle.text;
+                padding: 14;
             }
-
-
-
         }
 
         Rectangle
@@ -613,11 +592,11 @@ Item
             anchors
             {
                 right:parent.right;
-                bottom:parent.bottom;
+                bottom:taskTitleBase.bottom;
             }
             Image
             {
-                anchors.centerIn:parent;
+                anchors.centerIn: parent
                 source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_add;
             }
 
