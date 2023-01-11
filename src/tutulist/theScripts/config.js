@@ -46,17 +46,27 @@ const color_font_title = "black";
 //font settings
 const font_size_title = 20;
 const font_size_text = 12; //also used for TextInputs
-
+const font_size_task = 15;
+const font_size_stepTask = 10;
 
 //theme colors
-const color_background = "white";
-const color_button_background = "#F2F4F6";
+const color_background = "#F5F8FA";
+const color_button_background = "#F2F4F6"; //light cyan
 const color_button_text = "black";
 const color_button_text_cancel = "#AB193C";
 const color_button_background_cancel = "#FCF0F0";
+
+const color_task_background = "white";
+const color_task_text = color_button_text;
+
+const color_stepTask_background = "gray";
+const color_stepTask_text = "black";
+
 const color_input_background = "white";
 const color_input_text = "black";
-const color_unknown = "white";
+
+
+const color_unknown = "white"; //ithink didnt used yet
 
 
 // ICONS
@@ -102,6 +112,12 @@ const icon_add = pathToIcon+ iconSize.Small +"add.png";
 /*
 //icon back
 //https://icons8.com/icon/set/user-interface/ios
+
+
+https://cdn.dribbble.com/users/1234247/screenshots/10591656/media/c266bf38b220327fd4165b3ab9d810a9.png
+bg color
+
+
 
 //action icons https://icons8.com/icon/105072/clipboard
    color chumes:

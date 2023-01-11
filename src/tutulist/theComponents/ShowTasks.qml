@@ -268,8 +268,8 @@ Item
                         id:itemmm2;
                         width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
                         height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
-                        color: tsId > 0 ? "#dedede" : "#dedede"; //tsId >0 means this is task Step. not a task
-                        radius:15;
+                        color: tsId > 0 ? Configs.color_stepTask_background :Configs.color_task_background; //tsId >0 means this is task Step. not a task
+                        radius:10;
                         anchors.horizontalCenter: parent.horizontalCenter;
                         Rectangle
                         {
@@ -309,8 +309,8 @@ Item
                         Text
                         {
                             text: tsId>0 ? tsTitle : tTitle;
-                            color: tsId > 0 ? "black":"white";
-                            font.pointSize: tsId>0 ? 10 : 18;
+                            color: tsId > 0 ? Configs.color_stepTask_text :Configs.color_task_text;
+                            font.pointSize: tsId>0 ? Configs.font_size_stepTask : Configs.font_size_task;
                             width:parent.width/3;
                             clip:true;
                             anchors
