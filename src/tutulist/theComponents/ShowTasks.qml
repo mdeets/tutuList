@@ -28,8 +28,19 @@ Item
     signal buttonRightClicked(int tId, int tsId, string tsCompeteDate);
     signal buttonLeftClicked(int tId, int tsId, string tsCompeteDate);
     signal searchTextChanged(string text);
+//    signal aTaskCreatedViaQuicklyCreation(int tId);
+//    onATaskCreatedViaQuicklyCreation:
+//    {
+//        console.log("source: showTasks.qml -> "+componentType + ".qml -> signal aTaskCreatedViaQuicklyCreation called.");
+//    }
 
-    onSearchAllowedChanged: function(text)
+    signal clearListView;
+    onClearListView:
+    {
+        listModelMain.clear();
+    }
+
+    onSearchTextChanged: function(text)
     {
         console.log("source: showTasks.qml -> "+ componentType + ".qml -> searchTextChanged.");
     }
@@ -171,7 +182,8 @@ Item
                         {
                             listModelMain.clear();
 //                                AllTasks.searchTask(searchWord.text,listModelMain,"appendToList"); //search like off.
-                            AllTasks.searchTask(searchWord.text,listModelMain,"appendToList",0); //search like on.
+//                            AllTasks.searchTask(searchWord.text,listModelMain,"appendToList",0); //search like on.
+                            AllTasks.getList(listModelMain,"appendToList","searchOn","likeOn",searchWord.text)
                         }
                         else
                         {
