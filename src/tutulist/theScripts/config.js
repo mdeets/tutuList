@@ -1,88 +1,109 @@
+
+
+
 //window setting
 const application_width = 720/2+10;
 const application_height = 1339/1.7;
 const application_title = "TuTu List";
+
+
+//components setting
 const topTitleBar_height = 50;
 const bottomMenu_height = 50;
-const iconPackMode = "lightMode";
-const pathToIcon = "/theResources/"+iconPackMode+"/"; // light -> dark or etc to change icons theme
 
 
-//button style , text input style from  https://dribbble.com/shots/14794406-Task-detail-desktop-app/attachments/6500905?mode=media
-//notifcation from https://dribbble.com/shots/16891665-Daily-UI-011-Flash-Message
-//settings from https://dribbble.com/shots/14630755-Cards-Dark-UI
 
-//indicator colors
-const color_bg_indicator ="#90e0ef";
-const color_bg_text = "white";//white
-const color_font_text = "black";//black
-const color_font_title = "black";//black
-
-const font_size_title = 20;
-const font_size_text = 10;
-//theme colors
-const color_background = "white";//white
-//const color_text = "red";
-
-const color_button_background = "#F2F4F6";
-const color_button_text = "black";
-
-const color_button_text_cancel = "#AB193C";
-const color_button_background_cancel = "#FCF0F0";
-
-const color_input_background = "white";
-const color_input_text = "black";
-
-const color_unknown = "white";
-
-
-//database Tables
-
+//database table names
 const table_allTasks = "tutu_allTasks1";
 const table_completedTasks = "tutu_completedTasks4";
 const table_todayTasks = "tutu_todayTasks3";
 const table_taskSteps = "tutu_taskSteps1";
 const table_settings = "tutu_settings1";
 
-//menubar icon https://icons8.com/icons/authors/klDPcgJ2LxJD/febrian-hidayat/external-febrian-hidayat-basic-outline-febrian-hidayat/external-ui-essential-febrian-hidayat-basic-outline-febrian-hidayat
-const icon_menubar = pathToIcon+"100x100/"+"menubar.png";
+
+//icons path
+const iconPackMode =
+{
+    Light: "lightMode/", //black colored icons
+    Dark: "darkMode/" //white colored icons
+};
+const iconSize =
+{
+    Small: "24x24/",
+    Medium: "50x50/",
+    Larg: "100x100/"
+};
+const pathToIcon = "/theResources/"+ iconPackMode.Light;
 
 
-//icon back, setupTask https://icons8.com/icon/set/arrows/ios-filled
-const icon_back = pathToIcon+"24x24/"+"back.png";
+//indicator colors
+const color_bg_indicator ="#90e0ef";
+const color_bg_text = "white";
+const color_font_text = "black";
+const color_font_title = "black";
 
 
-const icon_search_colored= pathToIcon+"24x24/"+"search-colored.png";
-//icon search button https://icons8.com/icon/set/free-icons/ios-filled
-const icon_search = pathToIcon+"24x24/"+"search.png";
-//menu icons
-const icon_bottomMenu_allTasks = pathToIcon+"50x50/"+"allTask.png";//(iconPackMode=="darkMode"? pathToIcon+"lightMode"+"50x50/"+"allTask.png": pathToIcon+"darkMode/"+"50x50/"+"allTask.png"); //there is another allTasks.png thats old
-const icon_bottomMenu_todayTasks = pathToIcon+"50x50/"+"todayTask.png";
-const icon_bottomMenu_completedTasks = pathToIcon+"50x50/"+"completedTask.png";
+//font settings
+const font_size_title = 20;
+const font_size_text = 12; //also used for TextInputs
 
 
-const icon_completeTasks = pathToIcon+"24x24/"+"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
-const icon_uncompleteTasks = pathToIcon+"24x24/"+"checkedTask.png";
+//theme colors
+const color_background = "white";
+const color_button_background = "#F2F4F6";
+const color_button_text = "black";
+const color_button_text_cancel = "#AB193C";
+const color_button_background_cancel = "#FCF0F0";
+const color_input_background = "white";
+const color_input_text = "black";
+const color_unknown = "white";
 
-const icon_addTodayTask = pathToIcon+"24x24/"+"todayTask.png"; //https://icons8.com/icon/set/user-interface/wired
-const icon_removeTodayTask = pathToIcon+"24x24/"+"removeTask.png"; //https://icons8.com/icon/set/user-interface/wired
 
+// ICONS
+const icon_menubar = pathToIcon+ iconSize.Larg +"menubar.png";//menubar icon https://icons8.com/icons/authors/klDPcgJ2LxJD/febrian-hidayat/external-febrian-hidayat-basic-outline-febrian-hidayat/external-ui-essential-febrian-hidayat-basic-outline-febrian-hidayat
 
-//action icons https://icons8.com/icon/105072/clipboard
+const icon_bottomMenu_allTasks = pathToIcon+ iconSize.Medium +"allTask.png";//(iconPackMode=="darkMode"? pathToIcon+"lightMode"+"50x50/"+"allTask.png": pathToIcon+"darkMode/"+"50x50/"+"allTask.png"); //there is another allTasks.png thats old
+const icon_bottomMenu_todayTasks = pathToIcon+ iconSize.Medium +"todayTask.png";
+const icon_bottomMenu_completedTasks = pathToIcon+ iconSize.Medium +"completedTask.png";
+
+const icon_back = pathToIcon+ iconSize.Small +"back.png"; //icon back, setupTask https://icons8.com/icon/set/arrows/ios-filled
+const icon_search_colored= pathToIcon+ iconSize.Small +"search-colored.png";
+const icon_search = pathToIcon+ iconSize.Small +"search.png";//icon search button https://icons8.com/icon/set/free-icons/ios-filled
+const icon_completeTasks = pathToIcon+ iconSize.Small +"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
+const icon_uncompleteTasks = pathToIcon+ iconSize.Small +"checkedTask.png";
+const icon_addTodayTask = pathToIcon+ iconSize.Small +"todayTask.png"; //https://icons8.com/icon/set/user-interface/wired
+const icon_removeTodayTask = pathToIcon+ iconSize.Small +"removeTask.png"; //https://icons8.com/icon/set/user-interface/wired
 const icon_removeTasks = icon_removeTodayTask;//pathToIcon+"24x24/"+"completedTasks.png"; //https://icons8.com/icon/set/user-interface/wired
-const icon_addTasks = pathToIcon+"24x24/"+"emptyList.png"; //to form
-const icon_submitTasks = pathToIcon+"24x24/"+"submitQuickTask.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
-const icon_backward = pathToIcon + "24x24/"+"backward.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
+const icon_addTasks = pathToIcon+ iconSize.Small +"emptyList.png"; //to form
+const icon_submitTasks = pathToIcon+ iconSize.Small +"submitQuickTask.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
+const icon_backward = pathToIcon + iconSize.Small +"backward.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
+const icon_cancel = pathToIcon+ iconSize.Small +"cancel.png";
+const icon_add = pathToIcon+ iconSize.Small +"add.png";
 
 
-//alltasks -> add new step
-const icon_cancel = pathToIcon+"24x24/"+"cancel.png";
-const icon_add = pathToIcon+"24x24/"+"add.png";
+/*
+
+  Used things, Thanks to
+
+
+  show priority status idee/style , task steps style : https://dribbble.com/shots/15829896-Done-To-Do-List
+
+  button style , text input style from  https://dribbble.com/shots/14794406-Task-detail-desktop-app/attachments/6500905?mode=media
+
+  notifcation from https://dribbble.com/shots/16891665-Daily-UI-011-Flash-Message
+
+  settings from https://dribbble.com/shots/14630755-Cards-Dark-UI
+
+*/
+
+
+
 
 /*
 //icon back
 //https://icons8.com/icon/set/user-interface/ios
 
+//action icons https://icons8.com/icon/105072/clipboard
    color chumes:
    https://coolors.co/palettes/trending
 
@@ -145,10 +166,6 @@ const icon_add = pathToIcon+"24x24/"+"add.png";
   https://dribbble.com/shots/14794406-Task-detail-desktop-app
 
 
-  show priority status idee/style , task steps style
-  https://dribbble.com/shots/15829896-Done-To-Do-List
-
-
   background color
   https://dribbble.com/shots/18468605-Task-Management-App
 
@@ -194,32 +211,4 @@ const icon_add = pathToIcon+"24x24/"+"add.png";
   https://dribbble.com/shots/16838613-Dark-Light-UI-for-Cards-Components
   https://dribbble.com/shots/15375254-End-User-Profile-Settings
   https://dribbble.com/shots/11023100-Daily-UI-006-007-Profile-Settings
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   */
