@@ -294,7 +294,7 @@ Item
                             width: tsId > 0 ? 0 : parent.width;
                             height: tsId > 0 ? 0 : 2;
                             anchors.top: itemmm2.bottom;
-                            color: tPriority>6 || isNaN(tPriority) ? Configs.colorList_for_task_priority[0] : Configs.colorList_for_task_priority[tPriority]
+                            color: tPriority>8 || isNaN(tPriority) ? Configs.colorList_for_task_priority[0] : Configs.colorList_for_task_priority[tPriority]
                             radius:parent.radius;
 //                            Text
 //                            {
@@ -577,7 +577,6 @@ Item
                         {
                             id:quicklyAddStep;
                             anchors.fill:parent;
-                            visible:false;
                             setTaskId: tId;
                             setMaxLenght:80;
                             onCancelButtonClicked:

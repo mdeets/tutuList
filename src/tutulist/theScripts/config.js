@@ -81,7 +81,9 @@ const colorList_for_task_priority =
     "#FFFF29",
     "#31E929",
     "#33A0FD",
-    "#C632FF"
+    "#C632FF",
+    "#fc05b2",
+    "#000000"
 ];
 
 // ICONS
