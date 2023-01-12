@@ -18,7 +18,8 @@ Item
         componentType: "todaytasks";
         searchAllowed:true;
         addNewTaskAllowed:false; // not works fine, just add task into alltAsks table not todayTasks.
-        setIconLeft: Configs.icon_backward;
+        setIconDelete: ""; //this section dont need delete button right now.
+        setIconLeft: Configs.icon_back;//Configs.icon_backward;
         setIconRight:Configs.icon_completeTasks;
         onSearchTextChanged:  function(text)
         {
