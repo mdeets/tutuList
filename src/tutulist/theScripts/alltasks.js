@@ -255,7 +255,7 @@ function deleteTask(taskId)//return 1 means Query is successfuly executed, etc m
 
 function addQuicklyNewTask(title)
 {
-    return addNewTask(title,"0",0,"0","0");
+    return addNewTask(title,"0",100,"0","0");
 }
 
 function addNewTask(title,desc,priority,deadline,timeToPerform) //return 1 means Query is OK, etc is failure
