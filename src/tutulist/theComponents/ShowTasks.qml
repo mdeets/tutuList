@@ -271,26 +271,28 @@ Item
             delegate:
             Item
             {
+                id:itemroot;
                 width: listViewMain.width;
-                height: tsId> 0 ? 35: 85;//80 70
+                height: tsId> 0 ? 55: 90;//80 70
                 Rectangle
                 {
-
                     anchors.fill: parent;
                     color:"transparent";
                     Rectangle
                     {
                         id:itemmm2;
-                        width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
-                        height: tsId > 0 ? parent.height/1.50 : 70; // 50 //tsId >0 means this is task Step. not a task
+                        width: tsId > 0 ? parent.width/1.25 : parent.width/1.10;
+                        height: tsId > 0 ? parent.height : 70; // 50 //tsId >0 means this is task Step. not a task
                         color: tsId > 0 ? Configs.color_stepTask_background :Configs.color_task_background; //tsId >0 means this is task Step. not a task
-                        radius:10;
+                        radius:tsId>0 ? 0:10;
                         anchors.horizontalCenter: parent.horizontalCenter;
+                        anchors.top: parent.top;
+                        anchors.topMargin:tsId> 0? -18:0;
                         Rectangle
                         {
                             id:priorityShower;
                             width: tsId > 0 ? 0 : parent.width;
-                            height: tsId > 0 ? 0 : 1.50;
+                            height: tsId > 0 ? 0 : 2;
                             anchors.top: itemmm2.bottom;
                             color: tPriority>6 || isNaN(tPriority) ? Configs.colorList_for_task_priority[0] : Configs.colorList_for_task_priority[tPriority]
                             radius:parent.radius;
@@ -330,29 +332,63 @@ Item
 
                                 }
                                 else
+                                {
                                     console.log("source: showTasks.qml -> "+ componentType + ".qml  -> on stepTask can not add step task.");
+                                    //copied code from button complete
+                                    if(tsCompeteDate==="0")
+                                    {
+                                        console.log("source : showTasks.qml -> "+ componentType + ".qml  -> complete this step task clicked, tasKStepId="+tsId+ " tId="+tId);
+                                        const queryResult = StepTaskManager.completeStep(tId,tsId);
+                                        if(queryResult)
+                                        {
+                                            console.log("source: showTasks.qml -> "+ componentType + ".qml  -> taskStep completed successfully.");
+                                            reloadAllTasks();
+                                        }
+                                        else
+                                        {
+                                            console.log("source: showTasks.qml -> "+ componentType + ".qml  -> taskStep failed to complete.");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        console.log("source : showTasks.qml -> "+ componentType + ".qml  -> lets uncomplete this taskStep. tsId="+tsId);
+                                        const queryResult = StepTaskManager.uncompleteStep(tId,tsId);
+                                        if(queryResult)
+                                        {
+                                            console.log("source: showTasks.qml -> "+ componentType + ".qml  -> taskStep uncompleted successfully.");
+                                            reloadAllTasks();
+                                        }
+                                        else
+                                        {
+                                            console.log("source: showTasks.qml -> "+ componentType + ".qml  -> taskStep failed to uncomplete.");
+                                        }
+                                    }
+                                }
+
                             }
                         }
 
                         Text
                         {
                             id:title;
-                            text: tsId>0 ? tsTitle : tTitle;
+                            text: tsId>0 ? tsTitle.length>parent.width/15? tsTitle.slice(0,parent.width/15)+".." : tsTitle : tTitle.length>parent.width/15 ? tTitle.slice(0,parent.width/15)+".." : tTitle
                             color: tsId > 0 ? Configs.color_stepTask_text :Configs.color_task_text;
                             font.pointSize: tsId>0 ? Configs.font_size_stepTask : Configs.font_size_task;
-                            width:parent.width/3;
+                            width:parent.width/1.50;
                             clip:true;
                             anchors
                             {
-                                verticalCenter:parent.verticalCenter;
+//                                verticalCenter:parent.verticalCenter;
                                 left:parent.left;
-                                leftMargin: tsId > 0 ? 30 : 70;
+                                leftMargin: tsId > 0 ? 40 : 70;
+                                top:parent.top;
+                                topMargin: tsId>0 ? height*1.30 : height/2;
                             }
                         }
                         Text
                         {
                             id:description;
-                            text: tsId>0 ? tsDesc.length>30? tsDesc.slice(0,30)+".." : tsDesc : tDesc.length>30 ? tDesc.slice(0,30)+".." : tDesc
+                            text: tsId>0 ? "": tDesc.length>parent.width/15 ? tDesc.slice(0,parent.width/15)+".." : tDesc; //tsDesc.length>parent.width/15? tsDesc.slice(0,parent.width/15)+".." : tsDesc
                             color: tsId > 0 ? Configs.color_stepTask_text :Configs.color_task_text;
                             font.pointSize: tsId>0 ? Configs.font_size_stepTask_description : Configs.font_size_task_description;
                             width:parent.width/1.50;

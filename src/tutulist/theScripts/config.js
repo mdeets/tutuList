@@ -64,7 +64,7 @@ const color_button_background_cancel = "#FCF0F0";
 const color_task_background = "white";
 const color_task_text = color_button_text;
 
-const color_stepTask_background = "gray";
+const color_stepTask_background = "white";
 const color_stepTask_text = "black";
 
 const color_input_background = "white";
