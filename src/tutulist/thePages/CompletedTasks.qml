@@ -19,7 +19,7 @@ Item
         searchAllowed:true;
         addNewTaskAllowed:false;
         setIconDelete: ""; //this section dont need delete button right now.
-        setIconLeft: Configs.icon_addTodayTask;
+        setIconLeft: Configs.icon_back;//Configs.icon_addTodayTask;
         setIconRight: Configs.icon_uncompleteTasks;
         onSearchTextChanged:  function(text)
         {
