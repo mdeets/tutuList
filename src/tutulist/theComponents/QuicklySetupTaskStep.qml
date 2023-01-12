@@ -10,7 +10,13 @@ Item
     property int setMaxLenght:40;
     signal cancelButtonClicked;
     signal saveButtonClicked;
+    visible:false;
 
+    onVisibleChanged:
+    {
+        console.log("visible CHANGEEEEEEEEED")
+        taskTitle.focus=true;
+    }
 
     onSaveButtonClicked:
     {
@@ -20,12 +26,14 @@ Item
         if(rs)
         {
             console.log("source : QuicklySetupTaskStep.qml -> response is ok query submitted as new step task.");
+            taskTitle.text="";
             reloadAllTasks();
         }
         else
         {
             console.log("source : QuicklySetupTaskStep.qml ->failed to add new step task.");
         }
+
     }
 
     onCancelButtonClicked:
@@ -53,8 +61,17 @@ Item
                 width:parent.width-40;// minus 40px for button
                 height:parent.height;
                 padding:14;
+                focus: true;
                 wrapMode: TextInput.WrapAtWordBoundaryOrAnywhere
                 maximumLength: setMaxLenght;
+                onEditingFinished:
+                {
+                    if(taskTitle.length>0)
+                    {
+                        console.log("source : QuicklySetupTaskStep.qml -> on editing finished or enter pressed.");
+                        saveButtonClicked();
+                    }
+                }
             }
             Rectangle
             {
