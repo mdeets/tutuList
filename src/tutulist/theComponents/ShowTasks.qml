@@ -554,14 +554,16 @@ Item
                                     if(tsId>0)
                                     {
                                         console.log("source: showTasks.qml -> "+ componentType + ".qml  -> remove step task clicked. tsid="+tsId + " tid="+tId);
-                                        confirmMessage.textMessage = "are you sure to delete step task ("+tsTitle+") ?";
+                                        const titleVal = tsTitle.length>40? tsTitle.slice(0,39)+".." : tsTitle;
+                                        confirmMessage.textMessage = "Are you sure to \ndelete Step-task?\n\n("+titleVal+")";
                                         selectedStepTaskIdToDelete=tsId;
                                         selectedIdToDelete=tId;
                                     }
                                     else
                                     {
                                         console.log("source : showTasks.qml -> "+ componentType + ".qml  -> remove task clicekd, id="+tId);
-                                        confirmMessage.textMessage = "are you sure to delete task ("+tTitle+") ?";
+                                        const titleVal = tTitle.length>40? tTitle.slice(0,39)+".." : tTitle;
+                                        confirmMessage.textMessage = "Are you sure to delete Task?\n\n("+titleVal+")";
                                         selectedStepTaskIdToDelete=0; //to tell the confirm delete this is just task so remove this tId from Task Table.
                                         selectedIdToDelete=tId;
                                     }
@@ -731,7 +733,7 @@ Item
         id:baseConfirmYesOrNo;
         anchors.fill: parent;
         color:"black";
-        opacity: 0.6;
+        opacity: 0.8;
         visible: false;
 
         MouseArea
@@ -742,13 +744,14 @@ Item
                 confirmMessage.response="canceled";
             }
         }
-        ConfirmYesOrNo
+    }
+    ConfirmYesOrNo
+    {
+        id:confirmMessage;
+        visible:baseConfirmYesOrNo.visible
+        onResponseChanged:
         {
-            id:confirmMessage;
-            onResponseChanged:
-            {
-                statusRemoveConfirmMessage=response;
-            }
+            statusRemoveConfirmMessage=response;
         }
     }
 

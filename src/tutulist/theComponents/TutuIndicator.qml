@@ -44,22 +44,22 @@ Item
     onCompletedTasksClicked:
     {
         buttonCompletedTasks.opacity=1;
-        buttonTodayTasks.opacity=0.5;
-        buttonAllTasks.opacity=0.5;
+        buttonTodayTasks.opacity=0.3;
+        buttonAllTasks.opacity=0.3;
     }
 
     onAllTasksClicked:
     {
         buttonAllTasks.opacity=1;
-        buttonTodayTasks.opacity=0.5;
-        buttonCompletedTasks.opacity=0.5;
+        buttonTodayTasks.opacity=0.3;
+        buttonCompletedTasks.opacity=0.3;
     }
 
     onTodayTasksClicked:
     {
         buttonTodayTasks.opacity=1;
-        buttonAllTasks.opacity=0.5;
-        buttonCompletedTasks.opacity=0.5;
+        buttonAllTasks.opacity=0.3;
+        buttonCompletedTasks.opacity=0.3;
     }
 
 

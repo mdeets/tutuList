@@ -1,65 +1,78 @@
 import QtQuick 2.15
+import "."
+import "../theScripts/config.js" as Configs
 
 Item
 {
     id: local_root;
     property string response : "wait";
-
-
     property string textMessage : "Are you sure?";
     property string textConfirmButton: "Yes";
     property string textCancelButton: "Cancel";
-    width:parent.width/2;
-    height:parent.height/10;
-    anchors.horizontalCenter: parent.horizontalCenter;
-    anchors.verticalCenter: parent.verticalCenter;
+    anchors.fill: parent
+//    anchors.horizontalCenter: parent.horizontalCenter;
+//    anchors.verticalCenter: parent.verticalCenter;
     Rectangle
     {
-        anchors.fill:parent;
-        width:100;
-        height:25;
+//        anchors.fill:parent;
+        color:Configs.color_background;
+        width:parent.width/1.25;
+        height:200;
+        anchors.centerIn:parent;
+        radius:25;
         Rectangle
         {
             id:baseLabel;
-            color:"white";
+            color:"transparent";
             anchors.fill:parent;
-            width:parent.width;
-            height:10;
+            clip:true;
             Text
             {
-                color:"black"
+                color:Configs.color_font_text;
                 font.bold: true;
-                font.pointSize: 15
+                padding:25;
+                font.pointSize: Configs.font_size_title/1.75;
                 id:messagelabel;
                 width:parent.width;
                 height:parent.height;
-                anchors.verticalCenter: parent.verticalCenter;
+                anchors.centerIn: parent;
                 text:textMessage;
-                wrapMode: Text.WordWrap
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
         }
 
 
         Rectangle
         {
-            id:baseConfirmButton;
-            width:parent.width/2;
-            height:25;
-            color:"lime";
-            anchors.right: baseLabel.right;
-            anchors.top: baseLabel.bottom;
-            Text
+            id:baseButtons;
+            width:parent.width/1.25;
+            height:40;
+            color:"transparent"
+            anchors
             {
-                color:"white";
-                anchors.centerIn:parent;
-                font.bold: true;
-                font.pointSize: 15
-                text:textConfirmButton;
+                bottom: parent.bottom;
+                bottomMargin:25;
+                horizontalCenter:parent.horizontalCenter;
             }
-            MouseArea
+            clip:true;
+            TutuButton
             {
-                anchors.fill:parent;
-                onClicked:
+                setRightButtonText:"Delete";
+                setRightButtonBackColor: Configs.color_bg_indicator//Configs.color_button_background;
+                setRightButtonFontColor: Configs.color_button_text;
+                setRightButtonBorderColor: "transparent";
+
+                setLeftButtonText: "Cancel";
+                setLeftButtonBackColor: Configs.color_button_background_cancel;
+                setLeftButtonFontColor: Configs.color_button_text;
+                setLeftButtonBorderColor: "transparent";
+
+                onLeftButtonClicked:
+                {
+                    response="canceled";
+                    console.log("source : ConfirmYesOrNo.qml -> button cancel pressed. " ,response);
+                }
+                onRightButtonClicked:
                 {
                     response="confirmed";
                     console.log("source : ConfirmYesOrNo.qml -> button confirm pressed. ",response);
@@ -67,32 +80,60 @@ Item
             }
         }
 
-        Rectangle
-        {
-            id:baseCancelButton;
-            width:parent.width/2;
-            height:25;
-            color:"red";
-            anchors.left: baseLabel.left;
-            anchors.top: baseLabel.bottom;
-            Text
-            {
-                color:"white";
-                anchors.centerIn:parent;
-                font.bold: true;
-                font.pointSize: 15
-                text:textCancelButton;
-            }
-            MouseArea
-            {
-                anchors.fill:parent;
-                onClicked:
-                {
-                    response="canceled";
-                    console.log("source : ConfirmYesOrNo.qml -> button cancel pressed. " ,response);
-                }
-            }
-        }
+
+//        Rectangle
+//        {
+//            id:baseConfirmButton;
+//            width:parent.width/2;
+//            height:25;
+//            color:"lime";
+//            anchors.right: baseLabel.right;
+//            anchors.top: baseLabel.bottom;
+//            Text
+//            {
+//                color:"white";
+//                anchors.centerIn:parent;
+//                font.bold: true;
+//                font.pointSize: 15
+//                text:textConfirmButton;
+//            }
+//            MouseArea
+//            {
+//                anchors.fill:parent;
+//                onClicked:
+//                {
+//                    response="confirmed";
+//                    console.log("source : ConfirmYesOrNo.qml -> button confirm pressed. ",response);
+//                }
+//            }
+//        }
+
+//        Rectangle
+//        {
+//            id:baseCancelButton;
+//            width:parent.width/2;
+//            height:25;
+//            color:"red";
+//            anchors.left: baseLabel.left;
+//            anchors.top: baseLabel.bottom;
+//            Text
+//            {
+//                color:"white";
+//                anchors.centerIn:parent;
+//                font.bold: true;
+//                font.pointSize: 15
+//                text:textCancelButton;
+//            }
+//            MouseArea
+//            {
+//                anchors.fill:parent;
+//                onClicked:
+//                {
+//                    response="canceled";
+//                    console.log("source : ConfirmYesOrNo.qml -> button cancel pressed. " ,response);
+//                }
+//            }
+//        }
 
 
 

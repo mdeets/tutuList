@@ -56,10 +56,10 @@ const defaultValueForContentHeight = 18; //this is for ContentHeight to count ho
 
 //theme colors
 const color_background = "#F5F8FA";
-const color_button_background = "#F2F4F6"; //light cyan
+const color_button_background = "#c0dcf7"; //light cyan
 const color_button_text = "black";
 const color_button_text_cancel = "#AB193C";
-const color_button_background_cancel = "#FCF0F0";
+const color_button_background_cancel = "#f9b1b1";
 
 const color_task_background = "white";
 const color_task_text = color_button_text;

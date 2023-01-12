@@ -180,7 +180,7 @@ Item
 
                         setLeftButtonText: "Cancel";
                         setLeftButtonBackColor: Configs.color_button_background_cancel;
-                        setLeftButtonFontColor: Configs.color_button_text_cancel;
+                        setLeftButtonFontColor: Configs.color_button_text//Configs.color_button_text_cancel;
                         setLeftButtonBorderColor: "transparent";
 
                         onLeftButtonClicked:

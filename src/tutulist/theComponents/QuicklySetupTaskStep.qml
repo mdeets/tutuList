@@ -14,7 +14,7 @@ Item
 
     onVisibleChanged:
     {
-        console.log("visible CHANGEEEEEEEEED")
+        console.log("source : QuicklySetupTaskStep.qml -> root visible changed set focuse textinput = true")
         taskTitle.focus=true;
     }
 
