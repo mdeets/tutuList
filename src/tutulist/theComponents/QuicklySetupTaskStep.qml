@@ -53,7 +53,7 @@ Item
                 width:parent.width-40;// minus 40px for button
                 height:parent.height;
                 padding:14;
-                wrapMode: "WrapAnywhere"
+                wrapMode: TextInput.WrapAtWordBoundaryOrAnywhere
                 maximumLength: setMaxLenght;
             }
             Rectangle
@@ -65,6 +65,8 @@ Item
                 height:parent.height;
                 Image
                 {
+                    width:24;
+                    height:24;
                     id:iconButton;
                     anchors.centerIn:parent;
                     source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_cancel;
