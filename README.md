@@ -15,6 +15,8 @@
 ## v0.6.15 preview gif
 ![previewapp](https://github.com/iwantamouse/tutu-list/blob/master/docs/database/tutulist-v0.6.15.gif)
 
+## database
+![dbpicture](https://github.com/iwantamouse/tutu-list/blob/master/docs/database/database-v1.png)
 ____________________________________
 ## Thanks to :<br/>
     qt.io
