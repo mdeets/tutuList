@@ -272,26 +272,40 @@ Item
             Item
             {
                 width: listViewMain.width;
-                height: tsId> 0 ? 35:70;
+                height: tsId> 0 ? 35: 85;//80 70
                 Rectangle
                 {
+
                     anchors.fill: parent;
                     color:"transparent";
                     Rectangle
                     {
                         id:itemmm2;
                         width: tsId > 0 ? parent.width/1.50 : parent.width/1.10;
-                        height: tsId > 0 ? parent.height/1.50 : 50; //tsId >0 means this is task Step. not a task
+                        height: tsId > 0 ? parent.height/1.50 : 70; // 50 //tsId >0 means this is task Step. not a task
                         color: tsId > 0 ? Configs.color_stepTask_background :Configs.color_task_background; //tsId >0 means this is task Step. not a task
                         radius:10;
                         anchors.horizontalCenter: parent.horizontalCenter;
                         Rectangle
                         {
                             id:priorityShower;
-                            width: tsId > 0 ? 0 : 5;
-                            height: tsId > 0 ? 0 : parent.height;
-                            color: tPriority>6? Configs.colorList_for_task_priority[0] : Configs.colorList_for_task_priority[tPriority]
+                            width: tsId > 0 ? 0 : parent.width;
+                            height: tsId > 0 ? 0 : 1.50;
+                            anchors.top: itemmm2.bottom;
+                            color: tPriority>6 || isNaN(tPriority) ? Configs.colorList_for_task_priority[0] : Configs.colorList_for_task_priority[tPriority]
                             radius:parent.radius;
+//                            Text
+//                            {
+//                                text: isNaN(tPriority) ? "?" : tPriority;
+//                                color:Configs.color_font_text;
+//                                anchors
+//                                {
+//                                    bottom:parent.bottom;
+//                                    bottomMargin:5;
+//                                    left:parent.left;
+//                                    leftMargin:5;
+//                                }
+//                            }
                         }
 
 
@@ -322,6 +336,7 @@ Item
 
                         Text
                         {
+                            id:title;
                             text: tsId>0 ? tsTitle : tTitle;
                             color: tsId > 0 ? Configs.color_stepTask_text :Configs.color_task_text;
                             font.pointSize: tsId>0 ? Configs.font_size_stepTask : Configs.font_size_task;
@@ -331,20 +346,40 @@ Item
                             {
                                 verticalCenter:parent.verticalCenter;
                                 left:parent.left;
-                                leftMargin: 30;
+                                leftMargin: tsId > 0 ? 30 : 70;
                             }
-
                         }
+                        Text
+                        {
+                            id:description;
+                            text: tsId>0 ? tsDesc.length>30? tsDesc.slice(0,30)+".." : tsDesc : tDesc.length>30 ? tDesc.slice(0,30)+".." : tDesc
+                            color: tsId > 0 ? Configs.color_stepTask_text :Configs.color_task_text;
+                            font.pointSize: tsId>0 ? Configs.font_size_stepTask_description : Configs.font_size_task_description;
+                            width:parent.width/1.50;
+                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            clip:true;
+                            anchors
+                            {
+                                left:title.left;
+//                                leftMargin: tsId > 0 ? 30 : 70;
+                                top:title.bottom;
+                            }
+                        }
+
                         Rectangle
                         {
                             id:todayButton; //the component set is known this as RIGHT button;
                             width:tsId>0 ? 0: 30;
                             height:tsId> 0 ? 0 : parent.height;
                             visible: tsId>0? false:true;
-                            anchors.right:parent.right;
+//                            anchors.right:parent.right;
+                            anchors.left:parent.left;
+                            anchors.leftMargin: 35;
                             color:"transparent";
                             Image
                             {
+                                width:24;
+                                height:24;
                                 source: setIconRight;
                                 anchors.centerIn: parent;
                                 rotation: componentType==="alltasks" ? 180 : 0;//just in all tasks need to rotate icon
@@ -386,6 +421,8 @@ Item
                             color:"transparent";
                             Image
                             {
+                                width:24;
+                                height:24;
                                 source: tsId>0 ? tsCompeteDate==="0" ? Configs.icon_completeTasks : Configs.icon_uncompleteTasks : setIconLeft;
                                 anchors.centerIn: parent;
                             }
@@ -462,10 +499,12 @@ Item
 //                            width: componentType == "alltasks" ? 45:0;
 //                            height: componentType == "alltasks" ? parent.height: 0;
 //                            visible: componentType == "alltasks" ? true : false;
-                            anchors.right:completeButton.left;
+                            anchors.right:parent.right;
                             color:"transparent";
                             Image
                             {
+                                width:24;
+                                height:24;
                                 source: setIconDelete;
                                 anchors.centerIn: parent;
                             }
@@ -501,8 +540,10 @@ Item
                         QuicklySetupTaskStep
                         {
                             id:quicklyAddStep;
+                            anchors.fill:parent;
                             visible:false;
                             setTaskId: tId;
+                            setMaxLenght:80;
                             onCancelButtonClicked:
                             {
                                 priorityShower.visible=true;
@@ -585,6 +626,7 @@ Item
                             console.log("source : showTasks.qml -> "+ componentType + ".qml  -> response is ok query submitted as QuickTask.");
                             taskTitle.clear();
                             reloadAllTasks();
+                            //here later add a timer for a sec to load fine and fix the undeinfed tsTitle, tsId, ...
                         }
                     }
                 }
@@ -612,6 +654,8 @@ Item
             }
             Image
             {
+                width:24;
+                height:24;
                 anchors.centerIn: parent
                 source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_add;
             }

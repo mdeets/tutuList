@@ -48,6 +48,11 @@ const font_size_title = 20;
 const font_size_text = 12; //also used for TextInputs
 const font_size_task = 15;
 const font_size_stepTask = 10;
+const font_size_task_description = 10;
+const font_size_stepTask_description = 10;
+
+
+const defaultValueForContentHeight = 18; //this is for ContentHeight to count how much lines a text has. this number depend on the font of that text.
 
 //theme colors
 const color_background = "#F5F8FA";
@@ -70,7 +75,7 @@ const color_unknown = "white"; //ithink didnt used yet
 
 const colorList_for_task_priority =
 [
-    "#90e0ef", //unknown - not prioritized - default value for quickly task creation
+    color_bg_indicator, //unknown - not prioritized - default value for quickly task creation
     "#E42926",
     "#FFAB25",
     "#FFFF29",
@@ -86,19 +91,19 @@ const icon_bottomMenu_allTasks = pathToIcon+ iconSize.Medium +"allTask.png";//(i
 const icon_bottomMenu_todayTasks = pathToIcon+ iconSize.Medium +"todayTask.png";
 const icon_bottomMenu_completedTasks = pathToIcon+ iconSize.Medium +"completedTask.png";
 
-const icon_back = pathToIcon+ iconSize.Small +"back.png"; //icon back, setupTask https://icons8.com/icon/set/arrows/ios-filled
-const icon_search_colored= pathToIcon+ iconSize.Small +"search-colored.png";
-const icon_search = pathToIcon+ iconSize.Small +"search.png";//icon search button https://icons8.com/icon/set/free-icons/ios-filled
-const icon_completeTasks = pathToIcon+ iconSize.Small +"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
-const icon_uncompleteTasks = pathToIcon+ iconSize.Small +"checkedTask.png";
-const icon_addTodayTask = pathToIcon+ iconSize.Small +"todayTask.png"; //https://icons8.com/icon/set/user-interface/wired
-const icon_removeTodayTask = pathToIcon+ iconSize.Small +"removeTask.png"; //https://icons8.com/icon/set/user-interface/wired
+const icon_back = pathToIcon+ iconSize.Medium +"back.png"; //icon back, setupTask https://icons8.com/icon/set/arrows/ios-filled
+//const icon_search_colored= pathToIcon+ iconSize.Small +"search-colored.png";
+const icon_search = pathToIcon+ iconSize.Medium +"search.png";//icon search button https://icons8.com/icon/set/free-icons/ios-filled
+const icon_completeTasks = pathToIcon+ iconSize.Medium +"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
+const icon_uncompleteTasks = pathToIcon+ iconSize.Medium +"checkedTask.png";
+const icon_addTodayTask = pathToIcon+ iconSize.Medium +"todayTask.png"; //https://icons8.com/icon/set/user-interface/wired
+const icon_removeTodayTask = pathToIcon+ iconSize.Medium +"removeTask.png"; //https://icons8.com/icon/set/user-interface/wired
 const icon_removeTasks = icon_removeTodayTask;//pathToIcon+"24x24/"+"completedTasks.png"; //https://icons8.com/icon/set/user-interface/wired
-const icon_addTasks = pathToIcon+ iconSize.Small +"emptyList.png"; //to form
-const icon_submitTasks = pathToIcon+ iconSize.Small +"submitQuickTask.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
-const icon_backward = pathToIcon + iconSize.Small +"backward.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
-const icon_cancel = pathToIcon+ iconSize.Small +"cancel.png";
-const icon_add = pathToIcon+ iconSize.Small +"add.png";
+const icon_addTasks = pathToIcon+ iconSize.Medium +"emptyList.png"; //to form
+const icon_submitTasks = pathToIcon+ iconSize.Medium +"submitQuickTask.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
+const icon_backward = pathToIcon + iconSize.Medium +"backward.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
+const icon_cancel = pathToIcon+ iconSize.Medium +"cancel.png";
+const icon_add = pathToIcon+ iconSize.Medium +"add.png";
 
 
 /*
