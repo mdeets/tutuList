@@ -68,6 +68,16 @@ const color_input_text = "black";
 
 const color_unknown = "white"; //ithink didnt used yet
 
+const colorList_for_task_priority =
+[
+    "#90e0ef", //unknown - not prioritized - default value for quickly task creation
+    "#E42926",
+    "#FFAB25",
+    "#FFFF29",
+    "#31E929",
+    "#33A0FD",
+    "#C632FF"
+];
 
 // ICONS
 const icon_menubar = pathToIcon+ iconSize.Larg +"menubar.png";//menubar icon https://icons8.com/icons/authors/klDPcgJ2LxJD/febrian-hidayat/external-febrian-hidayat-basic-outline-febrian-hidayat/external-ui-essential-febrian-hidayat-basic-outline-febrian-hidayat
@@ -117,6 +127,7 @@ const icon_add = pathToIcon+ iconSize.Small +"add.png";
 https://cdn.dribbble.com/users/1234247/screenshots/10591656/media/c266bf38b220327fd4165b3ab9d810a9.png
 bg color
 
+https://colorffy.com/color-scheme-generator
 
 
 //action icons https://icons8.com/icon/105072/clipboard

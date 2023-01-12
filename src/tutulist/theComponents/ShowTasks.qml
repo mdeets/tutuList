@@ -20,7 +20,7 @@ Item
     property string componentType : "alltasks"; //values are  alltasks,todaytasks,completedtasks.
     property bool searchAllowed : true;
     property bool addNewTaskAllowed: true;
-    property string setIconRight : Configs.icon_addTodayTask;
+    property string setIconRight : Configs.icon_back//Configs.icon_addTodayTask;
     property string setIconLeft: Configs.icon_completeTasks;
     property string setIconDelete: Configs.icon_removeTasks;
     signal buttonRightClicked(int tId, int tsId, string tsCompeteDate);
@@ -155,7 +155,7 @@ Item
             {
                 fill:parent;
                 topMargin:5;
-                bottomMargin:100; //to fix unacceable listView items, whos filled or blocked with bottom indicator and add-quickly-new-task boxes
+                bottomMargin: addNewTaskAllowed ? 100:55; //to fix unacceable listView items, whos filled or blocked with bottom indicator and add-quickly-new-task boxes
             }
 
 
@@ -290,7 +290,7 @@ Item
                             id:priorityShower;
                             width: tsId > 0 ? 0 : 5;
                             height: tsId > 0 ? 0 : parent.height;
-                            color: tPriority <= 7 ? "red" : tPriority <= 14 ? "orange": tPriority > 21 ? "green": "black";
+                            color: tPriority>6? Configs.colorList_for_task_priority[0] : Configs.colorList_for_task_priority[tPriority]
                             radius:parent.radius;
                         }
 
@@ -338,7 +338,7 @@ Item
                         Rectangle
                         {
                             id:todayButton; //the component set is known this as RIGHT button;
-                            width:tsId>0 ? 0: 45;
+                            width:tsId>0 ? 0: 30;
                             height:tsId> 0 ? 0 : parent.height;
                             visible: tsId>0? false:true;
                             anchors.right:parent.right;
@@ -347,6 +347,7 @@ Item
                             {
                                 source: setIconRight;
                                 anchors.centerIn: parent;
+                                rotation: componentType==="alltasks" ? 180 : 0;//just in all tasks need to rotate icon
                             }
 
                             MouseArea
@@ -379,7 +380,7 @@ Item
                         Rectangle
                         {
                             id:completeButton; //the component set is known this as LEFT button;
-                            width:45;
+                            width:30;
                             height:parent.height;
                             anchors.right:todayButton.left;
                             color:"transparent";
@@ -455,7 +456,7 @@ Item
                         Rectangle
                         {
                             id:removeButton; //the component seter is setIconDelete and by default is visible.
-                            width: setIconDelete ==""? 0 :45;
+                            width: setIconDelete ==""? 0 :30;
                             height: setIconDelete ==""? 0 :parent.height;
                             visible: setIconDelete ==""? false : true;
 //                            width: componentType == "alltasks" ? 45:0;
