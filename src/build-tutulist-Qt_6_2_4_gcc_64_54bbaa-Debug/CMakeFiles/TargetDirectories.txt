@@ -1,9 +1,0 @@
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/tutulist.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/edit_cache.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/rebuild_cache.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/list_install_components.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/install.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/install/local.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/install/strip.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/tutulist_autogen_timestamp_deps.dir
-/home/mrx/Documents/tutu-list/src/build-tutulist-Qt_6_2_4_gcc_64_54bbaa-Debug/CMakeFiles/tutulist_autogen.dir
