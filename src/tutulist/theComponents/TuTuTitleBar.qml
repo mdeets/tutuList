@@ -65,7 +65,6 @@ Item
 
         text:todayDate();
         color:Configs.color_font_title;
-//        font.bold: true;
         font.pointSize: Configs.font_size_title;
         anchors
         {

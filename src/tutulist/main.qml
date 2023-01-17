@@ -43,7 +43,7 @@ Window
 
     }
 
-    onClosing: function()
+    onClosing:
     {
         console.log("source : main.qml -> user is trying to close app, mainStackView Dep = "+ mainStackView.depth);
         if(mainStackView.depth===1)
@@ -56,6 +56,7 @@ Window
             mainStackView.pop();
             close.accepted = false;
         }
+
     }
 
 
@@ -70,12 +71,8 @@ Window
             anchors.fill:parent; onClicked:
             {
                 console.log("source : main.qml -> on root clicked");
-//                if(mainStackView.depth===1)
-//                {
-//                    mainStackView.push("./theForms/setupTask.qml");
-//                }
-
-            }}
+            }
+        }
 
         TuTuTitleBar
         {
@@ -92,7 +89,6 @@ Window
             anchors
             {
                 top: tutu_titleBar.bottom;
-//                bottom: tutu_bottonMenu.top;
                 bottom:parent.bottom;
                 left:parent.left;
                 right:parent.right;
@@ -167,13 +163,6 @@ Window
         {
             id:mainStackView;
             visible:mainStackView.depth>1;
-            onVisibleChanged:
-            {
-                if(visible)
-                    tutu_bottonMenu.hide();
-                else
-                    tutu_bottonMenu.show();
-            }
 
             initialItem: "./thePages/LoadingPage.qml";
             anchors.fill:parent;
@@ -183,6 +172,7 @@ Window
         TutuIndicator
         {
             id:tutu_bottonMenu;
+            visible:!mainStackView.visible
             anchors
             {
                 bottom:parent.bottom;

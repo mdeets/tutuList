@@ -10,11 +10,8 @@ Item
     property string textConfirmButton: "Yes";
     property string textCancelButton: "Cancel";
     anchors.fill: parent
-//    anchors.horizontalCenter: parent.horizontalCenter;
-//    anchors.verticalCenter: parent.verticalCenter;
     Rectangle
     {
-//        anchors.fill:parent;
         color:Configs.color_background;
         width:parent.width/1.25;
         height:200;

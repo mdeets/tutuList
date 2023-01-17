@@ -11,8 +11,6 @@ Page
     property string get_entered_value : "";
     property string setLabel : "Default label:";
     property string setPlaceHolderInput: "Enter the " + setLabel;
-//    anchors.fill: parent;
-//    height:40;
 
     //task modify details:
     property int idValue:0;
@@ -82,7 +80,6 @@ Page
                 width:24;
                 height:24;
                 color:"transparent";
-    //            border.color: Configs.color_bg_indicator;
                 radius:100;
                 anchors
                 {
@@ -134,100 +131,90 @@ Page
             ListView
             {
                 anchors.fill:parent;
-                Column
+
+                GetAField_Form_with_Title_and_InputText
                 {
-                    anchors.fill: parent;
-                    width:parent.width;
-                    height:parent.height;
-                    spacing:50
+                    id:taskTitle;
+                    //                        anchors.top:parent.top;
+                    setLabel: "Title:";
+                    setPlaceHolderInput: "enter the for title";
+                    defaultValue: titleValue;
+                }
+                GetAField_Form_with_Title_and_InputText
+                {
+                    id:taskDescription
+                    anchors.top:taskTitle.bottom;
+                    setLabel: "Description:";
+                    setPlaceHolderInput: "enter the for description";
+                    setHeight:100;
+                    defaultValue: descriptionValue;
+                }
 
-                    GetAField_Form_with_Title_and_InputText
-                    {
-                        id:taskTitle;
-//                        anchors.top:parent.top;
-                        setLabel: "Title:";
-                        setPlaceHolderInput: "enter the for title";
-                        defaultValue: titleValue;
-                    }
-                    GetAField_Form_with_Title_and_InputText
-                    {
-                        id:taskDescription
-                        anchors.top:taskTitle.bottom;
-                        setLabel: "Description:";
-                        setPlaceHolderInput: "enter the for description";
-                        setHeight:100;
-                        defaultValue: descriptionValue;
-                    }
-
-                    GetAField_Form_with_Title_and_InputText
-                    {
-                        id:taskPriority;
-                        anchors.top:taskDescription.bottom;
-                        setLabel: "Priority:";
-                        setPlaceHolderInput: "enter the for priority";
-                        defaultValue: priorityValue;
-                    }
-                    GetAField_Form_with_Title_and_InputText
-                    {
-                        id:taskDeadline
-                        anchors.top:taskPriority.bottom;
-                        setLabel: "Deadline:";
-                        setPlaceHolderInput: "enter the for deadline";
-                        defaultValue: deadlineValue;
-                    }
-                    GetAField_Form_with_Title_and_InputText
-                    {
-                        id:taskTimetoperform
-                        anchors.top:taskDeadline.bottom;
-                        setLabel: "Time To Perform:";
-                        setPlaceHolderInput: "enter the for time to perform";
-                        defaultValue: timeToPerformValue;
-                    }
+                GetAField_Form_with_Title_and_InputText
+                {
+                    id:taskPriority;
+                    anchors.top:taskDescription.bottom;
+                    setLabel: "Priority:";
+                    setPlaceHolderInput: "enter the for priority";
+                    defaultValue: priorityValue;
+                }
+                GetAField_Form_with_Title_and_InputText
+                {
+                    id:taskDeadline
+                    anchors.top:taskPriority.bottom;
+                    setLabel: "Deadline:";
+                    setPlaceHolderInput: "enter the for deadline";
+                    defaultValue: deadlineValue;
+                }
+                GetAField_Form_with_Title_and_InputText
+                {
+                    id:taskTimetoperform
+                    anchors.top:taskDeadline.bottom;
+                    setLabel: "Time To Perform:";
+                    setPlaceHolderInput: "enter the for time to perform";
+                    defaultValue: timeToPerformValue;
+                }
 
 
-                    Rectangle
+                Rectangle
+                {
+                    width:parent.width/1.25;
+                    height:40;
+                    color:"transparent"
+                    anchors
                     {
-                        width:parent.width/1.25;
-                        height:40;
-                        color:"transparent"
-                        anchors
+                        top:taskTimetoperform.bottom;
+                        horizontalCenter:parent.horizontalCenter;
+                    }
+                    clip:true;
+                    TutuButton
+                    {
+                        setRightButtonText:"Modify";
+                        setRightButtonBackColor: Configs.color_button_background;
+                        setRightButtonFontColor: Configs.color_button_text;
+                        setRightButtonBorderColor: "transparent";
+
+                        setLeftButtonText: "Cancel";
+                        setLeftButtonBackColor: Configs.color_button_background_cancel;
+                        setLeftButtonFontColor: Configs.color_button_text//Configs.color_button_text_cancel;
+                        setLeftButtonBorderColor: "transparent";
+
+                        onLeftButtonClicked:
                         {
-                            top:taskTimetoperform.bottom;
-                            horizontalCenter:parent.horizontalCenter;
+                            console.log("source : modifytask.qml -> cancel button clicked");
+                            quitFromModifyTaskForm();
                         }
-                        clip:true;
-                        TutuButton
+                        onRightButtonClicked:
                         {
-                            setRightButtonText:"Modify";
-                            setRightButtonBackColor: Configs.color_button_background;
-                            setRightButtonFontColor: Configs.color_button_text;
-                            setRightButtonBorderColor: "transparent";
-
-                            setLeftButtonText: "Cancel";
-                            setLeftButtonBackColor: Configs.color_button_background_cancel;
-                            setLeftButtonFontColor: Configs.color_button_text//Configs.color_button_text_cancel;
-                            setLeftButtonBorderColor: "transparent";
-
-                            onLeftButtonClicked:
-                            {
-                                console.log("source : modifytask.qml -> cancel button clicked");
-                                quitFromModifyTaskForm();
-                            }
-                            onRightButtonClicked:
-                            {
-                                console.log("source : modifytask.qml -> save button clicked");
-                                saveTheModifiedTaskForm();
-                            }
+                            console.log("source : modifytask.qml -> save button clicked");
+                            saveTheModifiedTaskForm();
                         }
                     }
-
                 }
 
             }
+
         }
     }
-
-
-
 }
 

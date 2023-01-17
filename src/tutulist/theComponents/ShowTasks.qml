@@ -59,7 +59,6 @@ Item
     signal reloadAllTasks;
     onReloadAllTasks:
     {
-//        console.log("source: showTasks.qml -> "+ componentType + ".qml  -> signal reloadAllTasks -> result Alltasks.getlist() -> " +AllTasks.getList());
         console.log("source : showTasks.qml -> "+ componentType + ".qml  -> signal reloadAllTasks called.");
         listModelMain.clear();
 
@@ -378,7 +377,6 @@ Item
                             clip:true;
                             anchors
                             {
-//                                verticalCenter:parent.verticalCenter;
                                 left:parent.left;
                                 leftMargin: tsId > 0 ? 40 : 70;
                                 top:parent.top;
@@ -397,7 +395,6 @@ Item
                             anchors
                             {
                                 left:title.left;
-//                                leftMargin: tsId > 0 ? 30 : 70;
                                 top:title.bottom;
                             }
                         }
@@ -408,7 +405,6 @@ Item
                             width:tsId>0 ? 0: 30;
                             height:tsId> 0 ? 0 : parent.height;
                             visible: tsId>0? false:true;
-//                            anchors.right:parent.right;
                             anchors.left:parent.left;
                             anchors.leftMargin: 35;
                             color:"transparent";
@@ -532,9 +528,6 @@ Item
                             width: setIconDelete ==""? 0 :30;
                             height: setIconDelete ==""? 0 :parent.height;
                             visible: setIconDelete ==""? false : true;
-//                            width: componentType == "alltasks" ? 45:0;
-//                            height: componentType == "alltasks" ? parent.height: 0;
-//                            visible: componentType == "alltasks" ? true : false;
                             anchors.right:parent.right;
                             color:"transparent";
                             Image

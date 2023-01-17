@@ -36,7 +36,6 @@ Page
         }
     }
 
-//    anchors.fill:parent;
     Rectangle
     {
         id:local_root;
@@ -63,7 +62,6 @@ Page
                 width:24;
                 height:24;
                 color:"transparent";
-    //            border.color: Configs.color_bg_indicator;
                 radius:100;
                 anchors
                 {

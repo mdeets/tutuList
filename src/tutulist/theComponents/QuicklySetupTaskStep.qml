@@ -53,7 +53,6 @@ Item
         Row
         {
             anchors.fill:parent;
-//            TextField
             TextInput
             {
                 id:taskTitle;
@@ -76,7 +75,6 @@ Item
             Rectangle
             {
                 id:submitButton;
-//                anchors.right:parent.right;
                 color:"transparent";
                 width:40;
                 height:parent.height;

@@ -52,8 +52,6 @@ Item
                     visible: !inputText.text
                     topPadding: setHeight/3.50;
                     leftPadding: 28;
-
-//                    anchors.centerIn:parent;
                 }
             }
         }
