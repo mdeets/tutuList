@@ -48,8 +48,6 @@ Page
             anchors.fill: parent;
         }
 
-
-
         Rectangle
         {
             id:titleBar;

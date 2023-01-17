@@ -17,6 +17,7 @@ Item
         id:showTodayTasks
         componentType: "todaytasks";
         searchAllowed:true;
+        setPageTitle: "Working on";
         addNewTaskAllowed:false; // not works fine, just add task into alltAsks table not todayTasks.
         setIconDelete: ""; //this section dont need delete button right now.
         setIconLeft: Configs.icon_back;//Configs.icon_backward;

@@ -17,6 +17,7 @@ Item
 
     /* componenet setup starts */
     //this is a flag to enable or disable something in this component
+    property string setPageTitle: "";
     property string componentType : "alltasks"; //values are  alltasks,todaytasks,completedtasks.
     property bool searchAllowed : true;
     property bool addNewTaskAllowed: true;
@@ -161,11 +162,111 @@ Item
             clip:true;
             header: Item
             {
-                id:searchBar;
-                width: searchAllowed? parent.width/1.25: 0;
-                height: searchAllowed? 60 : 10;
+
+                width: parent.width/1.25;
+                height: searchAllowed? 100 : 30; //60 for searchbar + pagetitle 30
                 anchors.horizontalCenter:parent.horizontalCenter
-                visible:searchAllowed
+
+                Rectangle
+                {
+                    id:pagetitle;
+                    width:setPageTitle==""? 0 : parent.width;
+                    height:setPageTitle==""? 0 : 30;
+                    color:"transparent";
+                    anchors.horizontalCenter: parent.horizontalCenter;
+                    Text
+                    {
+                        id:pageTitleText;
+                        text:setPageTitle;
+                        anchors.centerIn: parent;
+                        font.pointSize: Configs.font_size_title/1.25
+                        color:Configs.color_font_title
+                    }
+                }
+
+                Rectangle
+                {
+                    id:searchBar;
+                    anchors.topMargin: 10;
+                    anchors.top:pagetitle.bottom;
+                    width:parent.width;
+                    height:50;
+                    color:"transparent";
+                    visible: searchAllowed;
+                    //search input;
+                    Rectangle
+                    {
+                        width: searchAllowed? parent.width:0;
+                        height: searchAllowed? parent.height : 0;
+                        anchors.verticalCenter: parent.verticalCenter;
+                        color:Configs.color_bg_text;
+                        border.color: Configs.color_bg_indicator;
+                        radius:10;
+                        clip:true;
+                        TextInput
+                        {
+                            id:searchWord;
+                            width:parent.width-baseButtonSearchNow.width;//to avoid filling background button with this textinput
+                            height:parent.height;
+                            color:Configs.color_font_text;
+                            font.pointSize: Configs.font_size_text;
+                            padding:15;
+                            topPadding: 28;
+                            maximumLength: 40;
+                            onEditingFinished:
+                            {
+                                doSearch();
+                            }
+                            onTextChanged:
+                            {
+                                if(text === "")
+                                    doSearch();
+                            }
+                        }
+                        Text
+                        {
+                            text: "Search task";
+                            color: "#aaa"
+                            visible: !searchWord.text
+                            anchors
+                            {
+                                verticalCenter: parent.verticalCenter;
+                                left:parent.left;
+                                leftMargin:15;
+                            }
+                        }
+                    }
+
+                    Rectangle
+                    {
+                        id:baseButtonSearchNow;
+                        width:24;
+                        height:24;
+                        color:"transparent";
+                        anchors
+                        {
+                            right:parent.right;
+                            rightMargin:5;
+                            verticalCenter: parent.verticalCenter;
+
+                        }
+                        Image
+                        {
+                            anchors.fill: parent;
+                            source: Configs.icon_search;//Configs.icon_search_colored;
+                        }
+                        MouseArea
+                        {
+                            anchors.fill: parent;
+                            onClicked:
+                            {
+                                doSearch();
+                            }
+                        }
+
+                    }
+                }
+
                 function doSearch()
                 {
                     if(componentType == "alltasks")
@@ -188,77 +289,7 @@ Item
                         searchTextChanged(searchWord.text);
                     }
                 }
-                //search input;
-                Rectangle
-                {
-                    width:parent.width;
-                    height:parent.height/1.5;
-                    anchors.verticalCenter: parent.verticalCenter;
-                    color:Configs.color_bg_text;
-                    border.color: Configs.color_bg_indicator;
-                    radius:10;
-                    clip:true;
-                    TextInput
-                    {
-                        id:searchWord;
-                        width:parent.width-baseButtonSearchNow.width;//to avoid filling background button with this textinput
-                        height:parent.height;
-                        color:Configs.color_font_text;
-                        font.pointSize: Configs.font_size_text;
-                        padding:15;
-                        topPadding: 28;
-                        maximumLength: 40;
-                        onEditingFinished:
-                        {
-                            doSearch();
-                        }
-                        onTextChanged:
-                        {
-                            if(text === "")
-                                doSearch();
-                        }
-                    }
-                    Text
-                    {
-                        text: "Search task";
-                        color: "#aaa"
-                        visible: !searchWord.text
-                        anchors
-                        {
-                            verticalCenter: parent.verticalCenter;
-                            left:parent.left;
-                            leftMargin:15;
-                        }
-                    }
-                }
-                Rectangle
-                {
-                    id:baseButtonSearchNow;
-                    width:24;
-                    height:width;
-                    color:"transparent";
-                    anchors
-                    {
-                        right:parent.right;
-                        rightMargin:5;
-                        verticalCenter: parent.verticalCenter;
 
-                    }
-                    Image
-                    {
-                        anchors.fill: parent;
-                        source: Configs.icon_search;//Configs.icon_search_colored;
-                    }
-                    MouseArea
-                    {
-                        anchors.fill: parent;
-                        onClicked:
-                        {
-                            doSearch();
-                        }
-                    }
-
-                }
             }
 
 

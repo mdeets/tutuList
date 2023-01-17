@@ -17,6 +17,7 @@ Item
         id:showCompletedTasks
         componentType: "completedtasks";
         searchAllowed:true;
+        setPageTitle: "Completed Tasks";
         addNewTaskAllowed:false;
         setIconDelete: ""; //this section dont need delete button right now.
         setIconLeft: Configs.icon_back;//Configs.icon_addTodayTask;

@@ -10,6 +10,7 @@ Item
     ShowTasks
     {
         id:showAllTasks;
+        setPageTitle:"All Tasks";
     }
     Connections //make connection with page showTasks.qml and the ShowAllTasks. then this will recive by main.qml
     {
