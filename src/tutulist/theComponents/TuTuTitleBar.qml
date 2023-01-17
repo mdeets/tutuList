@@ -34,7 +34,7 @@ Item
             anchors.fill: parent;
             onClicked:
             {
-                console.log("on menubar clicked");
+                console.log("source : TutuTitleBar.qml -> on menubar clicked");
                 buttonMainMenuClicked();
             }
         }
