@@ -1,7 +1,6 @@
 import QtQuick 2.15
 //import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
-
 //configs
 import "theScripts/config.js" as ConfigFile
 import "theComponents"
@@ -159,11 +158,11 @@ Window
 
 
         }
+
         StackView
         {
             id:mainStackView;
             visible:mainStackView.depth>1;
-
             initialItem: "./thePages/LoadingPage.qml";
             anchors.fill:parent;
         }
