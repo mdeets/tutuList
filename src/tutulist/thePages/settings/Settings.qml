@@ -3,11 +3,17 @@ import "../../theScripts/config.js" as Configs
 import QtQuick.Controls 2.15
 Page
 {
+    signal goToMain;
+    onGoToMain:
+    {
+        console.log("source: Settings.qml -> signal goBack called.)")
+    }
+
     Rectangle
     {
         id:local_root;
         anchors.fill:parent;
-        color:"#403E42";//Configs.color_background;
+        color:Configs.color_background;//"#403E42"
         MouseArea //to avoid click on items placed under this ppage.
         {
             anchors.fill:parent;
@@ -17,54 +23,63 @@ Page
             id:baseHeaderSettings;
             width:parent.width;
             height:50;
-            color:"black"
+            color:"transparent";
+
+            Rectangle
+            {
+                id:baseBackButton;
+                width:45;
+                height:45;
+                color:"transparent";
+                anchors
+                {
+                    left:parent.left;
+                    leftMargin:10;
+                    verticalCenter: parent.verticalCenter;
+                }
+
+                Image
+                {
+                    width:24; height:24;
+                    source:  Configs.icon_back;
+                    anchors.centerIn:parent;
+                }
+                MouseArea
+                {
+                    anchors.fill: parent;
+                    onClicked:
+                    {
+                        goToMain();
+                    }
+                }
+            }
+
             Text
             {
                 id:titleSetting;
                 text: "Settings";
-                color:"white";
-                font.pointSize: 20;
+                color:Configs.color_font_title;
+                font.pointSize: Configs.font_size_title;
                 anchors
                 {
                     verticalCenter:parent.verticalCenter
-                    left:parent.left;
-                    leftMargin:25;
+                    left:baseBackButton.right;
                 }
             }
-            Rectangle
+        Rectangle
+        {
+            width:45; height:45;
+            color:"red";
+            anchors.verticalCenter: parent.verticalCenter;
+            anchors.right:parent.right;
+            anchors.rightMargin:25;
+            Text
             {
-                id:baseChangeThemeRadioButton;
-                width:100;
-                height:24;
-                color:"red";
-                anchors
-                {
-                    right:parent.right;
-                    verticalCenter: parent.verticalCenter;
-                }
-                Image
-                {
-                    width:24;
-                    height:24;
-                    source: Configs.icon_backward;
-                    anchors
-                    {
-                        verticalCenter:parent.verticalCenter
-                    }
-                }
-                Image
-                {
-                    width:24;
-                    height:24;
-                    source: Configs.icon_back;
-                    anchors.right: parent.right;
-                    anchors
-                    {
-                        verticalCenter:parent.verticalCenter
-                    }
-                }
-
+                id:tempStatusTheme;
+                text:Configs.color_font_title
             }
+        }
+
         }
 
 

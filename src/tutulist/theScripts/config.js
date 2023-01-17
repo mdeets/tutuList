@@ -5,7 +5,7 @@
 const application_width = 720/2+10;
 const application_height = 1339/1.7;
 const application_title = "TuTu List";
-
+const application_theme = "light"; //light //dark
 
 //components setting
 const topTitleBar_height = 50;
@@ -21,26 +21,73 @@ const table_taskSteps = "tutu_taskSteps1";
 const table_settings = "tutu_settings1";
 
 
-//icons path
-const iconPackMode =
-{
-    Light: "lightMode/", //black colored icons
-    Dark: "darkMode/" //white colored icons
-};
+//icon section
+const iconPackMode = application_theme == "dark" ? "darkMode/" : "lightMode/";
 const iconSize =
 {
     Small: "24x24/",
     Medium: "50x50/",
     Larg: "100x100/"
 };
-const pathToIcon = "/theResources/"+ iconPackMode.Light;
+const pathToIcon = "/theResources/"+ iconPackMode;
 
 
-//indicator colors
-const color_bg_indicator ="#90e0ef";
-const color_bg_text = "white";
-const color_font_text = "black";
-const color_font_title = "black";
+
+//color section
+const colorPackMode = application_theme == "light" ?
+{
+    "background":"#F5F8FA",
+    "button_background":"#c0dcf7",
+    "button_text":"black",
+    "button_background_cancel":"#f9b1b1",
+    "task_background":"white",
+    "stepTask_background":"white",
+    "stepTask_text":"black",
+    "task_text":"black",
+    "input_background":"white",
+    "input_text":"black",
+    "input_placeholder":"#aaa",
+    "bg_indicator":"#90e0ef",
+    "font_text":"black",
+    "font_title":"black",
+    "priorty_unknown":"#90e0ef",
+    "priorty_1":"#E42926",
+    "priorty_2":"#FFAB25",
+    "priorty_3":"#FFFF29",
+    "priorty_4":"#31E929",
+    "priorty_5":"#33A0FD",
+    "priorty_6":"#C632FF",
+    "priorty_7":"#fc05b2",
+    "priorty_8":"#000000"
+}: application_theme == "dark" ?
+{
+    "background":"#2D2E33",
+    "button_background":"#9190F0",
+    "button_text":"black",
+    "button_background_cancel":"#f9b1b1",
+    "task_background":"#3D3C3F",//"#333339",
+    "stepTask_background":"#3D3C3F",
+    "stepTask_text":"white",
+    "task_text":"white",
+    "input_background":"#42454D",
+    "input_text":"white",
+    "input_placeholder":"#aaa",
+    "bg_indicator":"#9190F0",
+    "font_text":"white",
+    "font_title":"white",
+    "priorty_unknown":"#9190F0",
+    "priorty_1":"#E42926",
+    "priorty_2":"#FFAB25",
+    "priorty_3":"#FFFF29",
+    "priorty_4":"#31E929",
+    "priorty_5":"#33A0FD",
+    "priorty_6":"#C632FF",
+    "priorty_7":"#fc05b2",
+    "priorty_8":"#000000"
+}:
+{
+    //here place some code for custom theme colors
+}
 
 
 //font settings
@@ -55,46 +102,43 @@ const font_size_stepTask_description = 10;
 const defaultValueForContentHeight = 18; //this is for ContentHeight to count how much lines a text has. this number depend on the font of that text.
 
 //theme colors
-const color_background = "#F5F8FA";
-const color_button_background = "#c0dcf7"; //light cyan
-const color_button_text = "black";
-const color_button_text_cancel = "#AB193C";
-const color_button_background_cancel = "#f9b1b1";
-
-const color_task_background = "white";
-const color_task_text = color_button_text;
-
-const color_stepTask_background = "white";
-const color_stepTask_text = "black";
-
-const color_input_background = "white";
-const color_input_text = "black";
-
-
-const color_unknown = "white"; //ithink didnt used yet
-
+const color_bg_indicator = colorPackMode["bg_indicator"]//"#90e0ef";
+//const color_bg_text = colorPackMode["bg_text"]//"white"; //wants to remove.
+const color_font_text = colorPackMode["font_text"]//"black";
+const color_font_title = colorPackMode["font_title"]//"black";
+const color_background = colorPackMode["background"]//"#F5F8FA";
+const color_button_background = colorPackMode["button_background"]//"#c0dcf7"; //light cyan
+const color_button_text = colorPackMode["button_text"];//"black";
+//const color_button_text_cancel = colorPackMode["button_text_cancel"];//"#AB193C";
+const color_button_background_cancel = colorPackMode["button_background_cancel"];//"#f9b1b1";
+const color_task_background = colorPackMode["task_background"]//"white";
+const color_task_text =colorPackMode["task_text"]//color_button_text;
+const color_stepTask_background = colorPackMode["stepTask_background"]//"white";
+const color_stepTask_text = colorPackMode["stepTask_text"]//"black";
+const color_input_background = colorPackMode["input_background"]//"white";
+const color_input_text = colorPackMode["input_text"]//"black";
+const color_input_placeholder = colorPackMode["input_placeholder"];
 const colorList_for_task_priority =
 [
-    color_bg_indicator, //unknown - not prioritized - default value for quickly task creation
-    "#E42926",
-    "#FFAB25",
-    "#FFFF29",
-    "#31E929",
-    "#33A0FD",
-    "#C632FF",
-    "#fc05b2",
-    "#000000"
+    colorPackMode["priorty_unknown"], //unknown - not prioritized - default value for quickly task creation
+    colorPackMode["priorty_1"],//"#E42926",
+    colorPackMode["priorty_2"],//"#FFAB25",
+    colorPackMode["priorty_3"],//"#FFFF29",
+    colorPackMode["priorty_4"],//"#31E929",
+    colorPackMode["priorty_5"],//"#33A0FD",
+    colorPackMode["priorty_6"],//"#C632FF",
+    colorPackMode["priorty_7"],//"#fc05b2",
+    colorPackMode["priorty_8"]//"#000000"
 ];
+//const color_unknown = "white"; //ithink didnt used yet
+
 
 // ICONS
 const icon_menubar = pathToIcon+ iconSize.Larg +"menubar.png";//menubar icon https://icons8.com/icons/authors/klDPcgJ2LxJD/febrian-hidayat/external-febrian-hidayat-basic-outline-febrian-hidayat/external-ui-essential-febrian-hidayat-basic-outline-febrian-hidayat
-
 const icon_bottomMenu_allTasks = pathToIcon+ iconSize.Medium +"allTask.png";//(iconPackMode=="darkMode"? pathToIcon+"lightMode"+"50x50/"+"allTask.png": pathToIcon+"darkMode/"+"50x50/"+"allTask.png"); //there is another allTasks.png thats old
 const icon_bottomMenu_todayTasks = pathToIcon+ iconSize.Medium +"todayTask.png";
 const icon_bottomMenu_completedTasks = pathToIcon+ iconSize.Medium +"completedTask.png";
-
 const icon_back = pathToIcon+ iconSize.Medium +"back.png"; //icon back, setupTask https://icons8.com/icon/set/arrows/ios-filled
-//const icon_search_colored= pathToIcon+ iconSize.Small +"search-colored.png";
 const icon_search = pathToIcon+ iconSize.Medium +"search.png";//icon search button https://icons8.com/icon/set/free-icons/ios-filled
 const icon_completeTasks = pathToIcon+ iconSize.Medium +"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
 const icon_uncompleteTasks = pathToIcon+ iconSize.Medium +"checkedTask.png";
@@ -106,6 +150,7 @@ const icon_submitTasks = pathToIcon+ iconSize.Medium +"submitQuickTask.png"; //h
 const icon_backward = pathToIcon + iconSize.Medium +"backward.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
 const icon_cancel = pathToIcon+ iconSize.Medium +"cancel.png";
 const icon_add = pathToIcon+ iconSize.Medium +"add.png";
+//const icon_search_colored= pathToIcon+ iconSize.Small +"search-colored.png";
 
 
 /*

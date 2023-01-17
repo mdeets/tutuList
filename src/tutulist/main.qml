@@ -137,7 +137,10 @@ Window
                 }
 
             }
-            Connections //make connection with page setupTask.qml to quit after new task saved successfully.
+
+            //make connection with page setupTask.qml to quit after new task saved successfully.
+            //make connection with page settings.qml to quit from that page.
+            Connections
             {
                 id:connectionWithMainStackView;
                 ignoreUnknownSignals: true;
@@ -154,6 +157,11 @@ Window
                     mainStackView.pop();
                     pageAllTasksPleaseRefreshYourSelf();
                 }
+                function onGoToMain()
+                {
+                    console.log("source : main.qml -> signal goToMain recived from settings.qml");
+                    mainStackView.pop();
+                }
             }
 
 
@@ -166,6 +174,14 @@ Window
             initialItem: "./thePages/LoadingPage.qml";
             anchors.fill:parent;
         }
+
+//        StackView
+//        {
+//            id:mainStackView;
+//            visible:mainStackView.depth>1;
+//            initialItem: "./thePages/LoadingPage.qml";
+//            anchors.fill:parent;
+//        }
 
 
         TutuIndicator

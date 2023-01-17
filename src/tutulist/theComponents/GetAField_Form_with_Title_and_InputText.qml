@@ -27,7 +27,7 @@ Item
         {
             width:parent.width;
             height:setHeight;
-            color:Configs.color_bg_text;
+            color:Configs.color_input_background;
             radius:25;
             clip:true;
             border.color: Configs.color_bg_indicator;
@@ -35,7 +35,7 @@ Item
             {
                 id:inputText;
                 anchors.fill:parent;
-                color:Configs.color_font_text;
+                color:Configs.color_input_text;
                 font.pointSize: Configs.font_size_text;
                 text: defaultValue;
                 padding:28;
@@ -49,7 +49,7 @@ Item
                 Text
                 {
                     text: setPlaceHolderInput;
-                    color: "#aaa"
+                    color: Configs.color_input_placeholder
                     visible: !inputText.text
                     topPadding: setHeight/3.50;
                     leftPadding: 28;

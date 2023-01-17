@@ -199,7 +199,7 @@ Item
                         width: searchAllowed? parent.width:0;
                         height: searchAllowed? parent.height : 0;
                         anchors.verticalCenter: parent.verticalCenter;
-                        color:Configs.color_bg_text;
+                        color:Configs.color_input_background;
                         border.color: Configs.color_bg_indicator;
                         radius:10;
                         clip:true;
@@ -208,7 +208,7 @@ Item
                             id:searchWord;
                             width:parent.width-baseButtonSearchNow.width;//to avoid filling background button with this textinput
                             height:parent.height;
-                            color:Configs.color_font_text;
+                            color:Configs.color_input_text;
                             font.pointSize: Configs.font_size_text;
                             padding:15;
                             topPadding: 28;
@@ -226,7 +226,7 @@ Item
                         Text
                         {
                             text: "Search task";
-                            color: "#aaa"
+                            color: Configs.color_input_placeholder
                             visible: !searchWord.text
                             anchors
                             {
@@ -650,7 +650,7 @@ Item
         {
             id:taskTitleBase;
             anchors.fill: parent
-            color:Configs.color_bg_text;
+            color:Configs.color_input_background;
             border.color: Configs.color_bg_indicator;
             radius:10;
             TextInput
@@ -658,7 +658,7 @@ Item
                 id:taskTitle;
                 width:parent.width - (button.width-5);  //button.width-5 bc of button has transparent background and to avoid to dont fill the button background with textinput (when language changes into a right to left style some first charecter of text will be under that button.
                 height:parent.height;
-                color:Configs.color_font_text;
+                color:Configs.color_input_text;
                 font.pointSize: Configs.font_size_text;
                 padding:14;
                 maximumLength: 400; //after this length the wrapper will be bugged and i dont need more charecter right there.
@@ -695,7 +695,7 @@ Item
             Text
             {
                 text: "Add new task";
-                color: "#aaa";
+                color: Configs.color_input_placeholder
                 visible: !taskTitle.text;
                 padding: 14;
             }
