@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import "../theScripts/config.js" as Configs
+
 Item
 {
     property string get_entered_value : "";
