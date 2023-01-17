@@ -1,10 +1,14 @@
 import QtQuick 2.15
 import "../../theScripts/config.js" as Configs
 import "../../theScripts/settings.js" as Settings
+import "../../theScripts/databaseHeader.js" as DBC
+import "../../theComponents"
 import QtQuick.Controls 2.15
 Page
 {
     signal goToMain;
+    property int tempInterval:0;
+
     onGoToMain:
     {
         console.log("source: Settings.qml -> signal goBack called.)")
@@ -67,18 +71,30 @@ Page
                     left:baseBackButton.right;
                 }
             }
+
+
+
+
+
+
+            //dark / light starts
+
+
         Rectangle
         {
             width:45; height:45;
-            color:"red";
+            color:"transparent";
             anchors.verticalCenter: parent.verticalCenter;
             anchors.right:parent.right;
             anchors.rightMargin:25;
-            Text
+            AnimatedImage
             {
-                id:tempStatusTheme;
-                text:appColors.c_font_title
+                id:lightOrDark;
+                source: appIcons.animated_icon_sunMoon;
+                paused: false;
             }
+
+
             MouseArea
             {
                 anchors.fill:parent;
@@ -165,10 +181,135 @@ Page
             }
 
         }
+        //dark light finish
+
+
+
+
+
+
 
         }
 
 
+
+        Rectangle
+        {
+            id:baseContent;
+            anchors
+            {
+                top:baseHeaderSettings.bottom;
+                left:parent.left;
+                right:parent.right;
+                bottom:parent.bottom;
+            }
+            color:"white";
+            Column
+            {
+                anchors.fill: parent;
+                Rectangle
+                {
+                    id:manuallSection;
+                    width:parent.width;
+                    height: parent.height/5;
+                    color:appColors.c_background;
+
+
+                }
+                Rectangle
+                {
+                    id:apiSection;
+                    width:parent.width;
+                    height: parent.height/5;
+                    color:appColors.c_background;
+                    enabled: false;
+                    GetAField_Form_with_Title_and_InputText
+                    {
+                        opacity: 0.5;
+                        anchors.centerIn:parent;
+                        setLabel: "Enter API Address:";
+                        setPlaceHolderInput: "E.g : www.abc.com/directory/api";
+                        onGet_entered_valueChanged:
+                        {
+                            if(get_entered_value == "DELETE ALL LOCAL DATA")
+                            {
+                                console.log("source : settings.qml -> delete typed, tables removed, init tables.");
+                                DBC.deleteDatbaseTables();
+                                DBC.initDatabaseTables();
+                                goToMain();
+                            }
+                        }
+                    }
+
+                }
+                Rectangle
+                {
+                    id:deleteLocalData
+                    width:parent.width;
+                    height: parent.height/5;
+                    color:appColors.c_background;
+                    GetAField_Form_with_Title_and_InputText
+                    {
+                        anchors.centerIn:parent;
+                        setLabel: "To delete all local data type:\nDELETE ALL LOCAL DATA";
+                        setPlaceHolderInput: "type DELETE ALL LOCAL DATA to delete local data.";
+                        onGet_entered_valueChanged:
+                        {
+                            if(get_entered_value == "DELETE ALL LOCAL DATA")
+                            {
+                                console.log("source : settings.qml -> delete typed, tables removed, init tables.");
+                                DBC.deleteDatbaseTables();
+                                DBC.initDatabaseTables();
+                                goToMain();
+                            }
+                        }
+                    }
+                }
+                Rectangle
+                {
+                    id:something;
+                    width:parent.width;
+                    height: parent.height/5;
+                    color:appColors.c_background;
+                }
+                Rectangle
+                {
+                    id:aboutApp;
+                    width:parent.width;
+                    height: parent.height/5;
+                    color:appColors.c_background;
+                    Text
+                    {
+                        text:"Source Code (github.com)\n/iwantamouse/tutu-list";
+                        anchors.verticalCenter: parent.verticalCenter;
+                        anchors.left:parent.left;
+                        anchors.leftMargin:25;
+                        color:appColors.c_font_title;
+                        font.pointSize: 15;
+//                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    }
+                    Rectangle
+                    {
+                        id:baseiconBuiltWithQt
+                        width:150;
+                        height:parent.height;
+                        anchors.right: parent.right;
+                        anchors.verticalCenter: parent.verticalCenter
+                        color:"white";
+                        Image
+                        {
+                            source:appIcons.icon_built_with_qt;
+                            width:125;
+                            height:100;
+                            anchors.centerIn:parent;
+                        }
+
+                    }
+
+                }
+
+            }
+        }
 
     }
 

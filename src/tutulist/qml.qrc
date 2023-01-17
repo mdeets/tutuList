@@ -126,5 +126,9 @@
         <file>theComponents/TutuShowNotificationMessage.qml</file>
         <file>thePages/settings/Settings.qml</file>
         <file>theScripts/settings.js</file>
+        <file>theResources/animated-sunMoon.gif</file>
+        <file>theResources/moon.gif</file>
+        <file>theResources/sun.gif</file>
+        <file>theResources/built-with-qt.png</file>
     </qresource>
 </RCC>

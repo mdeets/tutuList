@@ -82,6 +82,13 @@ Window
         property string icon_backward: appIcons.i_path + appIcons.i_sizes[1] + "backward.png";
         property string icon_cancel: appIcons.i_path + appIcons.i_sizes[1] + "cancel.png";
         property string icon_add: appIcons.i_path + appIcons.i_sizes[1] + "add.png";
+//        property string animated_icon_checkTask : "/theResources/animated-checked.gif";
+        property string icon_built_with_qt: "/theResources/built-with-qt.png";
+
+        property string animated_icon_sunMoon : "/theResources/animated-sunMoon.gif";
+        property string animated_icon_sun : "/theResources/sun.gif";
+        property string animated_icon_moon : "/theResources/moon.gif";
+
 //        property string icon_search_colored: appIcons.i_path + appIcons.i_sizes[1] + "search-colored.png";
     }
 

@@ -27,3 +27,4 @@ ____________________________________
     https://dribbble.com/shots/17592730-Mental-Health-App for indicator idee.
     https://colorffy.com/color-scheme-generator
     https://coolors.co/palettes/trending
+    remove.bg
