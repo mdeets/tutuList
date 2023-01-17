@@ -28,7 +28,6 @@ Window
     {
         console.log("source : main.qml -> Application started successfully.");
 
-
         //check connection with database then init tables.
         const res_testDB = DBheader.testDatabaseConnection();//this table isnt include inside the function DBheader.deleteTables..() so it run even main tables are removed.
         if(res_testDB)

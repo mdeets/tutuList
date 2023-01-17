@@ -1,24 +1,38 @@
-
+.import "settings.js" as Settings
 
 
 //window setting
 const application_width = 720/2+10;
 const application_height = 1339/1.7;
 const application_title = "TuTu List";
-const application_theme = "light"; //light //dark
+var application_theme = "light"; //values are: light or dark
+
+
+//to get settings from database
+const rs_theme = Settings.get("theme");
+if(rs_theme !== "`error")
+{
+//    application_theme = rs_theme;
+    console.log("source: config.js -> success to get setting(theme).");
+}
+else
+{
+    console.log("source : config.js -> failed to get setting(theme)..\nWill try to add theme with default value light into settings.");
+    if(Settings.set("theme","light"))
+    {
+        console.log("source: config.js -> succss to insert setting theme with defualt value light.");
+    }
+    else
+    {
+        console.log("source: config.js -> failed to insert setting theme with defualt value light.");
+    }
+}
+
 
 //components setting
 const topTitleBar_height = 50;
 const bottomMenu_height = 50;
 
-
-
-//database table names
-const table_allTasks = "tutu_allTasks1";
-const table_completedTasks = "tutu_completedTasks4";
-const table_todayTasks = "tutu_todayTasks3";
-const table_taskSteps = "tutu_taskSteps1";
-const table_settings = "tutu_settings1";
 
 
 //icon section

@@ -125,5 +125,6 @@
         <file>theResources/lightMode/50x50/back.png</file>
         <file>theComponents/TutuShowNotificationMessage.qml</file>
         <file>thePages/settings/Settings.qml</file>
+        <file>theScripts/settings.js</file>
     </qresource>
 </RCC>

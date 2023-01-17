@@ -164,7 +164,7 @@ Item
             {
 
                 width: parent.width/1.25;
-                height: searchAllowed? 100 : 30; //60 for searchbar + pagetitle 30
+                height: searchAllowed? 110 : 30; //60 for searchbar + pagetitle 30+ 10space for bottom
                 anchors.horizontalCenter:parent.horizontalCenter
 
                 Rectangle
