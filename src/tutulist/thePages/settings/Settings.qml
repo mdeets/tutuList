@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import "../../theScripts/config.js" as Configs
+import "../../theScripts/settings.js" as Settings
 import QtQuick.Controls 2.15
 Page
 {
@@ -13,7 +14,7 @@ Page
     {
         id:local_root;
         anchors.fill:parent;
-        color:Configs.color_background;//"#403E42"
+        color:appColors.c_background;//"#403E42"
         MouseArea //to avoid click on items placed under this ppage.
         {
             anchors.fill:parent;
@@ -41,7 +42,7 @@ Page
                 Image
                 {
                     width:24; height:24;
-                    source:  Configs.icon_back;
+                    source:  appIcons.icon_back;
                     anchors.centerIn:parent;
                 }
                 MouseArea
@@ -58,7 +59,7 @@ Page
             {
                 id:titleSetting;
                 text: "Settings";
-                color:Configs.color_font_title;
+                color:appColors.c_font_title;
                 font.pointSize: Configs.font_size_title;
                 anchors
                 {
@@ -76,8 +77,93 @@ Page
             Text
             {
                 id:tempStatusTheme;
-                text:Configs.color_font_title
+                text:appColors.c_font_title
             }
+            MouseArea
+            {
+                anchors.fill:parent;
+                onClicked:
+                {
+                    console.log("source : settings.qml -> on change theme clicked.");
+                    if(appColors.c_theme === "light")
+                    {
+                        if(Settings.set("theme","dark"))
+                        {
+                            console.log("source: settings.qml -> theme updated.")
+                            appColors.c_theme = "dark";
+                            appColors.c_background = Configs.colorPackDark["background"];
+                            appColors.c_button_background = Configs.colorPackDark["button_background"];
+                            appColors.c_button_text = Configs.colorPackDark["button_text"];
+                            appColors.c_button_background_cancel = Configs.colorPackDark["button_background_cancel"];
+                            appColors.c_task_background = Configs.colorPackDark["task_background"];
+                            appColors.c_stepTask_background = Configs.colorPackDark["stepTask_background"];
+                            appColors.c_stepTask_text = Configs.colorPackDark["stepTask_text"];
+                            appColors.c_task_text = Configs.colorPackDark["task_text"];
+                            appColors.c_input_background = Configs.colorPackDark["input_background"];
+                            appColors.c_input_text = Configs.colorPackDark["input_text"];
+                            appColors.c_input_placeholder = Configs.colorPackDark["input_placeholder"];
+                            appColors.c_bg_indicator = Configs.colorPackDark["bg_indicator"];
+                            appColors.c_font_text = Configs.colorPackDark["font_text"];
+                            appColors.c_font_title = Configs.colorPackDark["font_title"];
+                            appColors.c_List_for_task_priority=
+                            [
+                                Configs.colorPackDark["priorty_unknown"],
+                                Configs.colorPackDark["priorty_1"],
+                                Configs.colorPackDark["priorty_2"],
+                                Configs.colorPackDark["priorty_3"],
+                                Configs.colorPackDark["priorty_4"],
+                                Configs.colorPackDark["priorty_5"],
+                                Configs.colorPackDark["priorty_6"],
+                                Configs.colorPackDark["priorty_7"],
+                                Configs.colorPackDark["priorty_8"]
+                            ];
+                        }
+                        else
+                        {
+                            console.log("source: settings.qml -> theme update failed.");
+                        }
+                    }
+                    else
+                    {
+                        if(Settings.set("theme","light"))
+                        {
+                            console.log("source: settings.qml -> theme updated.")
+                            appColors.c_theme = "light";
+                            appColors.c_background = Configs.colorPackLight["background"];
+                            appColors.c_button_background = Configs.colorPackLight["button_background"];
+                            appColors.c_button_text = Configs.colorPackLight["button_text"];
+                            appColors.c_button_background_cancel = Configs.colorPackLight["button_background_cancel"];
+                            appColors.c_task_background = Configs.colorPackLight["task_background"];
+                            appColors.c_stepTask_background = Configs.colorPackLight["stepTask_background"];
+                            appColors.c_stepTask_text = Configs.colorPackLight["stepTask_text"];
+                            appColors.c_task_text = Configs.colorPackLight["task_text"];
+                            appColors.c_input_background = Configs.colorPackLight["input_background"];
+                            appColors.c_input_text = Configs.colorPackLight["input_text"];
+                            appColors.c_input_placeholder = Configs.colorPackLight["input_placeholder"];
+                            appColors.c_bg_indicator = Configs.colorPackLight["bg_indicator"];
+                            appColors.c_font_text = Configs.colorPackLight["font_text"];
+                            appColors.c_font_title = Configs.colorPackLight["font_title"];
+                            appColors.c_List_for_task_priority=
+                            [
+                                Configs.colorPackLight["priorty_unknown"],
+                                Configs.colorPackLight["priorty_1"],
+                                Configs.colorPackLight["priorty_2"],
+                                Configs.colorPackLight["priorty_3"],
+                                Configs.colorPackLight["priorty_4"],
+                                Configs.colorPackLight["priorty_5"],
+                                Configs.colorPackLight["priorty_6"],
+                                Configs.colorPackLight["priorty_7"],
+                                Configs.colorPackLight["priorty_8"]
+                            ];
+                        }
+                        else
+                        {
+                            console.log("source: settings.qml -> theme update failed.");
+                        }
+                    }
+                }
+            }
+
         }
 
         }

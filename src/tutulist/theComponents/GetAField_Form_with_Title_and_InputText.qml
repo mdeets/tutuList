@@ -20,22 +20,22 @@ Item
         {
             id:lableText;
             text: setLabel;
-            color:Configs.color_font_title;
+            color:appColors.c_font_title;
         }
 
         Rectangle
         {
             width:parent.width;
             height:setHeight;
-            color:Configs.color_input_background;
+            color:appColors.c_input_background;
             radius:25;
             clip:true;
-            border.color: Configs.color_bg_indicator;
+            border.color: appColors.c_bg_indicator;
             TextInput
             {
                 id:inputText;
                 anchors.fill:parent;
-                color:Configs.color_input_text;
+                color:appColors.c_input_text;
                 font.pointSize: Configs.font_size_text;
                 text: defaultValue;
                 padding:28;
@@ -49,7 +49,7 @@ Item
                 Text
                 {
                     text: setPlaceHolderInput;
-                    color: Configs.color_input_placeholder
+                    color: appColors.c_input_placeholder
                     visible: !inputText.text
                     topPadding: setHeight/3.50;
                     leftPadding: 28;

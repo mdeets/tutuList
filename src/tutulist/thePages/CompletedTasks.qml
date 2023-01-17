@@ -20,8 +20,8 @@ Item
         setPageTitle: "Completed Tasks";
         addNewTaskAllowed:false;
         setIconDelete: ""; //this section dont need delete button right now.
-        setIconLeft: Configs.icon_back;//Configs.icon_addTodayTask;
-        setIconRight: Configs.icon_uncompleteTasks;
+        setIconLeft: appIcons.icon_back;//appIcons.icon_addTodayTask;
+        setIconRight: appIcons.icon_uncompleteTasks;
         onSearchTextChanged:  function(text)
         {
             console.log("source : completedTasks.qml -> search allowed here. text="+text);

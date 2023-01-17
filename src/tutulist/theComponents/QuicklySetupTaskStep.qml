@@ -47,8 +47,8 @@ Item
     {
         id:addQuicklyBase;
         anchors.fill:parent;
-        color:Configs.color_input_background;
-        border.color: Configs.color_bg_indicator;
+        color:appColors.c_input_background;
+        border.color: appColors.c_bg_indicator;
         radius:15;
         Row
         {
@@ -56,7 +56,7 @@ Item
             TextInput
             {
                 id:taskTitle;
-                color:Configs.color_font_text;
+                color:appColors.c_font_text;
                 width:parent.width-40;// minus 40px for button
                 height:parent.height;
                 padding:14;
@@ -84,7 +84,7 @@ Item
                     height:24;
                     id:iconButton;
                     anchors.centerIn:parent;
-                    source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_cancel;
+                    source: taskTitle.length>0 ? appIcons.icon_submitTasks : appIcons.icon_cancel;
                 }
 
                 MouseArea

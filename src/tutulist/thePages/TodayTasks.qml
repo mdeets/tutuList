@@ -20,8 +20,8 @@ Item
         setPageTitle: "Working on";
         addNewTaskAllowed:false; // not works fine, just add task into alltAsks table not todayTasks.
         setIconDelete: ""; //this section dont need delete button right now.
-        setIconLeft: Configs.icon_back;//Configs.icon_backward;
-        setIconRight:Configs.icon_completeTasks;
+        setIconLeft: appIcons.icon_back;//appIcons.icon_backward;
+        setIconRight:appIcons.icon_completeTasks;
         onSearchTextChanged:  function(text)
         {
             console.log("source : todayTasks.qml -> search allowed here. text="+text);
@@ -39,7 +39,7 @@ Item
                 const res_removeTaskFromToday = TodayTasks.removeTaskFromToday(tId);
                 if(res_removeTaskFromToday)
                 {
-                    //                                            completeImage.source = Configs.icon_uncompleteTasks;
+                    //                                            completeImage.source = appIcons.icon_uncompleteTasks;
                     console.log("source : todayTasks.qml -> i confirm the task is removed from todaytask and added into completed tasks.");
                     reloadAllTasks();
                 }

@@ -11,7 +11,7 @@ Item
     {
         id:local_root;
         anchors.fill:parent;
-        color:Configs.color_background;
+        color:appColors.c_background;
     }
     Rectangle
     {
@@ -27,7 +27,7 @@ Item
         Image
         {
             anchors.fill: parent;
-            source: Configs.icon_menubar;
+            source: appIcons.icon_menubar;
         }
         MouseArea
         {
@@ -64,7 +64,7 @@ Item
         }
 
         text:todayDate();
-        color:Configs.color_font_title;
+        color:appColors.c_font_title;
         font.pointSize: Configs.font_size_text;
         anchors
         {

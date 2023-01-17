@@ -42,7 +42,7 @@ Page
         height:parent.height;
         width: parent.width;
         anchors.centerIn:parent;
-        color:Configs.color_background;
+        color:appColors.c_background;
         MouseArea
         {
             anchors.fill: parent;
@@ -53,7 +53,7 @@ Page
             id:titleBar;
             width:parent.width;
             height:60;
-            color:Configs.color_background;
+            color:appColors.c_background;
             Rectangle
             {
                 id:baseButtonBack;
@@ -70,7 +70,7 @@ Page
                 Image
                 {
                     anchors.fill: parent;
-                    source: Configs.icon_back;
+                    source: appIcons.icon_back;
                 }
                 MouseArea
                 {
@@ -92,7 +92,7 @@ Page
                 }
                 text:"New Task";
                 font.pointSize: Configs.font_size_title
-                color: Configs.color_font_title
+                color: appColors.c_font_title
 
             }
         }
@@ -107,7 +107,7 @@ Page
                 right:parent.right;
                 bottom:parent.bottom;
             }
-            color:Configs.color_background
+            color:appColors.c_background
 
             ListView
             {
@@ -166,13 +166,13 @@ Page
                     TutuButton
                     {
                         setRightButtonText:"Save";
-                        setRightButtonBackColor: Configs.color_button_background;
-                        setRightButtonFontColor: Configs.color_button_text;
+                        setRightButtonBackColor: appColors.c_button_background;
+                        setRightButtonFontColor: appColors.c_button_text;
                         setRightButtonBorderColor: "transparent";
 
                         setLeftButtonText: "Cancel";
-                        setLeftButtonBackColor: Configs.color_button_background_cancel;
-                        setLeftButtonFontColor: Configs.color_button_text//Configs.color_button_text_cancel;
+                        setLeftButtonBackColor: appColors.c_button_background_cancel;
+                        setLeftButtonFontColor: appColors.c_button_text//appColors.c_button_text_cancel;
                         setLeftButtonBorderColor: "transparent";
 
                         onLeftButtonClicked:

@@ -70,7 +70,7 @@ Item
         anchors.centerIn: parent;
         height:parent.height;
         radius:parent.width;
-        color:Configs.color_bg_indicator;
+        color:appColors.c_bg_indicator;
 
         MouseArea
         {
@@ -95,7 +95,7 @@ Item
                 anchors.centerIn:parent;
                 width:30;
                 height:30;
-                source: Configs.icon_bottomMenu_allTasks;
+                source: appIcons.icon_bottomMenu_allTasks;
             }
 
             MouseArea
@@ -121,7 +121,7 @@ Item
                 anchors.centerIn:parent;
                 width:30;
                 height:30;
-                source: Configs.icon_bottomMenu_todayTasks;
+                source: appIcons.icon_bottomMenu_todayTasks;
             }
             MouseArea
             {
@@ -151,7 +151,7 @@ Item
                 anchors.centerIn:parent;
                 width:30;
                 height:30;
-                source: Configs.icon_bottomMenu_completedTasks;
+                source: appIcons.icon_bottomMenu_completedTasks;
             }
             MouseArea
             {

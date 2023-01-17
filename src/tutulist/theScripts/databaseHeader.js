@@ -4,7 +4,7 @@
 
 function getDatabase()
 {
-     return Storage.LocalStorage.openDatabaseSync("tutuList_DataBase", "0.1", "tutuList database is localdatabse to save application data, later can sync these data into API for backup/sync with other devices", 100);
+     return Storage.LocalStorage.openDatabaseSync("tutuList_DataBase2", "0.1", "tutuList database is localdatabse to save application data, later can sync these data into API for backup/sync with other devices", 100);
 }
 
 //database table names
@@ -12,7 +12,7 @@ const table_allTasks = "tutu_allTasks1";
 const table_completedTasks = "tutu_completedTasks4";
 const table_todayTasks = "tutu_todayTasks3";
 const table_taskSteps = "tutu_taskSteps1";
-const table_settings = "tutu_settings1";
+const table_settings = "tutu_settings3";
 
 function getCurrentDateAndTime()
 {
@@ -192,6 +192,12 @@ function initDatabaseTables()
                 else
                     console.log("source : databaseHeader/initDatabaseTable() -> table tutu_settings failed to create.");
 
+                //settings default values:
+                tx.executeSql('INSERT OR REPLACE INTO '+table_settings+' VALUES (theme,light);');
+                tx.executeSql('INSERT OR REPLACE INTO '+table_settings+' VALUES (homePage,1);');
+                tx.executeSql('INSERT OR REPLACE INTO '+table_settings+' VALUES (appWidth,370);');
+                tx.executeSql('INSERT OR REPLACE INTO '+table_settings+' VALUES (appHeight,787);');
+//                if(result_set_default_to_settings.rowsAffected>0)
 
 
             }

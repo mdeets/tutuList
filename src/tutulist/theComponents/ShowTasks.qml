@@ -21,9 +21,9 @@ Item
     property string componentType : "alltasks"; //values are  alltasks,todaytasks,completedtasks.
     property bool searchAllowed : true;
     property bool addNewTaskAllowed: true;
-    property string setIconRight : Configs.icon_back//Configs.icon_addTodayTask;
-    property string setIconLeft: Configs.icon_completeTasks;
-    property string setIconDelete: Configs.icon_removeTasks;
+    property string setIconRight : appIcons.icon_back//appIcons.icon_addTodayTask;
+    property string setIconLeft: appIcons.icon_completeTasks;
+    property string setIconDelete: appIcons.icon_removeTasks;
     signal buttonRightClicked(int tId, int tsId, string tsCompeteDate);
     signal buttonLeftClicked(int tId, int tsId, string tsCompeteDate);
     signal searchTextChanged(string text);
@@ -146,7 +146,7 @@ Item
     {
         id:theListBase;
         anchors.fill:parent;
-        color:Configs.color_background;
+        color:appColors.c_background;//appColors.c_background;
 
         ListView
         {
@@ -180,7 +180,7 @@ Item
                         text:setPageTitle;
                         anchors.centerIn: parent;
                         font.pointSize: Configs.font_size_title/1.25
-                        color:Configs.color_font_title
+                        color:appColors.c_font_title
                     }
                 }
 
@@ -199,8 +199,8 @@ Item
                         width: searchAllowed? parent.width:0;
                         height: searchAllowed? parent.height : 0;
                         anchors.verticalCenter: parent.verticalCenter;
-                        color:Configs.color_input_background;
-                        border.color: Configs.color_bg_indicator;
+                        color:appColors.c_input_background;
+                        border.color: appColors.c_bg_indicator;
                         radius:10;
                         clip:true;
                         TextInput
@@ -208,7 +208,7 @@ Item
                             id:searchWord;
                             width:parent.width-baseButtonSearchNow.width;//to avoid filling background button with this textinput
                             height:parent.height;
-                            color:Configs.color_input_text;
+                            color:appColors.c_input_text;
                             font.pointSize: Configs.font_size_text;
                             padding:15;
                             topPadding: 28;
@@ -226,7 +226,7 @@ Item
                         Text
                         {
                             text: "Search task";
-                            color: Configs.color_input_placeholder
+                            color: appColors.c_input_placeholder
                             visible: !searchWord.text
                             anchors
                             {
@@ -253,7 +253,7 @@ Item
                         Image
                         {
                             anchors.fill: parent;
-                            source: Configs.icon_search;//Configs.icon_search_colored;
+                            source: appIcons.icon_search;//appIcons.icon_search_colored;
                         }
                         MouseArea
                         {
@@ -313,7 +313,7 @@ Item
                         id:itemmm2;
                         width: tsId > 0 ? parent.width/1.25 : parent.width/1.10;
                         height: tsId > 0 ? parent.height : 70; // 50 //tsId >0 means this is task Step. not a task
-                        color: tsId > 0 ? Configs.color_stepTask_background :Configs.color_task_background; //tsId >0 means this is task Step. not a task
+                        color: tsId > 0 ? appColors.c_stepTask_background :appColors.c_task_background; //tsId >0 means this is task Step. not a task
                         radius:tsId>0 ? 0:10;
                         anchors.horizontalCenter: parent.horizontalCenter;
                         anchors.top: parent.top;
@@ -324,12 +324,12 @@ Item
                             width: tsId > 0 ? 0 : parent.width;
                             height: tsId > 0 ? 0 : 2;
                             anchors.top: itemmm2.bottom;
-                            color: tPriority>8 || isNaN(tPriority) ? Configs.colorList_for_task_priority[0] : Configs.colorList_for_task_priority[tPriority]
+                            color: tPriority>8 || isNaN(tPriority) ? appColors.c_List_for_task_priority[0] : appColors.c_List_for_task_priority[tPriority]
                             radius:parent.radius;
 //                            Text
 //                            {
 //                                text: isNaN(tPriority) ? "?" : tPriority;
-//                                color:Configs.color_font_text;
+//                                color:appColors.c_font_text;
 //                                anchors
 //                                {
 //                                    bottom:parent.bottom;
@@ -402,7 +402,7 @@ Item
                         {
                             id:title;
                             text: tsId>0 ? tsTitle.length>parent.width/15? tsTitle.slice(0,parent.width/15)+".." : tsTitle : tTitle.length>parent.width/15 ? tTitle.slice(0,parent.width/15)+".." : tTitle
-                            color: tsId > 0 ? Configs.color_stepTask_text :Configs.color_task_text;
+                            color: tsId > 0 ? appColors.c_stepTask_text :appColors.c_task_text;
                             font.pointSize: tsId>0 ? Configs.font_size_stepTask : Configs.font_size_task;
                             width:parent.width/1.50;
                             clip:true;
@@ -418,7 +418,7 @@ Item
                         {
                             id:description;
                             text: tsId>0 ? "": tDesc.length>parent.width/15 ? tDesc.slice(0,parent.width/15)+".." : tDesc; //tsDesc.length>parent.width/15? tsDesc.slice(0,parent.width/15)+".." : tsDesc
-                            color: tsId > 0 ? Configs.color_stepTask_text :Configs.color_task_text;
+                            color: tsId > 0 ? appColors.c_stepTask_text :appColors.c_task_text;
                             font.pointSize: tsId>0 ? Configs.font_size_stepTask_description : Configs.font_size_task_description;
                             width:parent.width/1.50;
                             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -486,7 +486,7 @@ Item
                             {
                                 width:24;
                                 height:24;
-                                source: tsId>0 ? tsCompeteDate==="0" ? Configs.icon_completeTasks : Configs.icon_uncompleteTasks : setIconLeft;
+                                source: tsId>0 ? tsCompeteDate==="0" ? appIcons.icon_completeTasks : appIcons.icon_uncompleteTasks : setIconLeft;
                                 anchors.centerIn: parent;
                             }
 
@@ -650,15 +650,15 @@ Item
         {
             id:taskTitleBase;
             anchors.fill: parent
-            color:Configs.color_input_background;
-            border.color: Configs.color_bg_indicator;
+            color:appColors.c_input_background;
+            border.color: appColors.c_bg_indicator;
             radius:10;
             TextInput
             {
                 id:taskTitle;
                 width:parent.width - (button.width-5);  //button.width-5 bc of button has transparent background and to avoid to dont fill the button background with textinput (when language changes into a right to left style some first charecter of text will be under that button.
                 height:parent.height;
-                color:Configs.color_input_text;
+                color:appColors.c_input_text;
                 font.pointSize: Configs.font_size_text;
                 padding:14;
                 maximumLength: 400; //after this length the wrapper will be bugged and i dont need more charecter right there.
@@ -695,7 +695,7 @@ Item
             Text
             {
                 text: "Add new task";
-                color: Configs.color_input_placeholder
+                color: appColors.c_input_placeholder
                 visible: !taskTitle.text;
                 padding: 14;
             }
@@ -718,7 +718,7 @@ Item
                 width:24;
                 height:24;
                 anchors.centerIn: parent
-                source: taskTitle.length>0 ? Configs.icon_submitTasks : Configs.icon_add;
+                source: taskTitle.length>0 ? appIcons.icon_submitTasks : appIcons.icon_add;
             }
 
             MouseArea

@@ -1,4 +1,5 @@
 .import "databaseHeader.js" as DBC
+.import "config.js" as Configs
 
 function set(setting, value)//retrun 1 means inserted/updated fine. else error
 {
@@ -44,15 +45,15 @@ function get(setting)//return `error means error. else is the value of setting
        function(tx)
        {
          var rs = tx.executeSql('SELECT value FROM '+DBC.table_settings+' WHERE setting=?;', [setting]);
-         if (rs.rows.length > 0)
-         {
-              res = rs.rows.item(0).value;
-         }
+           var tableColumns = rs.rows.length;
+           for(var k=0; k<tableColumns; k++)
+           {
+               if (rs.rows.length > 0)
+                    res= rs.rows.item(k).value;
+               else
+                   res= "`error‍";
+           }
 
-         else
-         {
-             res = "`error‍";
-         }
        }
      )
    }
@@ -60,6 +61,7 @@ function get(setting)//return `error means error. else is the value of setting
    catch (error)
    {
        console.log("source : settings.js/get() -> error= "+error);
-       return "`error";
+       res= "`error";
    };
+   return res;
 }

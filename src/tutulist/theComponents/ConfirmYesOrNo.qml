@@ -12,7 +12,7 @@ Item
     anchors.fill: parent
     Rectangle
     {
-        color:Configs.color_background;
+        color:appColors.c_background;
         width:parent.width/1.25;
         height:200;
         anchors.centerIn:parent;
@@ -25,7 +25,7 @@ Item
             clip:true;
             Text
             {
-                color:Configs.color_font_text;
+                color:appColors.c_font_text;
                 font.bold: true;
                 padding:25;
                 font.pointSize: Configs.font_size_title/1.75;
@@ -55,13 +55,13 @@ Item
             TutuButton
             {
                 setRightButtonText:"Delete";
-                setRightButtonBackColor: Configs.color_bg_indicator//Configs.color_button_background;
-                setRightButtonFontColor: Configs.color_button_text;
+                setRightButtonBackColor: appColors.c_bg_indicator//appColors.c_button_background;
+                setRightButtonFontColor: appColors.c_button_text;
                 setRightButtonBorderColor: "transparent";
 
                 setLeftButtonText: "Cancel";
-                setLeftButtonBackColor: Configs.color_button_background_cancel;
-                setLeftButtonFontColor: Configs.color_button_text;
+                setLeftButtonBackColor: appColors.c_button_background_cancel;
+                setLeftButtonFontColor: appColors.c_button_text;
                 setLeftButtonBorderColor: "transparent";
 
                 onLeftButtonClicked:

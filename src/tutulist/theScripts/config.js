@@ -1,54 +1,29 @@
-.import "settings.js" as Settings
-
-
-//window setting
-const application_width = 720/2+10;
-const application_height = 1339/1.7;
+//default values window setting
+const application_width = 370  //  720/2+10;
+const application_height = 787 //  1339/1.7;
 const application_title = "TuTu List";
-var application_theme = "light"; //values are: light or dark
-
-
-//to get settings from database
-const rs_theme = Settings.get("theme");
-if(rs_theme !== "`error")
-{
-//    application_theme = rs_theme;
-    console.log("source: config.js -> success to get setting(theme).");
-}
-else
-{
-    console.log("source : config.js -> failed to get setting(theme)..\nWill try to add theme with default value light into settings.");
-    if(Settings.set("theme","light"))
-    {
-        console.log("source: config.js -> succss to insert setting theme with defualt value light.");
-    }
-    else
-    {
-        console.log("source: config.js -> failed to insert setting theme with defualt value light.");
-    }
-}
+const application_homePage = 1;
 
 
 //components setting
 const topTitleBar_height = 50;
 const bottomMenu_height = 50;
+const defaultValueForContentHeight = 18; //this is for ContentHeight to count how much lines a text has. this number depend on the font of that text.
 
 
+//font settings
+const font_size_title = 20;
+const font_size_text = 12; //also used for TextInputs
+const font_size_task = 15;
+const font_size_stepTask = 10;
+const font_size_task_description = 10;
+const font_size_stepTask_description = 10;
 
-//icon section
-const iconPackMode = application_theme == "dark" ? "darkMode/" : "lightMode/";
-const iconSize =
-{
-    Small: "24x24/",
-    Medium: "50x50/",
-    Larg: "100x100/"
-};
-const pathToIcon = "/theResources/"+ iconPackMode;
 
 
 
 //color section
-const colorPackMode = application_theme == "light" ?
+const colorPackLight =
 {
     "background":"#F5F8FA",
     "button_background":"#c0dcf7",
@@ -73,7 +48,8 @@ const colorPackMode = application_theme == "light" ?
     "priorty_6":"#C632FF",
     "priorty_7":"#fc05b2",
     "priorty_8":"#000000"
-}: application_theme == "dark" ?
+};
+const colorPackDark =
 {
     "background":"#2D2E33",
     "button_background":"#9190F0",
@@ -98,73 +74,7 @@ const colorPackMode = application_theme == "light" ?
     "priorty_6":"#C632FF",
     "priorty_7":"#fc05b2",
     "priorty_8":"#000000"
-}:
-{
-    //here place some code for custom theme colors
 }
-
-
-//font settings
-const font_size_title = 20;
-const font_size_text = 12; //also used for TextInputs
-const font_size_task = 15;
-const font_size_stepTask = 10;
-const font_size_task_description = 10;
-const font_size_stepTask_description = 10;
-
-
-const defaultValueForContentHeight = 18; //this is for ContentHeight to count how much lines a text has. this number depend on the font of that text.
-
-//theme colors
-const color_bg_indicator = colorPackMode["bg_indicator"]//"#90e0ef";
-//const color_bg_text = colorPackMode["bg_text"]//"white"; //wants to remove.
-const color_font_text = colorPackMode["font_text"]//"black";
-const color_font_title = colorPackMode["font_title"]//"black";
-const color_background = colorPackMode["background"]//"#F5F8FA";
-const color_button_background = colorPackMode["button_background"]//"#c0dcf7"; //light cyan
-const color_button_text = colorPackMode["button_text"];//"black";
-//const color_button_text_cancel = colorPackMode["button_text_cancel"];//"#AB193C";
-const color_button_background_cancel = colorPackMode["button_background_cancel"];//"#f9b1b1";
-const color_task_background = colorPackMode["task_background"]//"white";
-const color_task_text =colorPackMode["task_text"]//color_button_text;
-const color_stepTask_background = colorPackMode["stepTask_background"]//"white";
-const color_stepTask_text = colorPackMode["stepTask_text"]//"black";
-const color_input_background = colorPackMode["input_background"]//"white";
-const color_input_text = colorPackMode["input_text"]//"black";
-const color_input_placeholder = colorPackMode["input_placeholder"];
-const colorList_for_task_priority =
-[
-    colorPackMode["priorty_unknown"], //unknown - not prioritized - default value for quickly task creation
-    colorPackMode["priorty_1"],//"#E42926",
-    colorPackMode["priorty_2"],//"#FFAB25",
-    colorPackMode["priorty_3"],//"#FFFF29",
-    colorPackMode["priorty_4"],//"#31E929",
-    colorPackMode["priorty_5"],//"#33A0FD",
-    colorPackMode["priorty_6"],//"#C632FF",
-    colorPackMode["priorty_7"],//"#fc05b2",
-    colorPackMode["priorty_8"]//"#000000"
-];
-//const color_unknown = "white"; //ithink didnt used yet
-
-
-// ICONS
-const icon_menubar = pathToIcon+ iconSize.Larg +"menubar.png";//menubar icon https://icons8.com/icons/authors/klDPcgJ2LxJD/febrian-hidayat/external-febrian-hidayat-basic-outline-febrian-hidayat/external-ui-essential-febrian-hidayat-basic-outline-febrian-hidayat
-const icon_bottomMenu_allTasks = pathToIcon+ iconSize.Medium +"allTask.png";//(iconPackMode=="darkMode"? pathToIcon+"lightMode"+"50x50/"+"allTask.png": pathToIcon+"darkMode/"+"50x50/"+"allTask.png"); //there is another allTasks.png thats old
-const icon_bottomMenu_todayTasks = pathToIcon+ iconSize.Medium +"todayTask.png";
-const icon_bottomMenu_completedTasks = pathToIcon+ iconSize.Medium +"completedTask.png";
-const icon_back = pathToIcon+ iconSize.Medium +"back.png"; //icon back, setupTask https://icons8.com/icon/set/arrows/ios-filled
-const icon_search = pathToIcon+ iconSize.Medium +"search.png";//icon search button https://icons8.com/icon/set/free-icons/ios-filled
-const icon_completeTasks = pathToIcon+ iconSize.Medium +"uncheckedTask.png"; //https://icons8.com/icon/set/user-interface/wired\ . completeTask.png
-const icon_uncompleteTasks = pathToIcon+ iconSize.Medium +"checkedTask.png";
-const icon_addTodayTask = pathToIcon+ iconSize.Medium +"todayTask.png"; //https://icons8.com/icon/set/user-interface/wired
-const icon_removeTodayTask = pathToIcon+ iconSize.Medium +"removeTask.png"; //https://icons8.com/icon/set/user-interface/wired
-const icon_removeTasks = icon_removeTodayTask;//pathToIcon+"24x24/"+"completedTasks.png"; //https://icons8.com/icon/set/user-interface/wired
-const icon_addTasks = pathToIcon+ iconSize.Medium +"emptyList.png"; //to form
-const icon_submitTasks = pathToIcon+ iconSize.Medium +"submitQuickTask.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
-const icon_backward = pathToIcon + iconSize.Medium +"backward.png"; //https://icons8.com/icons/authors/v03BjHji0KTr/tanah-basah/external-tanah-basah-basic-outline-tanah-basah/external-arrows-pack-tanah-basah-basic-outline-tanah-basah
-const icon_cancel = pathToIcon+ iconSize.Medium +"cancel.png";
-const icon_add = pathToIcon+ iconSize.Medium +"add.png";
-//const icon_search_colored= pathToIcon+ iconSize.Small +"search-colored.png";
 
 
 /*
