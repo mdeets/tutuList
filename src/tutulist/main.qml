@@ -67,9 +67,9 @@ Window
         property string i_path: "/theResources/" + appColors.c_theme+"Mode/";
 
         property string icon_menubar: appIcons.i_path + appIcons.i_sizes[2] + "menubar.png";
-        property string icon_bottomMenu_allTasks: appIcons.i_path + appIcons.i_sizes[1] + "allTask.png";
-        property string icon_bottomMenu_todayTasks: appIcons.i_path + appIcons.i_sizes[1] + "todayTask.png";
-        property string icon_bottomMenu_completedTasks: appIcons.i_path + appIcons.i_sizes[1] + "completedTask.png";
+        property string icon_bottomMenu_allTasks: "/theResources/lightMode/"  + appIcons.i_sizes[1] + "allTask.png";
+        property string icon_bottomMenu_todayTasks: "/theResources/lightMode/"  + appIcons.i_sizes[1] + "todayTask.png";
+        property string icon_bottomMenu_completedTasks: "/theResources/lightMode/"  + appIcons.i_sizes[1] + "completedTask.png";
         property string icon_back: appIcons.i_path + appIcons.i_sizes[1] + "back.png";
         property string icon_search: appIcons.i_path + appIcons.i_sizes[1] + "search.png";
         property string icon_completeTasks: appIcons.i_path + appIcons.i_sizes[1] + "uncheckedTask.png";
