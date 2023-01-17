@@ -65,10 +65,12 @@ Item
 
         text:todayDate();
         color:Configs.color_font_title;
-        font.pointSize: Configs.font_size_title;
+        font.pointSize: Configs.font_size_title/1.25;
         anchors
         {
-            centerIn:parent;
+            verticalCenter:parent.verticalCenter;
+            right:parent.right
+            rightMargin:15;
         }
     }
 }
