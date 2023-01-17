@@ -4,14 +4,14 @@ import QtQuick 2.15
 import "../theComponents"
 import "../theScripts/alltasks.js" as AllTask
 import "../theScripts/config.js" as Configs
-
-Item
+import QtQuick.Controls 2.15
+Page
 {
     //form setup
     property string get_entered_value : "";
     property string setLabel : "Default label:";
     property string setPlaceHolderInput: "Enter the " + setLabel;
-    anchors.fill: parent;
+//    anchors.fill: parent;
 //    height:40;
 
     //task modify details:
@@ -136,7 +136,7 @@ Item
                 anchors.fill:parent;
                 Column
                 {
-//                    anchors.fill: parent;
+                    anchors.fill: parent;
                     width:parent.width;
                     height:parent.height;
                     spacing:50
@@ -144,7 +144,7 @@ Item
                     GetAField_Form_with_Title_and_InputText
                     {
                         id:taskTitle;
-                        anchors.top:parent.top;
+//                        anchors.top:parent.top;
                         setLabel: "Title:";
                         setPlaceHolderInput: "enter the for title";
                         defaultValue: titleValue;

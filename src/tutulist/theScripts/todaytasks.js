@@ -114,22 +114,12 @@ function getList(targetList,returnType="json",isSearching="searchOn",isSearchLik
                                                       [
                                                         "id",
                                                         10,
-                                                        "title",
-                                                        12,
-                                                        "description",
-                                                        "thi is the taskStep Description",
-                                                        "completeDate",
                                                         "10-2-2000 10:22:14"
                                                       ]
                                                       "child2":
                                                       [
                                                         "id",
                                                         11,
-                                                        "title",
-                                                        13,
-                                                        "description",
-                                                        "write the code",
-                                                        "completeDate",
                                                         "14-2-2000 10:11:11"
                                                       ]
                                                     }
@@ -142,11 +132,6 @@ function getList(targetList,returnType="json",isSearching="searchOn",isSearchLik
                                                       [
                                                         "id",
                                                         14,
-                                                        "title",
-                                                        12,
-                                                        "description",
-                                                        "thi is the taskStep Description",
-                                                        "completeDate",
                                                         "10-2-2000 10:22:14"
                                                       ]
                                                       "child2":

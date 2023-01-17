@@ -2,15 +2,11 @@ import QtQuick 2.15
 import "../theComponents/"
 import "../theScripts/alltasks.js" as SaveTask
 import "../theScripts/config.js" as Configs
-Item
+import QtQuick.Controls 2.15
+Page
 {
     Component.onCompleted:
     {
-//        taskTitle.text = "";
-        taskDescription.text = "";
-        taskPriority.text = "";
-        taskDeadline.text = "";
-        taskTimetoperform.text = "";
         console.log("source : setupTask.qml -> form loaded.");
     }
 
@@ -40,7 +36,7 @@ Item
         }
     }
 
-    anchors.fill:parent;
+//    anchors.fill:parent;
     Rectangle
     {
         id:local_root;

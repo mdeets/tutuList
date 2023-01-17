@@ -7,15 +7,7 @@ import "theScripts/config.js" as ConfigFile
 import "theComponents"
 import "theScripts/databaseHeader.js" as DBheader
 import "theScripts/alltasks.js" as AllTasksJs
-/*
-  update document MIRO.com
-    diagram database working on tasks -> today settings
-    settings database add.
-    function getList add new arguman.
-    add creation date for tasks.
-    update completed tasks , today tasks -> taskId is primary too
-    table complete, today -> remove id, make t_id primary
-  */
+
 Window
 {
 
@@ -51,7 +43,7 @@ Window
 
     }
 
-    onClosing:
+    onClosing: function()
     {
         console.log("source : main.qml -> user is trying to close app, mainStackView Dep = "+ mainStackView.depth);
         if(mainStackView.depth===1)
@@ -223,7 +215,4 @@ Window
             }
         }
     }
-
-
-
 }

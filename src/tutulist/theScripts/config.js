@@ -225,14 +225,6 @@ https://colorffy.com/color-scheme-generator
   https://dribbble.com/shots/17259558-Todoist-Material-Design-Award-Winner-2021
 
 
-
-  dashboard idee, form idee,
-  https://dribbble.com/shots/19923658-Task-list-mobile-app
-
-
-  login idee
-  https://dribbble.com/shots/14425035-Awayday-Travel-App-Daily-UI-Challenge-001-Sign-up-flow
-
   show notifications
   https://dribbble.com/shots/16891665-Daily-UI-011-Flash-Message
 

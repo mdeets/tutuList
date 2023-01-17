@@ -1,8 +1,8 @@
 import QtQuick 2.15
 import "../../theScripts/config.js" as Configs
-Item
+import QtQuick.Controls 2.15
+Page
 {
-    anchors.fill:parent;
     Rectangle
     {
         id:local_root;

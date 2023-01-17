@@ -80,64 +80,6 @@ Item
             }
         }
 
-
-//        Rectangle
-//        {
-//            id:baseConfirmButton;
-//            width:parent.width/2;
-//            height:25;
-//            color:"lime";
-//            anchors.right: baseLabel.right;
-//            anchors.top: baseLabel.bottom;
-//            Text
-//            {
-//                color:"white";
-//                anchors.centerIn:parent;
-//                font.bold: true;
-//                font.pointSize: 15
-//                text:textConfirmButton;
-//            }
-//            MouseArea
-//            {
-//                anchors.fill:parent;
-//                onClicked:
-//                {
-//                    response="confirmed";
-//                    console.log("source : ConfirmYesOrNo.qml -> button confirm pressed. ",response);
-//                }
-//            }
-//        }
-
-//        Rectangle
-//        {
-//            id:baseCancelButton;
-//            width:parent.width/2;
-//            height:25;
-//            color:"red";
-//            anchors.left: baseLabel.left;
-//            anchors.top: baseLabel.bottom;
-//            Text
-//            {
-//                color:"white";
-//                anchors.centerIn:parent;
-//                font.bold: true;
-//                font.pointSize: 15
-//                text:textCancelButton;
-//            }
-//            MouseArea
-//            {
-//                anchors.fill:parent;
-//                onClicked:
-//                {
-//                    response="canceled";
-//                    console.log("source : ConfirmYesOrNo.qml -> button cancel pressed. " ,response);
-//                }
-//            }
-//        }
-
-
-
-
     }
 
 }
