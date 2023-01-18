@@ -1,4 +1,7 @@
 # v0.7.0 previews picture and gif
+    > Settings page is ugly :(
+    > API section is under develop
+    > change theme icon is ugly
 
 <table>
 <tr>
