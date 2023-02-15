@@ -272,41 +272,6 @@ Page
                     height: parent.height/5;
                     color:appColors.c_background;
                 }
-                Rectangle
-                {
-                    id:aboutApp;
-                    width:parent.width;
-                    height: parent.height/5;
-                    color:appColors.c_background;
-                    Text
-                    {
-                        text:"Source Code (github.com)\n/iwantamouse/tutu-list";
-                        anchors.verticalCenter: parent.verticalCenter;
-                        anchors.left:parent.left;
-                        anchors.leftMargin:25;
-                        color:appColors.c_font_title;
-                        font.pointSize: 15;
-//                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    }
-                    Rectangle
-                    {
-                        id:baseiconBuiltWithQt
-                        width:150;
-                        height:parent.height;
-                        anchors.right: parent.right;
-                        anchors.verticalCenter: parent.verticalCenter
-                        color:"white";
-                        Image
-                        {
-                            source:appIcons.icon_built_with_qt;
-                            width:125;
-                            height:100;
-                            anchors.centerIn:parent;
-                        }
-
-                    }
-
-                }
 
             }
         }
