@@ -212,7 +212,15 @@ Window
             }
             else
                 console.log("source : main.qml -> safe exit -> failed to save window.Width or window.Height");
-            mainWindow.close();
+            if(drawer.position) //drawer is still open lets close it
+            {
+                drawer.close();
+                close.accepted = false;
+            }
+            else
+            {
+                mainWindow.close();
+            }
         }
         else
         {
@@ -237,12 +245,51 @@ Window
             }
         }
 
+        Drawer
+        {
+            id: drawer;
+            width: 0.66 * parent.width;
+            height: parent.height;
+            ListView
+            {
+                id: listView
+                focus: true
+                currentIndex: -1
+                anchors.fill: parent
+
+                delegate: ItemDelegate
+                {
+                    width: listView.width
+                    text: model.title
+                    highlighted: ListView.isCurrentItem
+                    onClicked: {
+                        listView.currentIndex = index
+                        mainStackView.push(model.source)
+                        drawer.close()
+                    }
+                }
+
+                model: ListModel
+                {
+                    ListElement { title: "Settings"; source: "qrc:/thePages/settings/Settings.qml" }
+                    ListElement { title: "About"; source: "qrc:/thePages/About.qml" }
+                }
+
+                ScrollIndicator.vertical: ScrollIndicator { }
+            }
+
+        }
+
+
+
+
         TuTuTitleBar
         {
             id:tutu_titleBar;
             onButtonMainMenuClicked:
             {
-                mainStackView.push("./thePages/settings/Settings.qml");
+                drawer.open();
+//                mainStackView.push("./thePages/settings/Settings.qml");
             }
         }
 

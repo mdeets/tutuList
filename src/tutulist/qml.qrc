@@ -130,5 +130,6 @@
         <file>theResources/moon.gif</file>
         <file>theResources/sun.gif</file>
         <file>theResources/built-with-qt.png</file>
+        <file>thePages/About.qml</file>
     </qresource>
 </RCC>
