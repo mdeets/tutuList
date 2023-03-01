@@ -248,7 +248,7 @@ Window
         Drawer
         {
             id: drawer;
-            width: 0.66 * parent.width;
+            width: parent.width/2// 0.66 * parent.width;
             height: parent.height;
             ListView
             {
@@ -271,8 +271,10 @@ Window
 
                 model: ListModel
                 {
+//                    ListElement { title: ""; source: "qrc:/thePages/About.qml" }
                     ListElement { title: "Settings"; source: "qrc:/thePages/settings/Settings.qml" }
                     ListElement { title: "About"; source: "qrc:/thePages/About.qml" }
+
                 }
 
                 ScrollIndicator.vertical: ScrollIndicator { }
@@ -303,8 +305,7 @@ Window
                 left:parent.left;
                 right:parent.right;
             }
-            color:"white";
-
+            color: appColors.c_background
 
 
             Loader
