@@ -3,6 +3,10 @@ import "../theComponents/"
 import "../theScripts/alltasks.js" as SaveTask
 import "../theScripts/config.js" as Configs
 import QtQuick.Controls 2.15
+
+
+import "../theComponents/calendar" as TutuCalender
+
 Page
 {
     Component.onCompleted:
@@ -35,6 +39,16 @@ Page
             console.log("source : setupTask.qml -> failur to add new task. error="+resultSave);
         }
     }
+
+
+    signal closeCalenderPicker;
+    onCloseCalenderPicker:
+    {
+        baseCalenderPicker.visible=false;
+        mainCalender.cleanDays(); //old numbers will keep inside this, so need to clean that for next or if user unselect and select app works fine next time.
+        //in this case we just need a single day date.
+    }
+
 
     Rectangle
     {
@@ -109,6 +123,7 @@ Page
             }
             color:appColors.c_background
 
+
             ListView
             {
                 anchors.fill:parent;
@@ -142,7 +157,41 @@ Page
                     anchors.top:taskPriority.bottom;
                     setLabel: "Deadline:";
                     setPlaceHolderInput: "enter the for deadline";
+
+
+                    //open/pick button Calender
+                    Rectangle
+                    {
+                        id:openCalenderButton;
+                        width:25
+                        height:25
+                        color:"transparent"
+                        Image
+                        {
+                            id: iconOpenCalender;
+                            source:appIcons.icon_calender;
+                            width:25;
+                            height:25;
+                        }
+                        anchors
+                        {
+                            verticalCenter: parent.verticalCenter
+                            right: parent.right
+                            rightMargin: parent.width/7
+                        }
+                        MouseArea
+                        {
+                            anchors.fill: parent;
+                            onClicked:
+                            {
+                                console.log("source : setuptask.qml -> open canledner");
+                                baseCalenderPicker.visible=true;
+                            }
+                        }
+                    }
+
                 }
+
                 GetAField_Form_with_Title_and_InputText
                 {
                     id:taskTimetoperform
@@ -177,7 +226,7 @@ Page
 
                         onLeftButtonClicked:
                         {
-                            console.log("source : modifytask.qml -> cancel button clicked");
+                            console.log("source : setupTask.qml -> cancel button clicked");
                             quitTheSetupTaskFrom();
                         }
                         onRightButtonClicked:
@@ -193,10 +242,111 @@ Page
             }
 
 
-
-
         }
 
+
+
+        //Clander Picker.
+        Rectangle
+        {
+            id:closeOpcityBox;
+            anchors.fill: parent;
+            color:"gray";
+            opacity: 0.5;
+            visible: baseCalenderPicker.visible
+            MouseArea
+            {
+                anchors.fill: parent;
+                onClicked:
+                {
+                    console.log("source : setuptask.qml -> background calender picker clicked. lets hide calender.");
+                    closeCalenderPicker();
+                }
+            }
+        }
+        Rectangle
+        {
+            id:baseCalenderPicker;
+            visible: false;
+            width:350
+            height:350;
+            color:"transparent"
+            anchors
+            {
+                centerIn:parent;
+            }
+            MouseArea  { anchors.fill: parent; } // to avoid hide when user clicked between day numbers.
+
+            TutuCalender.TheCalendar
+            {
+                id:mainCalender;
+            }
+        }
+        Rectangle
+        {
+            id:titleBarCalenderPicker;
+            width: baseCalenderPicker.width;
+            height:50;
+            radius:30;
+            color:appColors.c_input_background;
+            visible: baseCalenderPicker.visible
+            anchors
+            {
+                top:baseCalenderPicker.bottom;
+                topMargin: -27;
+                left:baseCalenderPicker.left;
+            }
+
+            Rectangle
+            {
+                width:parent.width/1.25;
+                height:40;
+                color:"transparent"
+                anchors
+                {
+                    horizontalCenter:parent.horizontalCenter;
+                }
+                clip:true;
+                TutuButton
+                {
+                    setRightButtonText:"Pick";
+                    setRightButtonBackColor: appColors.c_button_background;
+                    setRightButtonFontColor: appColors.c_button_text;
+                    setRightButtonBorderColor: "transparent";
+
+                    setLeftButtonText: "Back";
+                    setLeftButtonBackColor: appColors.c_button_background_cancel;
+                    setLeftButtonFontColor: appColors.c_button_text//appColors.c_button_text_cancel;
+                    setLeftButtonBorderColor: "transparent";
+
+                    onLeftButtonClicked:
+                    {
+                        console.log("source : setupTask.qml -> calender buttons back button clicked");
+                        closeCalenderPicker();
+                    }
+                    onRightButtonClicked:
+                    {
+                        console.log("source : setupTask.qml -> save button clicked");
+                        mainCalender.checkoutPuts();
+                        console.log("data : setupTask.qml -> calenderPicker -> picked days = "+mainCalender.give_OutputPickedDays);
+                        const selected_year =  mainCalender.give_OutputPickedDays[0];
+                        const selected_month = mainCalender.give_OutputPickedDays[1];
+                        var selected_day = mainCalender.give_OutputPickedDays[2];
+
+
+                        //to fix 2023/3/3,4,9
+                        selected_day+=",";
+                        selected_day = selected_day.slice(0,selected_day.search(","));
+
+
+                        //put picked into input box
+                        console.log("data : setupTask.qml -> selected date = " + selected_year + "/"+ selected_month + "/" + selected_day)
+                        taskDeadline.defaultValue = selected_year + "/" + selected_month + "/" + selected_day;
+                        closeCalenderPicker();
+                    }
+                }
+            }
+        }
 
     }
 

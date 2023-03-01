@@ -82,6 +82,8 @@ Window
         property string icon_backward: appIcons.i_path + appIcons.i_sizes[1] + "backward.png";
         property string icon_cancel: appIcons.i_path + appIcons.i_sizes[1] + "cancel.png";
         property string icon_add: appIcons.i_path + appIcons.i_sizes[1] + "add.png";
+        property string icon_calender: appIcons.i_path + appIcons.i_sizes[1] + "calender.png";
+
 //        property string animated_icon_checkTask : "/theResources/animated-checked.gif";
         property string icon_built_with_qt: "/theResources/built-with-qt.png";
 

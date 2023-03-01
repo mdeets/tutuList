@@ -131,5 +131,11 @@
         <file>theResources/sun.gif</file>
         <file>theResources/built-with-qt.png</file>
         <file>thePages/About.qml</file>
+        <file>theResources/darkMode/100x100/calender.png</file>
+        <file>theResources/darkMode/24x24/calender.png</file>
+        <file>theResources/darkMode/50x50/calender.png</file>
+        <file>theResources/lightMode/100x100/calender.png</file>
+        <file>theResources/lightMode/24x24/calender.png</file>
+        <file>theResources/lightMode/50x50/calender.png</file>
     </qresource>
 </RCC>

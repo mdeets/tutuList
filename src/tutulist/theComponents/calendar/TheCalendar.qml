@@ -70,7 +70,7 @@ Item
     Rectangle
     {
         id:root;
-        color: cBG_element;
+        color: appColors.c_input_background;//c_theme === "light" ? "red" : "white"
         radius:15;
         anchors.fill: parent;
         Rectangle
@@ -81,7 +81,7 @@ Item
                 top:root.top;
                 topMargin:setTopMarginMonth;
             }
-            color:cBG_Unknown;
+            color:"transparent";
             width: parent.width;
             height:50;
             Rectangle
@@ -89,7 +89,7 @@ Item
                 anchors.centerIn: parent;
                 width: parent.width/1.20;
                 height:parent.height;
-                color:cBG_Unknown;
+                color:"transparent";
 
 
 
@@ -100,15 +100,15 @@ Item
                     id:baseYearText;
                     width: parent.width;
                     height:parent.height/2;
-                    color:cBG_Unknown;
+                    color:"transparent";
                     Text
                     {
                         id: textYear;
-                        color: cTxt_button;
+                        color: appColors.c_font_text;
                         text: setCurrentYear;
                         font.pointSize: setFontSizeMonth/2;
                         font.bold: true;
-                        font.family: gFontFamily;
+//                        font.family: appColors.c_font_text;
                         anchors.horizontalCenter: parent.horizontalCenter;
                         anchors.top:parent.top;
                     }
@@ -121,7 +121,7 @@ Item
                         visible: setCalenderOnlyView?false:true;
                         //opacity: setCurrentMonth==1? 0.5 : 1;
                         //enabled: setCurrentMonth==1? false:true;
-                        color:cBG_Unknown;
+                        color:"transparent";
                         anchors
                         {
                             right:textYear.left;
@@ -132,7 +132,7 @@ Item
                         Image
                         {
                             id: iconBackYear;
-                            source: path_to_menuIcons + fileIcon_BackNext;
+                            source: appIcons.icon_back;
                             anchors.fill: parent;
                         }
                         MouseArea
@@ -155,7 +155,7 @@ Item
                         width: 20;
                         height:width;
                         visible: setCalenderOnlyView?false:true;
-                        color:cBG_Unknown;
+                        color:"transparent";
 //                        opacity: setCurrentMonth==11? 0.5 : 1;
 //                        enabled: setCurrentMonth==11? false:true;
                         anchors
@@ -168,7 +168,7 @@ Item
                         Image
                         {
                             id: iconNextYear
-                            source: path_to_menuIcons + fileIcon_BackNext;
+                            source: appIcons.icon_back;
                             anchors.fill: parent;
                             rotation: 180;
                         }
@@ -194,15 +194,15 @@ Item
                     width: parent.width;
                     height:parent.height/2;
                     anchors.top:baseYearText.bottom;
-                    color:cBG_Unknown;
+                    color:"transparent";
                     Text
                     {
                         id: textMonth;
-                        color: cTxt_button;
+                        color: appColors.c_font_text;
                         text: setTextMonth[setCurrentMonth];
                         font.pointSize: setFontSizeMonth/2;
                         font.bold: true;
-                        font.family: gFontFamily;
+//                        font.family: appColors.;
                         anchors.centerIn: parent;
                     }//end of text month
                     Rectangle
@@ -213,7 +213,7 @@ Item
                         visible: setCalenderOnlyView?false:true;
 //                        //opacity: setCurrentMonth==1? 0.5 : 1;
 //                        //enabled: setCurrentMonth==1? false:true;
-                        color:cBG_Unknown;
+                        color:"transparent";
                         anchors
                         {
                             right:textMonth.left;
@@ -225,7 +225,7 @@ Item
                         Image
                         {
                             id: iconBackMonth;
-                            source: path_to_menuIcons + fileIcon_BackNext;
+                            source: appIcons.icon_back;
                             anchors.fill: parent;
                         }
                         MouseArea
@@ -256,7 +256,7 @@ Item
                         width: 20;
                         height:width;
                         visible: setCalenderOnlyView?false:true;
-                        color:cBG_Unknown;
+                        color:"transparent";
 //                        opacity: setCurrentMonth==11? 0.5 : 1;
 //                        enabled: setCurrentMonth==11? false:true;
                         anchors
@@ -270,7 +270,7 @@ Item
                         Image
                         {
                             id: iconNextMonth
-                            source: path_to_menuIcons + fileIcon_BackNext;
+                            source: appIcons.icon_back;
                             anchors.fill: parent;
                             rotation: 180;
                         }
@@ -313,7 +313,7 @@ Item
             id:baseWeekDays;
             width: parent.width/1.20;
             height: baseTextMonth.height/1.5;
-            color: cBG_Unknown;
+            color: "transparent";
             anchors.top:baseTextMonth.bottom;
             anchors.horizontalCenter: parent.horizontalCenter;
             anchors.topMargin: parent.height/25;
@@ -356,7 +356,7 @@ Item
             id:baseDays;
             width: parent.width/1.20;
             height: setCalenderOnlyView? parent.height/1.42 :parent.height/1.52;
-            color:cBG_Unknown;
+            color:"transparent";
             anchors
             {
                 horizontalCenter:parent.horizontalCenter;

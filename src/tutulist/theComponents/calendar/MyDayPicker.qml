@@ -175,7 +175,7 @@ Item
         {
             width: parent.width;
             height: parent.height/countColumns;
-            color:cBG_Unknown;
+            color:"transparent";
             MyWeekDayPicker
             {
                 id:week1;
@@ -197,7 +197,7 @@ Item
         {
             width: parent.width;
             height: parent.height/countColumns;
-            color:cBG_Unknown;
+            color:"transparent";
             MyWeekDayPicker
             {
                 id:week2;
@@ -220,7 +220,7 @@ Item
         {
             width: parent.width;
             height: parent.height/countColumns;
-            color:cBG_Unknown;
+            color:"transparent";
             MyWeekDayPicker
             {
                 id:week3;
@@ -244,7 +244,7 @@ Item
         {
             width: parent.width;
             height: parent.height/countColumns;
-            color:cBG_Unknown;
+            color:"transparent";
             MyWeekDayPicker
             {
                 id:week4;
@@ -267,7 +267,7 @@ Item
         {
             width: parent.width;
             height: parent.height/countColumns;
-            color:cBG_Unknown;
+            color:"transparent";
             MyWeekDayPicker
             {
                 id:week5;
@@ -290,7 +290,7 @@ Item
         {
             width: parent.width;
             height: parent.height/countColumns;
-            color:cBG_Unknown;
+            color:"transparent";
             MyWeekDayPicker
             {
                 id:week6;

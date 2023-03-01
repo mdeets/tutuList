@@ -35,10 +35,10 @@ Item
 
 
 
-    property color setColorPicked: cBG_button;
-    property color setColorNotPicked: setMonthDayPicker? cBG_Unknown : cBG_element;
+    property color setColorPicked: appColors.c_button_background;
+    property color setColorNotPicked: setMonthDayPicker? "transparent" : "transparent"    ;
     property color setColorTextPicked: "white";//"white";
-    property color setColorTextNotPicked: cTxt_button;//color exception 5
+    property color setColorTextNotPicked: appColors.c_font_text;//color exception 5
 
     property int setTextFontSize: 9;
     property bool setTextBold: true;
