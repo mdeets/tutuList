@@ -95,11 +95,9 @@ Item
 
         function convertNumberToPersian(num)
         {
-            console.log("convertNumber starts");
             var resu="";
             for(var ix=0; ix< num.toString().length; ix++)
             {
-                console.log(ix);
                 switch(num.toString().slice(ix,ix+1))
                 {
                     case "0": resu+= "۰"; break;
