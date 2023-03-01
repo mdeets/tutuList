@@ -1,7 +1,11 @@
+
+## picture v0.9.1
+<img src="https://github.com/Cpeepee/tutuList/blob/master/docs/preview/v0-9-1/tutulist-0-9-1.png" width=100% title=""/>
+
+
+
+
 # v0.7.0 previews picture and gif
-    > Settings page is ugly :(
-    > API section is under develop
-    > change theme icon is ugly
 
 <table>
 <tr>
