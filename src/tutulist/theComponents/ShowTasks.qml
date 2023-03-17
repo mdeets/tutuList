@@ -9,7 +9,7 @@ import "../theScripts/todaytasks.js" as TodayTasks
 import "../theComponents"
 
 import "../theScripts/steptasks.js" as StepTaskManager
-
+import "../theScripts/deadlineList.js" as DeadlineListSort
 
 Item
 {
@@ -71,6 +71,9 @@ Item
                 break;
             case "todaytasks":
                 resultGet = TodayTasks.getList(listModelMain,"appendToList");
+                break;
+            case "queryDeadlines":
+                resultGet = DeadlineListSort.getList(listModelMain,"appendToList");
                 break;
             default:
                 resultGet = AllTasks.getList(listModelMain,"appendToList");
@@ -320,6 +323,25 @@ Item
                         anchors.topMargin:tsId> 0? -18:0;
                         Rectangle
                         {
+                            id: dateTask;
+                            visible: componentType=="queryDeadlines"? tsId>0 ? false : true :false;
+                            width: componentType=="queryDeadlines"? 45:0;
+                            height: componentType=="queryDeadlines"? 5:0;
+                            color:"transparent"
+                            anchors
+                            {
+                                top:parent.top;
+                                right:parent.right;
+                            }
+                            Text
+                            {
+                                text:tDeadline
+                                anchors.centerIn: parent
+                                color:appColors.c_task_text
+                            }
+                        }
+                        Rectangle
+                        {
                             id:priorityShower;
                             width: tsId > 0 ? 0 : parent.width;
                             height: tsId > 0 ? 0 : 2;
@@ -339,6 +361,7 @@ Item
 //                                }
 //                            }
                         }
+
 
 
                         MouseArea
@@ -429,6 +452,7 @@ Item
                                 top:title.bottom;
                             }
                         }
+
 
                         Rectangle
                         {

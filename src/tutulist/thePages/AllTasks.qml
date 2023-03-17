@@ -7,10 +7,16 @@ Item
     signal mainQMLpleaseOpenSetupTaskForm;
     signal mainQMLpleaseOpenTheModifyTaskForm(int id, string title, string desc, string timeToPerform, string creationDate, string priority,string deadline);
 
+    property string statusQueryDeadlines: "alltasks";
+    property string pageTitle: "All Tasks";
+    property bool pageSearchStatus:true;
+
     ShowTasks
     {
         id:showAllTasks;
-        setPageTitle:"All Tasks";
+        componentType: statusQueryDeadlines;
+        setPageTitle:pageTitle;
+        searchAllowed: pageSearchStatus;
     }
     Connections //make connection with page showTasks.qml and the ShowAllTasks. then this will recive by main.qml
     {
@@ -28,5 +34,9 @@ Item
             mainQMLpleaseOpenTheModifyTaskForm(id,title,desc,timeToPerform,creationDate,priority,deadline);
         }
 
+    }
+    Component.onCompleted:
+    {
+        console.log("source : AllTasks.qml -> im completed. value QueryForDeadlines = " + statusQueryDeadlines)
     }
 }

@@ -274,6 +274,7 @@ Window
                 model: ListModel
                 {
 //                    ListElement { title: ""; source: "qrc:/thePages/About.qml" }
+                    ListElement { title: "Deadlines"; source: "qrc:/thePages/DeadlineList.qml" }
                     ListElement { title: "Settings"; source: "qrc:/thePages/settings/Settings.qml" }
                     ListElement { title: "About"; source: "qrc:/thePages/About.qml" }
 

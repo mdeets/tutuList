@@ -137,5 +137,7 @@
         <file>theResources/lightMode/100x100/calender.png</file>
         <file>theResources/lightMode/24x24/calender.png</file>
         <file>theResources/lightMode/50x50/calender.png</file>
+        <file>thePages/DeadlineList.qml</file>
+        <file>theScripts/deadlineList.js</file>
     </qresource>
 </RCC>
