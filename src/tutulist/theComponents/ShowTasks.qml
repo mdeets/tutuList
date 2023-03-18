@@ -19,6 +19,7 @@ Item
     //this is a flag to enable or disable something in this component
     property string setPageTitle: "";
     property string componentType : "alltasks"; //values are  alltasks,todaytasks,completedtasks.
+    property string queryDeadlineMode: ">=";
     property bool searchAllowed : true;
     property bool addNewTaskAllowed: true;
     property string setIconRight : appIcons.icon_back//appIcons.icon_addTodayTask;
@@ -27,6 +28,7 @@ Item
     signal buttonRightClicked(int tId, int tsId, string tsCompeteDate);
     signal buttonLeftClicked(int tId, int tsId, string tsCompeteDate);
     signal searchTextChanged(string text);
+    property int addNewTaskBottomMargin: 65;
     property ListModel listModelAccessForOutSide: listModelMain //to make accses for whos using this component to append something into this listModel
 
 //    signal aTaskCreatedViaQuicklyCreation(int tId);
@@ -72,8 +74,14 @@ Item
             case "todaytasks":
                 resultGet = TodayTasks.getList(listModelMain,"appendToList");
                 break;
-            case "queryDeadlines":
-                resultGet = DeadlineListSort.getList(listModelMain,"appendToList");
+            case "queryDeadlinesComingUp":
+                resultGet = DeadlineListSort.getList(listModelMain,"appendToList",">");
+                break;
+            case "queryDeadlinesToday":
+                resultGet = DeadlineListSort.getList(listModelMain,"appendToList","=");
+                break;
+            case "queryDeadlinesToday":
+                resultGet = DeadlineListSort.getList(listModelMain,"appendToList","<");
                 break;
             default:
                 resultGet = AllTasks.getList(listModelMain,"appendToList");
@@ -324,18 +332,19 @@ Item
                         Rectangle
                         {
                             id: dateTask;
-                            visible: componentType=="queryDeadlines"? tsId>0 ? false : true :false;
-                            width: componentType=="queryDeadlines"? 45:0;
-                            height: componentType=="queryDeadlines"? 5:0;
+                            visible: componentType[0]==="q"? tsId>0 ? false : true :false; //q -> queryDeadlinesComingUp
+                            width: componentType[0]==="q"? 45:0;
+                            height: componentType[0]==="q"? 5:0;
                             color:"transparent"
                             anchors
                             {
                                 top:parent.top;
                                 right:parent.right;
+                                rightMargin: 45;
                             }
                             Text
                             {
-                                text:tDeadline
+                                text: "deadline: " + tDeadline
                                 anchors.centerIn: parent
                                 color:appColors.c_task_text
                             }
@@ -381,6 +390,7 @@ Item
                                 {
                                     console.log("source: showTasks.qml -> "+ componentType + ".qml  -> on task clicked, lets add new step to this task");
                                     priorityShower.visible=false;
+                                    dateTask.visible=false;
                                     quicklyAddStep.visible=true;
 
                                 }
@@ -432,7 +442,7 @@ Item
                             anchors
                             {
                                 left:parent.left;
-                                leftMargin: tsId > 0 ? 40 : 70;
+                                leftMargin: tsId > 0 ? 40 : componentType[0] ==="q" ? 30 : 70;
                                 top:parent.top;
                                 topMargin: tsId>0 ? height*1.30 : height/2;
                             }
@@ -459,7 +469,7 @@ Item
                             id:todayButton; //the component set is known this as RIGHT button;
                             width:tsId>0 ? 0: 30;
                             height:tsId> 0 ? 0 : parent.height;
-                            visible: tsId>0? false:true;
+                            visible: tsId>0? false : componentType[0] ==="q" ? false:true;
                             anchors.left:parent.left;
                             anchors.leftMargin: 35;
                             color:"transparent";
@@ -505,6 +515,7 @@ Item
                             width:30;
                             height:parent.height;
                             anchors.right:todayButton.left;
+                            visible: componentType[0] ==="q" ? false:true;
                             color:"transparent";
                             Image
                             {
@@ -632,6 +643,7 @@ Item
                             onCancelButtonClicked:
                             {
                                 priorityShower.visible=true;
+                                dateTask.visible=true;
                             }
                         }
 
@@ -662,7 +674,7 @@ Item
         anchors
         {
             bottom:parent.bottom;
-            bottomMargin:65;
+            bottomMargin:addNewTaskBottomMargin;
             horizontalCenter:parent.horizontalCenter;
         }
         MouseArea

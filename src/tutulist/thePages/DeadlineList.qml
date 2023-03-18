@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import "../theScripts/config.js" as Configs
 import QtQuick.Controls 2.15
+//import "AllTasks"
 
 
 Page
@@ -71,7 +72,6 @@ Page
 
 
 
-
         //content
         Rectangle
         {
@@ -85,26 +85,58 @@ Page
             }
             color:appColors.c_background;
 
-            Item
+
+
+            SwipeView
             {
-                width:parent.width;
-                height:parent.height;
-                Loader
+                id: swipe_view
+
+                currentIndex: 0
+                anchors.fill: parent
+                Page
                 {
-                    id:pageLoader;
-                    anchors.fill: parent;
+                    AllTasks
+                    {
+                        statusQueryDeadlines:"queryDeadlinesComingUp";
+                        pageSearchStatus:false;
+                        pageTitle:"Coming up deadlines";
+                        set_addNewTaskBottomMargin:35;
+                    }
                 }
-                Component.onCompleted:
+                Page
                 {
-                    console.log("source: DeadlineList.qml -> ComponentCompleted. lets setSource for pageloader.");
-                    pageLoader.setSource("./AllTasks.qml",
-                                         {"statusQueryDeadlines":"queryDeadlines",
-                                         "pageSearchStatus":false,
-                                         "pageTitle":"Coming Up"});
+                    AllTasks
+                    {
+                        statusQueryDeadlines:"queryDeadlinesPast";
+                        pageSearchStatus:false;
+                        pageTitle:"Past deadlines";
+                        set_addNewTaskBottomMargin:35;
+                    }
                 }
+                Page
+                {
+                    AllTasks
+                    {
+                        statusQueryDeadlines:"queryDeadlinesToday";
+                        pageSearchStatus:false;
+                        pageTitle:"Today deadlines";
+                        set_addNewTaskBottomMargin:35;
+                    }
+                }
+
             }
+            PageIndicator {
+                id: indicator
 
+                count: swipe_view.count
+                currentIndex: swipe_view.currentIndex
+
+                anchors.bottom: swipe_view.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
         }
-    }
 
+
+
+    }
 }

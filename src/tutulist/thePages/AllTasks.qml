@@ -10,13 +10,14 @@ Item
     property string statusQueryDeadlines: "alltasks";
     property string pageTitle: "All Tasks";
     property bool pageSearchStatus:true;
-
+    property int set_addNewTaskBottomMargin:65;
     ShowTasks
     {
         id:showAllTasks;
         componentType: statusQueryDeadlines;
         setPageTitle:pageTitle;
         searchAllowed: pageSearchStatus;
+        addNewTaskBottomMargin: set_addNewTaskBottomMargin;
     }
     Connections //make connection with page showTasks.qml and the ShowAllTasks. then this will recive by main.qml
     {

@@ -1,6 +1,6 @@
 .import "databaseHeader.js" as DBC
 
-function getList(targetList,returnType="json",isSearching="searchOn",isSearchLikeOn="likeOn",searchingText="") //return ETC means OK, return 1 is error
+function getList(targetList,returnType="json",sizeOfDate=">=",isSearching="searchOn",isSearchLikeOn="likeOn",searchingText="") //return ETC means OK, return 1 is error
 {
     /*
         This function will fetch and return as json OR append data into the list.
@@ -121,7 +121,8 @@ function getList(targetList,returnType="json",isSearching="searchOn",isSearchLik
 //                        }
 //                        else
 //                        {
-                             rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_deadline >= (SELECT CURRENT_TIMESTAMP) ORDER BY t_deadline ASC'); // ORDER BY  AND t_priority ASC //AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+')
+                             rs = tx.executeSql('SELECT * FROM '+DBC.table_allTasks+' WHERE t_id NOT IN (SELECT t_id FROM '+DBC.table_completedTasks+') AND t_deadline '+sizeOfDate+' (SELECT CURRENT_TIMESTAMP) ORDER BY t_deadline ASC'); // ORDER BY  AND t_priority ASC //AND t_id NOT IN (SELECT t_id FROM '+DBC.table_todayTasks+')
+
                             //up code means 111 (JAPAN) ->  https://learn.microsoft.com/en-us/sql/t-sql/functions/cast-and-convert-transact-sql?redirectedfrom=MSDN&view=sql-server-ver16
 //                        }
 
